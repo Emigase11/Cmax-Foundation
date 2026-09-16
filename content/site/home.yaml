@@ -1,0 +1,36 @@
+headline: Prepared before disaster strikes.
+description: CMAX Foundation advances rapid habitat, emergency response capacity and preparedness for communities affected by disasters, displacement and complex emergencies.
+positioning: From families forced to leave their homes to firefighters preparing for floods, we help turn preparedness into real capacity before the next emergency.
+hero:
+  image: stories/cmax-ready-to-deploy.webp
+  alt: Nicolás García Mayor beside folded CMAX units inside a production facility.
+  caption: Readiness starts long before the emergency.
+  credit: Cmax System
+  illustrative: false
+heroVideo:
+  src: /video/cmax-deployment.mp4
+  title: Deploying a CMAX unit
+  context: Short clip showing how a folded unit opens into a usable space. Location and date to be confirmed by CMAX.
+  captions: ''
+sequence:
+  - stage: before
+    title: Prepare
+    text: Anticipate what a community will need, coordinate the institutions that will respond, and have deployable capacity ready before the emergency, not after.
+  - stage: during
+    title: Respond
+    text: Support the teams already on the ground with medical space, evacuation capacity and the logistics to move it where it is needed.
+  - stage: after
+    title: Protect
+    text: Give families and responders a dignified place to rest and recover while permanent services are restored.
+needs:
+  - title: Medical care when hospitals are overwhelmed
+    text: Health teams need clean, protected space for triage, isolation and treatment within hours, wherever the emergency is.
+    program: cmax-med
+  - title: Evacuation when water rises faster than boats can move
+    text: Rescue crews are limited by boats, crews and time. Moving more people per trip changes what a flood response can achieve.
+    program: aerocabin
+  - title: Temporary protection once people reach safety
+    text: Evacuation does not end at dry land. Families need immediate protection until longer-term solutions arrive.
+    program: aerocabin
+transparency: When operational costs are covered through private donors, sponsors and partners, public donations can be directed to field programs and humanitarian action.
+partnersLine: Preparedness takes a network. Partner with CMAX Foundation to bring practical emergency readiness to the communities that need it most.

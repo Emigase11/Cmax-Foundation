@@ -14,6 +14,15 @@ const NAV = [
   { href: "/about", label: "About us" },
 ];
 
+/**
+ * CMAX Foundation lockup: the official figures mark plus the name.
+ *
+ * The mark comes from the Foundation's own brand file (504x451, transparent),
+ * so it stays sharp at any header size. The full lockup with the wordmark baked
+ * in only exists at 85px on the current site, which is too small to render
+ * crisply here; `cmax-foundation-lockup.png` is kept alongside for when a
+ * vector or high-resolution original arrives.
+ */
 export function Wordmark({
   className = "",
   height = 40,
@@ -21,6 +30,7 @@ export function Wordmark({
   className?: string;
   height?: number;
 }) {
+  const width = Math.round((height * 504) / 451);
   return (
     <Link
       href="/"
@@ -28,13 +38,18 @@ export function Wordmark({
       aria-label="CMAX Foundation, home"
     >
       <Image
-        src="/images/content/brand/cmax-foundation-logo.png"
-        alt="CMAX — Innovation for Humanity"
-        width={585}
-        height={132}
-        style={{ width: Math.round((height * 585) / 132), height: "auto" }}
+        src="/images/content/brand/cmax-foundation-mark.png"
+        alt=""
+        width={width}
+        height={height}
+        sizes={`${width}px`}
+        priority
+        style={{ width, height: "auto" }}
       />
-      <span className="wordmark-foundation">FOUNDATION</span>
+      <span className="wordmark-name">
+        <span className="wordmark-cmax">cmax</span>
+        <span className="wordmark-foundation">Foundation</span>
+      </span>
     </Link>
   );
 }

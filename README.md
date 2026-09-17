@@ -4,6 +4,7 @@ Institutional site for CMAX Foundation, built around one story: **prepare before
 
 - **Stack:** Next.js 16 (App Router, TypeScript), Tailwind CSS v4, Keystatic (git-based content manager), Markdoc for long text.
 - **Design system:** see [DESIGN.md](DESIGN.md). Product truth: [PRODUCT.md](PRODUCT.md).
+- **Visual redesign and publishing handoff:** see [REDESIGN.md](REDESIGN.md), including image limits, UNHCR methodology and pending CMAX materials.
 
 ## Run it
 
@@ -75,7 +76,7 @@ Without them, inquiries are appended to `data/inquiries/<date>.jsonl` (git-ignor
 - `public/images/content/solutions/` — product photographs and renders extracted from Cmax System brochures (renders are flagged illustrative in content).
 - `public/images/content/actions/` — action imagery.
 - `public/video/cmax-deployment.mp4` — deployment clip (context to be confirmed).
-- `public/images/content/brand/cmax-foundation-logo.png` — the supplied CMAX logo, used in the header and footer.
+- `public/images/content/brand/cmax-foundation-mark.png` — the Foundation's transparent figures mark, paired with live text in the header and footer.
 - `public/images/content/stories/` — nine optimized WebP images from the project's archive. `npm run images:prepare` regenerates them without changing the originals. Concept images retain their illustrative labels.
 
 ## Verification

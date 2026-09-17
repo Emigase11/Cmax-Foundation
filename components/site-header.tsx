@@ -74,15 +74,6 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="institutional-bar">
-        <Container className="flex items-center justify-between gap-4">
-          <span>Innovation for humanity. Preparedness for everyone.</span>
-          <Link href="/global-advocacy/united-nations">
-            Special consultative status · UN ECOSOC{" "}
-            <ArrowIcon width={13} height={13} />
-          </Link>
-        </Container>
-      </div>
       <header className="site-header">
         <a href="#main" className="skip-link">
           Skip to content

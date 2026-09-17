@@ -6,8 +6,9 @@ const nextConfig: NextConfig = {
     "/api/support": ["./content/**/*"],
   },
   images: {
+    qualities: [75, 90],
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920],
+    deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920, 2400, 2800],
   },
   async redirects() {
     // Paths from the previous WordPress site.

@@ -95,13 +95,14 @@ export function ActionFeature({ action }: { action: ActionEntry }) {
       </div>
       <div className="lg:col-span-5">
         {src ? (
-          <div className="frame relative aspect-[4/3]">
+          <div className="frame relative aspect-[1.95]">
             <Image
               src={src}
               alt={entry.hero.alt}
               fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover"
+              quality={90}
+              sizes="(min-width: 1320px) 490px, (min-width: 1024px) calc((100vw - 128px) * .417), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+              className="object-contain"
             />
           </div>
         ) : (
@@ -138,14 +139,15 @@ export function CampaignCard({ campaign }: { campaign: CampaignEntry }) {
   const src = hasImage(entry.hero) ? imgSrc(entry.hero.image) : null;
   return (
     <article className="campaign-card flex flex-col border-t-[3px] border-ink pt-5">
-      <div className="frame relative aspect-[3/2]">
+      <div className="frame relative aspect-[1.95]">
         {src ? (
           <Image
             src={src}
             alt={entry.hero.alt}
             fill
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
+            quality={90}
+            sizes="(min-width: 1320px) 600px, (min-width: 768px) calc((100vw - 112px) / 2), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+            className="object-contain"
           />
         ) : (
           <div className="record-poster h-full">
@@ -222,15 +224,16 @@ export function ProgramPanel({
   return (
     <article className="program-panel group">
       <Link href={`/our-work/${slug}`} className="block">
-        <div className="frame relative aspect-[5/4]">
+        <div className="frame relative aspect-[1.95]">
           {src && (
             <Image
               src={src}
               alt={entry.hero.alt}
               fill
               preload={priority}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              quality={90}
+              sizes="(min-width: 1320px) 600px, (min-width: 1024px) calc((100vw - 112px) / 2), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+              className="object-contain"
             />
           )}
           {src && entry.hero.illustrative && (

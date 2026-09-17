@@ -52,7 +52,7 @@ export const ATTRIBUTION: Record<string, string> = {
   founder: "Founder, personal capacity",
 };
 
-/** Image values are stored relative to /images/content/ unless already absolute. */
+/** Keystatic stores /images/content/ paths; legacy relative values still render. */
 export function imgSrc(value: string | null | undefined): string | null {
   if (!value || value.endsWith("/")) return null;
   if (value.startsWith("/") || value.startsWith("http")) return value;

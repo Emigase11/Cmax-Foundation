@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Figure } from "@/components/figure";
+import { Gallery } from "@/components/gallery";
 import { MarkdocContent } from "@/components/markdoc-content";
 import { ActionRow, CampaignCard } from "@/components/records";
 import { StageChips } from "@/components/stage-rail";
@@ -51,7 +52,7 @@ export default async function ProgramPage({ params }: Props) {
           </div>
           <div className="lg:col-span-5">
             {hasImage(program.hero) && (
-              <Figure figure={program.hero} aspect="aspect-[4/3]" priority sizes="(min-width: 1024px) 40vw, 100vw" />
+              <Figure figure={program.hero} priority sizes="(min-width: 1320px) 490px, (min-width: 1024px) calc((100vw - 128px) * .417), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
             )}
           </div>
         </header>
@@ -88,11 +89,7 @@ export default async function ProgramPage({ params }: Props) {
         {program.gallery.length > 0 && (
           <section className="mt-16 lg:mt-20">
             <h2 className="sr-only">Images</h2>
-            <div className="grid gap-8 sm:grid-cols-2">
-              {program.gallery.map((g, i) => (
-                <Figure key={i} figure={g} aspect={i % 3 === 2 ? "aspect-[4/3]" : "aspect-[3/2]"} sizes="(min-width: 640px) 50vw, 100vw" />
-              ))}
-            </div>
+            <Gallery figures={program.gallery} />
           </section>
         )}
 

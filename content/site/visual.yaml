@@ -1,0 +1,60 @@
+unImage:
+  image: /images/content/stories/humanitarian-innovation.webp
+  alt: Nicolás García Mayor presenting humanitarian innovation at the Inter-American Development Bank.
+  caption: Humanitarian innovation at the Inter-American Development Bank.
+  credit: CMAX archive
+  illustrative: false
+unVideo: []
+heroVideos: []
+comparisonBefore:
+  image: /images/content/solutions/cmaxmed-folded-photo.jpg
+  alt: A Cmax Med unit folded for transport inside a warehouse.
+  caption: Folded for transport
+  credit: Cmax System
+  illustrative: false
+comparisonAfter:
+  image: /images/content/solutions/cmaxmed-assembly-photo.jpg
+  alt: A Cmax Med unit with its side panels opened during assembly.
+  caption: Opened during assembly
+  credit: Cmax System
+  illustrative: false
+approachImages:
+  - image: /images/content/stories/cmax-ready-to-deploy.webp
+    alt: Nicolás García Mayor beside folded CMAX units in a production facility.
+    caption: Prepared capacity begins before an emergency.
+    credit: Cmax System
+    illustrative: false
+  - image: /images/content/solutions/cmaxmed-assembly-photo.jpg
+    alt: A person opening the side panels of a Cmax Med unit.
+    caption: Building the capacity to respond.
+    credit: Cmax System
+    illustrative: false
+  - image: /images/content/stories/haiti-community.webp
+    alt: Nicolás García Mayor with a child during a visit in Haiti.
+    caption: People remain at the heart of recovery.
+    credit: CMAX archive
+    illustrative: false
+needsImages:
+  - image: /images/content/solutions/cmaxmed-interior-photo.jpg
+    alt: Interior of a Cmax Med unit with a rigid floor and windows.
+    caption: Space to care
+    credit: Cmax System
+    illustrative: false
+  - image: /images/content/stories/aerocabin-rescue-concept.webp
+    alt: Concept of a family entering an AeroCabin from a rescue boat.
+    caption: A way to safety
+    credit: Cmax System
+    illustrative: true
+  - image: /images/content/stories/haiti-community.webp
+    alt: Nicolás García Mayor sharing a moment with a child in Haiti.
+    caption: Dignity after disaster
+    credit: CMAX archive
+    illustrative: false
+displacement:
+  value: 117800000
+  year: 2025
+  source: https://www.unhcr.org/about-unhcr/overview/figures-glance
+fundraising:
+  published: false
+  currency: USD
+  financed: ''

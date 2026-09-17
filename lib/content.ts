@@ -3,6 +3,17 @@ import { reader } from "./reader";
 
 export * from "./labels";
 
+export const getVisual = cache(async () => {
+  const visual = await reader.singletons.visual.read();
+  if (!visual) throw new Error("content/site/visual.yaml is missing");
+  return visual;
+});
+
+export const getPress = cache(async () => {
+  const entries = await reader.collections.press.all();
+  return entries.filter(p => p.entry.published && p.entry.url && p.entry.date && p.entry.outlet).sort(byDateDesc);
+});
+
 const byDateDesc = <T extends { entry: { date: string | null } }>(a: T, b: T) =>
   (b.entry.date ?? "").localeCompare(a.entry.date ?? "");
 
@@ -61,4 +72,3 @@ export const getPeople = cache(async () => {
     .filter((p) => p.entry.verified)
     .sort((a, b) => (a.entry.order ?? 0) - (b.entry.order ?? 0));
 });
-

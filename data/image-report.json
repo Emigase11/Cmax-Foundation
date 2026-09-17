@@ -1,0 +1,128 @@
+[
+  {
+    "source": "nico-garcia-mayor-haiti-1100x564.jpg",
+    "name": "haiti-community",
+    "originalWidth": 1100,
+    "targetWidth": 1600,
+    "outputWidth": 1600,
+    "widths": [
+      600,
+      1200,
+      1600
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 1100px is below 1600px target; derivative 1600px. Resampling does not recover detail."
+  },
+  {
+    "source": "Cmax-system-flat-pack-nico-garcia-mayor-1100x564.jpeg",
+    "name": "cmax-ready-to-deploy",
+    "originalWidth": 1100,
+    "targetWidth": 2800,
+    "outputWidth": 2200,
+    "widths": [
+      600,
+      1200,
+      1600,
+      2200
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 1100px is below 2800px target; derivative 2200px. Resampling does not recover detail."
+  },
+  {
+    "source": "Nicolas-Garcia-Mayor-vulnerable-neighborhood-1100x564.jpg",
+    "name": "community-visit",
+    "originalWidth": 1100,
+    "targetWidth": 1600,
+    "outputWidth": 1600,
+    "widths": [
+      600,
+      1200,
+      1600
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 1100px is below 1600px target; derivative 1600px. Resampling does not recover detail."
+  },
+  {
+    "source": "Nicolas-garcia-Mayor-Una-ilusion-1100x564.jpg",
+    "name": "community-together",
+    "originalWidth": 1100,
+    "targetWidth": 2400,
+    "outputWidth": 2200,
+    "widths": [
+      600,
+      1200,
+      1600,
+      2200
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 1100px is below 2400px target; derivative 2200px. Resampling does not recover detail."
+  },
+  {
+    "source": "Nicolas-Garcia-Mayor-Interamerican-Development-Bank-1100x564.jpg",
+    "name": "humanitarian-innovation",
+    "originalWidth": 1100,
+    "targetWidth": 1600,
+    "outputWidth": 1600,
+    "widths": [
+      600,
+      1200,
+      1600
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 1100px is below 1600px target; derivative 1600px. Resampling does not recover detail."
+  },
+  {
+    "source": "Captura de pantalla 2026-09-16 143914.png",
+    "name": "meeting-pope-francis",
+    "originalWidth": 805,
+    "targetWidth": 800,
+    "outputWidth": 800,
+    "widths": [
+      600,
+      800
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": null
+  },
+  {
+    "source": "Captura de pantalla 2026-09-16 144613.png",
+    "name": "community-gathering",
+    "originalWidth": 803,
+    "targetWidth": 800,
+    "outputWidth": 800,
+    "widths": [
+      600,
+      800
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": null
+  },
+  {
+    "source": "Cmax-air-x2-family-rescue (1).png",
+    "name": "aerocabin-rescue-concept",
+    "originalWidth": 2026,
+    "targetWidth": 2400,
+    "outputWidth": 2026,
+    "widths": [
+      600,
+      1200,
+      1600,
+      2026
+    ],
+    "method": "native",
+    "warning": "Original 2026px is below 2400px target; derivative 2026px. Resampling does not recover detail."
+  },
+  {
+    "source": "flooding-cmax-air-x2.png",
+    "name": "aerocabin-flood-concept",
+    "originalWidth": 1376,
+    "targetWidth": 1200,
+    "outputWidth": 1200,
+    "widths": [
+      600,
+      1200
+    ],
+    "method": "native",
+    "warning": null
+  }
+]

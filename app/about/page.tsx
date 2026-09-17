@@ -33,7 +33,8 @@ export default async function AboutPage() {
           src="/images/content/stories/community-together.webp"
           alt="Nicolás García Mayor with a large community group gathered outdoors."
           fill
-          sizes="(min-width: 1320px) 1240px, 100vw"
+          quality={90}
+          sizes="(min-width: 1320px) 1240px, (min-width: 1024px) calc(100vw - 80px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
           preload
           className="object-cover"
         />

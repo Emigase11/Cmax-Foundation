@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Figure } from "@/components/figure";
+import { Gallery } from "@/components/gallery";
 import { MarkdocContent } from "@/components/markdoc-content";
 import { ButtonLink, Container, EmptyNote, ExternalLink, Strip, Tag } from "@/components/ui";
 import { VideoOnDemand } from "@/components/video-on-demand";
@@ -66,7 +67,7 @@ export default async function ActionPage({ params }: Props) {
 
         {hasImage(action.hero) && (
           <div className="mt-12">
-            <Figure figure={action.hero} aspect="aspect-[16/9]" priority sizes="100vw" />
+            <Figure figure={action.hero} priority sizes="(min-width: 1320px) 1240px, (min-width: 1024px) calc(100vw - 80px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
           </div>
         )}
 
@@ -162,11 +163,7 @@ export default async function ActionPage({ params }: Props) {
             {action.media.length > 0 && (
               <section className="mt-12">
                 <h2 className="display-md text-[1.6rem]">Photographs</h2>
-                <div className="mt-6 grid gap-8 sm:grid-cols-2">
-                  {action.media.map((m, i) => (
-                    <Figure key={i} figure={m} sizes="(min-width: 640px) 40vw, 100vw" />
-                  ))}
-                </div>
+                <div className="mt-6"><Gallery figures={action.media} sizes="(min-width: 1320px) 380px, (min-width: 1024px) 30vw, (min-width: 640px) calc((100vw - 80px) / 2), calc(100vw - 32px)" /></div>
               </section>
             )}
 

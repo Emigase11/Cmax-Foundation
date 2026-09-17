@@ -7,6 +7,7 @@ const COLUMNS = [
   {
     title: "Explore",
     links: [
+      { href: "/approach", label: "Our approach" },
       { href: "/our-work", label: "Our Work" },
       { href: "/our-actions", label: "Our Actions" },
       { href: "/campaigns", label: "Campaigns" },
@@ -22,6 +23,7 @@ const COLUMNS = [
     links: [
       { href: "/about", label: "Mission, vision and history" },
       { href: "/about/team", label: "Leadership and team" },
+      { href: "/about/press", label: "Press" },
       { href: "/about/transparency", label: "Transparency" },
       { href: "/support", label: "Support a Mission" },
       { href: "/support?reason=partner", label: "Partner with us" },
@@ -48,7 +50,7 @@ export async function SiteFooter() {
             Preparing communities, first responders and institutions for complex
             emergencies. {site.tagline}.
           </p>
-          <p className="mt-6 text-[0.95rem] text-ink-2">{site.unStatement}</p>
+          <p className="mt-6 text-[0.95rem] text-ink-2">UN ECOSOC special consultative status · Since 2021.</p>
         </div>
 
         {COLUMNS.map((col) => (

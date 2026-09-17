@@ -52,7 +52,7 @@ export default async function CampaignPage({ params }: Props) {
 
         {hasImage(campaign.hero) && (
           <div className="mt-12">
-            <Figure figure={campaign.hero} aspect="aspect-[16/9]" priority sizes="100vw" />
+            <Figure figure={campaign.hero} priority sizes="(min-width: 1320px) 1240px, (min-width: 1024px) calc(100vw - 80px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" />
           </div>
         )}
 

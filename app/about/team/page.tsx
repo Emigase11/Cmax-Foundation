@@ -35,7 +35,7 @@ export default async function TeamPage() {
                     <li key={p.slug} className="grid grid-cols-[6rem_1fr] gap-5">
                       <div className="frame relative aspect-square rounded-[4px]">
                         {src ? (
-                          <Image src={src} alt={p.entry.name} fill sizes="96px" className="object-cover" />
+                          <Image src={src} alt={p.entry.name} fill quality={90} sizes="96px" className="object-cover" />
                         ) : (
                           <div className="flex h-full items-center justify-center">
                             <span className="display text-[1.6rem] text-ink-3" aria-hidden>

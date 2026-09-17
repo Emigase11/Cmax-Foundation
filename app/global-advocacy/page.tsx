@@ -45,7 +45,8 @@ export default async function GlobalAdvocacyPage() {
               src="/images/content/stories/humanitarian-innovation.webp"
               alt="Nicolás García Mayor speaking at the Inter-American Development Bank."
               fill
-              sizes="(min-width: 768px) 60vw, 100vw"
+              quality={90}
+              sizes="(min-width: 1320px) 744px, (min-width: 768px) 60vw, calc(100vw - 32px)"
               className="object-cover"
             />
           </div>
@@ -60,7 +61,8 @@ export default async function GlobalAdvocacyPage() {
               src="/images/content/stories/meeting-pope-francis.webp"
               alt="Nicolás García Mayor meeting Pope Francis."
               fill
-              sizes="(min-width: 768px) 35vw, 100vw"
+              quality={90}
+              sizes="(min-width: 1320px) 434px, (min-width: 768px) 35vw, calc(100vw - 32px)"
               className="object-cover"
             />
           </div>

@@ -44,32 +44,36 @@ const figure = (label: string) =>
     { label },
   );
 
-const videoList = fields.array(
-  fields.object({
-    title: fields.text({ label: "Title" }),
-    context: fields.text({
-      label: "Context",
-      description: "Where and when it was filmed, and what it shows.",
-      multiline: true,
+const videoList = (label = "Videos") =>
+  fields.array(
+    fields.object({
+      title: fields.text({ label: "Title" }),
+      context: fields.text({
+        label: "Context",
+        description: "Where and when it was filmed, and what it shows.",
+        multiline: true,
+      }),
+      url: fields.url({
+        label: "Video URL",
+        description: "YouTube or Vimeo link, or a path under /video/.",
+      }),
+      captions: fields.text({
+        label: "Subtitles file (VTT) path",
+        description: "Optional, for local videos. Example: /video/clip.en.vtt",
+      }),
     }),
-    url: fields.url({
-      label: "Video URL",
-      description: "YouTube or Vimeo link, or a path under /video/.",
-    }),
-    captions: fields.text({
-      label: "Subtitles file (VTT) path",
-      description: "Optional, for local videos. Example: /video/clip.en.vtt",
-    }),
-  }),
-  { label: "Videos", itemLabel: (p) => p.fields.title.value || "Video" },
-);
+    { label, itemLabel: (p) => p.fields.title.value || "Video" },
+  );
 
 const documentList = fields.array(
   fields.object({
     title: fields.text({ label: "Title" }),
     url: fields.url({ label: "Link" }),
   }),
-  { label: "Documents and links", itemLabel: (p) => p.fields.title.value || "Document" },
+  {
+    label: "Documents and links",
+    itemLabel: (p) => p.fields.title.value || "Document",
+  },
 );
 
 const stringList = (label: string, description?: string) =>
@@ -86,13 +90,30 @@ export default config({
   ui: {
     brand: { name: "CMAX Foundation" },
     navigation: {
-      Publish: ["actions", "campaigns", "activities"],
+      Publish: ["actions", "campaigns", "activities", "press"],
       Programs: ["programs"],
       People: ["people"],
-      Pages: ["home", "about", "site"],
+      Pages: ["home", "visual", "about", "site"],
     },
   },
   collections: {
+    press: collection({
+      label: "Press coverage",
+      path: "content/press/*",
+      slugField: "title",
+      format: { data: "yaml" },
+      schema: {
+        title: fields.slug({ name: { label: "Article headline" } }),
+        outlet: fields.text({ label: "Media outlet" }),
+        date: fields.date({ label: "Publication date" }),
+        url: fields.url({ label: "Direct article URL" }),
+        logo: image("Outlet logo"),
+        published: fields.checkbox({
+          label: "Verified and ready to publish",
+          defaultValue: false,
+        }),
+      },
+    }),
     programs: collection({
       label: "Programs (Our Work)",
       path: "content/programs/*",
@@ -128,7 +149,8 @@ export default config({
         capability: fields.text({ label: "What CMAX brings", multiline: true }),
         safetyNote: fields.text({
           label: "Safety or scope note",
-          description: "Shown near the capability. Example: not a life-saving device.",
+          description:
+            "Shown near the capability. Example: not a life-saving device.",
           multiline: true,
         }),
         participation: stringList("How to participate"),
@@ -149,8 +171,25 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         published: fields.checkbox({ label: "Published", defaultValue: true }),
-        featured: fields.checkbox({ label: "Featured on home", defaultValue: false }),
+        featured: fields.checkbox({
+          label: "Featured on home",
+          defaultValue: false,
+        }),
         country: fields.text({ label: "Country" }),
+        mapCountries: fields.multiselect({
+          label: "Countries explicitly confirmed for the map",
+          description:
+            "Leave empty until confirmed. Regions and campaigns are not mapped as actions.",
+          options: [
+            { label: "Argentina", value: "ARG" },
+            { label: "Haiti", value: "HTI" },
+            { label: "Mexico", value: "MEX" },
+            { label: "Ukraine", value: "UKR" },
+            { label: "United States", value: "USA" },
+            { label: "Venezuela", value: "VEN" },
+          ],
+          defaultValue: [],
+        }),
         place: fields.text({ label: "Place (city, region)" }),
         date: fields.date({ label: "Date (for ordering)" }),
         dateLabel: fields.text({
@@ -176,8 +215,14 @@ export default config({
           ],
           defaultValue: "foundation",
         }),
-        summary: fields.text({ label: "Summary (one or two sentences)", multiline: true }),
-        context: fields.text({ label: "Context of the emergency", multiline: true }),
+        summary: fields.text({
+          label: "Summary (one or two sentences)",
+          multiline: true,
+        }),
+        context: fields.text({
+          label: "Context of the emergency",
+          multiline: true,
+        }),
         participation: fields.text({
           label: "What the Foundation and partners did",
           multiline: true,
@@ -197,7 +242,7 @@ export default config({
           label: "Photographs",
           itemLabel: (p) => p.fields.caption.value || "Image",
         }),
-        videos: videoList,
+        videos: videoList(),
         documents: documentList,
         supportFuture: fields.checkbox({
           label: "Visitors can support future actions here",
@@ -215,7 +260,10 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         published: fields.checkbox({ label: "Published", defaultValue: true }),
-        featured: fields.checkbox({ label: "Featured on home", defaultValue: false }),
+        featured: fields.checkbox({
+          label: "Featured on home",
+          defaultValue: false,
+        }),
         status: fields.select({
           label: "Status",
           options: [
@@ -230,13 +278,22 @@ export default config({
         country: fields.text({ label: "Country" }),
         place: fields.text({ label: "Place" }),
         need: fields.text({ label: "The need", multiline: true }),
-        recipients: fields.text({ label: "Who receives the support", multiline: true }),
+        recipients: fields.text({
+          label: "Who receives the support",
+          multiline: true,
+        }),
         recipientConfirmed: fields.checkbox({
           label: "Recipient institution confirmed by CMAX",
           defaultValue: false,
         }),
-        response: fields.relationship({ label: "Proposed response (program)", collection: "programs" }),
-        responseNote: fields.text({ label: "Response in one sentence", multiline: true }),
+        response: fields.relationship({
+          label: "Proposed response (program)",
+          collection: "programs",
+        }),
+        responseNote: fields.text({
+          label: "Response in one sentence",
+          multiline: true,
+        }),
         summary: fields.text({ label: "Summary", multiline: true }),
         hero: figure("Main image"),
         updates: fields.array(
@@ -244,9 +301,12 @@ export default config({
             date: fields.date({ label: "Date" }),
             text: fields.text({ label: "Update", multiline: true }),
           }),
-          { label: "Updates", itemLabel: (p) => p.fields.date.value || "Update" },
+          {
+            label: "Updates",
+            itemLabel: (p) => p.fields.date.value || "Update",
+          },
         ),
-        videos: videoList,
+        videos: videoList(),
         documents: documentList,
         body: fields.markdoc({ label: "Full description" }),
       },
@@ -333,6 +393,74 @@ export default config({
   },
 
   singletons: {
+    visual: singleton({
+      label: "Visual home: media and figures",
+      path: "content/site/visual",
+      format: { data: "yaml" },
+      schema: {
+        unImage: figure("UN section image (used until a video is supplied)"),
+        unVideo: videoList("United Nations video"),
+        heroVideos: videoList("Deployment videos"),
+        comparisonBefore: figure("Comparison: folded"),
+        comparisonAfter: figure("Comparison: opened"),
+        approachImages: fields.array(figure("Stage photograph"), {
+          label: "Approach photographs, in stage order",
+          itemLabel: (p) => p.fields.caption.value || "Photograph",
+        }),
+        needsImages: fields.array(figure("Need image"), {
+          label: "Three needs images, in order",
+          itemLabel: (p) => p.fields.caption.value || "Image",
+        }),
+        displacement: fields.object(
+          {
+            value: fields.integer({
+              label: "Official fallback total",
+              validation: { min: 1 },
+            }),
+            year: fields.integer({ label: "Reference year" }),
+            source: fields.url({ label: "Official source URL" }),
+            // Global totals require IDMC and UNRWA plus the published overlap adjustment.
+            overlapYear: fields.integer({
+              label: "Year of verified overlap adjustment",
+            }),
+            overlap: fields.integer({
+              label:
+                "People counted in both IDMC and UNRWA (official adjustment)",
+              validation: { min: 0 },
+            }),
+          },
+          { label: "UNHCR data and fallback" },
+        ),
+        fundraising: fields.object(
+          {
+            published: fields.checkbox({
+              label: "Confirmed and ready to publish",
+              defaultValue: false,
+            }),
+            amount: fields.integer({
+              label: "Total raised (whole currency units)",
+              validation: { min: 0 },
+            }),
+            currency: fields.select({
+              label: "Currency",
+              options: [
+                { label: "USD", value: "USD" },
+                { label: "EUR", value: "EUR" },
+                { label: "ARS", value: "ARS" },
+              ],
+              defaultValue: "USD",
+            }),
+            date: fields.date({ label: "Reporting cutoff" }),
+            financed: fields.text({
+              label: "What this funded",
+              multiline: true,
+            }),
+            source: fields.url({ label: "Public report or source" }),
+          },
+          { label: "Funds raised" },
+        ),
+      },
+    }),
     site: singleton({
       label: "Site settings",
       path: "content/site/settings",
@@ -345,7 +473,10 @@ export default config({
         address: fields.text({ label: "Address", multiline: true }),
         ein: fields.text({ label: "EIN" }),
         legalLine: fields.text({ label: "Legal status line" }),
-        unStatement: fields.text({ label: "United Nations statement", multiline: true }),
+        unStatement: fields.text({
+          label: "United Nations statement",
+          multiline: true,
+        }),
         unRegisterUrl: fields.url({ label: "UN register URL" }),
         guidestarUrl: fields.url({ label: "GuideStar profile URL" }),
         social: fields.object({
@@ -364,7 +495,10 @@ export default config({
       schema: {
         headline: fields.text({ label: "Headline" }),
         description: fields.text({ label: "Description", multiline: true }),
-        positioning: fields.text({ label: "Positioning line", multiline: true }),
+        positioning: fields.text({
+          label: "Positioning line",
+          multiline: true,
+        }),
         hero: figure("Hero image"),
         heroVideo: fields.object(
           {
@@ -389,18 +523,30 @@ export default config({
             title: fields.text({ label: "Title" }),
             text: fields.text({ label: "Text", multiline: true }),
           }),
-          { label: "Sequence (before / during / after)", itemLabel: (p) => p.fields.title.value },
+          {
+            label: "Sequence (before / during / after)",
+            itemLabel: (p) => p.fields.title.value,
+          },
         ),
         needs: fields.array(
           fields.object({
             title: fields.text({ label: "Need" }),
             text: fields.text({ label: "Text", multiline: true }),
-            program: fields.relationship({ label: "Program", collection: "programs" }),
+            program: fields.relationship({
+              label: "Program",
+              collection: "programs",
+            }),
           }),
           { label: "Three needs", itemLabel: (p) => p.fields.title.value },
         ),
-        transparency: fields.text({ label: "Transparency line", multiline: true }),
-        partnersLine: fields.text({ label: "Partnership line", multiline: true }),
+        transparency: fields.text({
+          label: "Transparency line",
+          multiline: true,
+        }),
+        partnersLine: fields.text({
+          label: "Partnership line",
+          multiline: true,
+        }),
       },
     }),
     about: singleton({
@@ -423,15 +569,24 @@ export default config({
             year: fields.text({ label: "Year" }),
             text: fields.text({ label: "Milestone", multiline: true }),
           }),
-          { label: "History and milestones", itemLabel: (p) => p.fields.year.value },
+          {
+            label: "History and milestones",
+            itemLabel: (p) => p.fields.year.value,
+          },
         ),
-        model: fields.text({ label: "Funding model statement", multiline: true }),
+        model: fields.text({
+          label: "Funding model statement",
+          multiline: true,
+        }),
         transparency: fields.array(
           fields.object({
             question: fields.text({ label: "Question" }),
             answer: fields.text({ label: "Answer", multiline: true }),
           }),
-          { label: "Transparency: how it works", itemLabel: (p) => p.fields.question.value },
+          {
+            label: "Transparency: how it works",
+            itemLabel: (p) => p.fields.question.value,
+          },
         ),
         teamNote: fields.text({ label: "Team page note", multiline: true }),
       },

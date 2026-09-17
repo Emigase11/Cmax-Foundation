@@ -17,8 +17,8 @@ type Props = {
  */
 export function Figure({
   figure,
-  aspect = "aspect-[4/3]",
-  sizes = "(min-width: 1024px) 50vw, 100vw",
+  aspect = "aspect-[1.95]",
+  sizes = "(min-width: 1320px) 604px, (min-width: 1024px) calc((100vw - 112px) / 2), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
   priority,
   className = "",
   captionClassName = "",
@@ -32,9 +32,10 @@ export function Figure({
           src={src}
           alt={figure.alt || ""}
           fill
+          quality={90}
           sizes={sizes}
           preload={priority}
-          className="object-cover"
+          className="object-contain"
         />
       </div>
       {(figure.caption || figure.credit || figure.illustrative) && (

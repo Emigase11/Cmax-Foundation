@@ -5,7 +5,7 @@ import { readdir } from "node:fs/promises";
 // Only invalid form payloads are submitted: no inquiry or email is created.
 const origin = process.env.CHECK_SITE_URL ?? "http://localhost:3000";
 const routes = new Set([
-  "/", "/about", "/about/team", "/about/transparency", "/our-work",
+  "/", "/approach", "/about/press", "/about", "/about/team", "/about/transparency", "/our-work",
   "/our-actions", "/campaigns", "/global-advocacy",
   "/global-advocacy/united-nations", "/support",
 ]);

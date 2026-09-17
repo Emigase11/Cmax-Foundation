@@ -10,6 +10,8 @@ An editorial portrait of a humanitarian foundation. Large archival photography, 
 
 Strategy: restrained. White ground, charcoal ink, one accent.
 
+September visual redesign: the homepage alternates full-width photography, charcoal, terracotta, linen, warm paper and muted green. See `app/visual.css` and [REDESIGN.md](REDESIGN.md); these supersede the original white-first homepage guidance below. Warm surfaces use a subtle local contour SVG.
+
 | Token | Value | Use |
 |---|---|---|
 | `--color-paper` | `#fffefa` | Page ground |

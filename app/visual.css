@@ -806,3 +806,32 @@ body:has(.gallery-dialog[open]) {
     scroll-behavior: auto !important;
   }
 }
+
+/* Historical displacement panel: native controls and an SSR text alternative. */
+.history-toolbar { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+.history-toolbar h2 { max-width: 650px; }
+.history-select { display: grid; gap: 8px; flex-shrink: 0; }
+.history-select label { font-size: 12px; }
+.history-select select { min-width: 125px; padding: 12px 36px 12px 14px; border: 1px solid currentColor; border-radius: 4px; background: #f4dbc3; color: inherit; font: inherit; cursor: pointer; }
+.history-number { font-size: clamp(42px, 10.5vw, 145px); font-weight: 550; letter-spacing: -.055em; line-height: 1.15; margin: 28px 0 12px; font-variant-numeric: tabular-nums; }
+.history-chart { margin: 36px 0 20px; }
+.history-chart figcaption { font-size: 13px; margin-bottom: 12px; }
+.history-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.history-chart text { fill: currentColor; font-size: 14px; }
+.history-grid { stroke: currentColor; opacity: .18; }
+.history-line { stroke: #60300e; stroke-width: 3; stroke-linejoin: round; }
+.history-point { fill: #60300e; }
+.history-point.selected { fill: #fff6e9; stroke: #60300e; stroke-width: 3; }
+.history-method { max-width: 870px; font-size: 13px; line-height: 1.7; margin-top: 20px; }
+.history-table { margin-top: 24px; border-top: 1px solid #60300e44; }
+.history-table summary { cursor: pointer; padding: 18px 0; }
+.history-table table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.history-table caption { text-align: left; padding: 12px 0; }
+.history-table th, .history-table td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #60300e33; }
+.history-select select:focus-visible, .history-table summary:focus-visible { outline: 3px solid #60300e; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .history-toolbar { flex-direction: column; }
+  .history-select { grid-template-columns: auto auto; align-items: center; gap: 16px; }
+  .history-chart svg { min-height: 155px; }
+  .history-chart text { font-size: 19px; }
+}

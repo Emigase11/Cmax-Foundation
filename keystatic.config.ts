@@ -419,15 +419,6 @@ export default config({
             }),
             year: fields.integer({ label: "Reference year" }),
             source: fields.url({ label: "Official source URL" }),
-            // Global totals require IDMC and UNRWA plus the published overlap adjustment.
-            overlapYear: fields.integer({
-              label: "Year of verified overlap adjustment",
-            }),
-            overlap: fields.integer({
-              label:
-                "People counted in both IDMC and UNRWA (official adjustment)",
-              validation: { min: 0 },
-            }),
           },
           { label: "UNHCR data and fallback" },
         ),

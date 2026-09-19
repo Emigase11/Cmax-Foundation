@@ -1,5 +1,11 @@
 // Shared types, labels and helpers with no server-only dependencies (safe in client components).
 
+export type DisplacementPoint = { year: number; value: number };
+export type DisplacementData =
+  | { mode: "api"; points: DisplacementPoint[] }
+  | { mode: "saved"; point: DisplacementPoint; source: string }
+  | { mode: "pending" };
+
 export type Figure = {
   image: string | null;
   alt: string;

@@ -24,9 +24,11 @@ La recaudación exige publicación, monto, moneda, fecha de corte, finalidad y e
 
 ## ACNUR: precisión del dato
 
-La API pública se consulta en el servidor con caché de 24 horas y timeout. La lista de años incluye años futuros; se descartan. Se consultan población, IDMC y UNRWA para un año completo común. No se suman retornados, apátridas, comunidades anfitrionas ni otras categorías ajenas al total.
+La serie histórica se consulta en una sola petición de servidor a `population/`, desde 1990 hasta el último año completo, con revalidación de 24 horas. Se suman `refugees + asylum_seekers + idps + oip`; se aceptan números, strings numéricos y el marcador `-` como categoría sin población reportada. Campos vacíos, años duplicados o faltantes, respuestas paginadas y totales fuera de 1–500 millones rechazan la serie completa.
 
-Desde 2024 la suma simple duplica personas desplazadas internamente que también son refugiadas bajo mandato de UNRWA. Estos endpoints no entregan el ajuste global de solapamiento. Por eso la cifra publicada actualmente es el **respaldo oficial de 117,8 millones al cierre de 2025**, con su fuente. La actualización mediante suma de API requiere un ajuste documentado del mismo año en el gestor; nunca se infiere por diferencia ni se reutiliza el de otro año.
+Esta serie no equivale al total global publicado: el campo IDP tiene la cobertura operativa de ACNUR y no se incluyen refugiados de UNRWA. La diferencia está explicada en pantalla. El selector incluye todos los años disponibles y el gráfico comienza en 2015. Cada cifra tiene año y fuente; una tabla ofrece la alternativa sin JavaScript. No se muestran proyecciones.
+
+Si la API falla, se muestra el respaldo del gestor, explícitamente como valor guardado y como estimación global separada, sin insertarlo en el gráfico. Sin respaldo completo y válido, se muestra pendiente. El número inicial se sirve en HTML; los cambios de año animan desde el valor anterior salvo con movimiento reducido.
 
 - Fuente del respaldo: https://www.unhcr.org/about-unhcr/overview/figures-glance
 - Metodología: https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-pocs.html
@@ -48,7 +50,7 @@ La cartografía es de Natural Earth, dominio público: https://github.com/nvkels
 - `npm run build`
 - `npx tsc --noEmit`
 - `npm run check:site` con el servidor en localhost:3000.
-- `node scripts/check-data.mjs` (Node 22.18+): categorías, solapamiento, años futuros, fallo de API y condiciones de publicación de recaudación.
+- `node scripts/check-data.mjs` (Node 22.18+): tipos mixtos, categorías, integridad de la serie, años futuros, fallo de API y condiciones de publicación de recaudación.
 - Revisión de navegador a 390, 768 y 1440 px; menú, mapa, comparador y visor con teclado.
 
 Resultados: 23 páginas, 39 enlaces internos y 19 recursos correctos; formulario vacío devuelve el foco al primer campo inválido; la cifra y la fuente de ACNUR están en el HTML servido. La portada tiene 11 secciones y unas 446 palabras (incluyendo pies y controles).

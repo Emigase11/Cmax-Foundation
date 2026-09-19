@@ -4,6 +4,7 @@ import { ArrowIcon } from "@/components/icons";
 import { ButtonLink, Container, ExternalLink, Tag } from "@/components/ui";
 import { Figure } from "@/components/figure";
 import { VideoOnDemand } from "@/components/video-on-demand";
+import { DisplacementHistory } from "@/components/displacement-history";
 import { AnimatedNumber } from "@/components/animated-number";
 import { ImageComparison } from "@/components/image-comparison";
 import { FieldMap } from "@/components/field-map";
@@ -139,35 +140,7 @@ export default async function HomePage() {
             <p className="eyebrow">02 / The scale of the need</p>
             <span className="eyebrow">Every number is a human story</span>
           </div>
-          {displacement ? (
-            <>
-              <p className="impact-number">
-                <AnimatedNumber
-                  value={displacement.value / 1_000_000}
-                  decimals={1}
-                />
-                <span>million</span>
-              </p>
-              <h2>People forcibly displaced worldwide.</h2>
-              <p className="source-line">
-                <ExternalLink href={displacement.source}>
-                  UNHCR · End of {displacement.year}
-                </ExternalLink>
-                <span>Official estimate, not a live count.</span>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className="editorial-title">
-                Every displaced person
-                <br />
-                deserves a safe beginning.
-              </h2>
-              <ExternalLink href="https://www.unhcr.org/refugee-statistics/">
-                Explore UNHCR data
-              </ExternalLink>
-            </>
-          )}
+          <DisplacementHistory data={displacement} />
         </Container>
       </section>
       <section className="needs-section" aria-labelledby="needs-title">

@@ -1,115 +1,64 @@
-import { cache } from "react";
+﻿import { cache } from "react";
+import type { DisplacementData, DisplacementPoint } from "./labels";
 
-export type DisplacementFallback = {
-  value: number | null;
-  year: number | null;
-  source: string | null;
-  overlapYear: number | null;
-  overlap: number | null;
-};
+type DisplacementFallback = { value: number | null; year: number | null; source: string | null };
 type Row = Record<string, unknown>;
-const API = "https://api.unhcr.org/population/v1";
+const API = "https://api.unhcr.org/population/v1/population/";
+const FIRST_YEAR = 1990;
 
-async function rows(path: string): Promise<Row[]> {
-  const response = await fetch(`${API}/${path}`, {
-    next: { revalidate: 86400 },
-    signal: AbortSignal.timeout(6000),
-  });
-  if (!response.ok) throw new Error(`UNHCR HTTP ${response.status}`);
-  const data = await response.json();
-  if (!Array.isArray(data.items) || Number(data.maxPages) !== 1)
-    throw new Error("Incomplete UNHCR response");
-  return data.items;
+function count(value: unknown): number {
+  if (value === "-") return 0;
+  const parsed = typeof value === "string" && /^\d+$/.test(value.trim()) ? Number(value) : value;
+  if (typeof parsed !== "number" || !Number.isSafeInteger(parsed) || parsed < 0)
+    throw new Error("Invalid UNHCR category");
+  return parsed;
 }
 
-export function sumDisplacement(
-  population: Row,
-  idmc: Row,
-  unrwa: Row,
-  overlap: number,
-): number {
-  // UNHCR's IDP field only covers its operations; global conflict IDPs come from IDMC.
-  // Exclude returnees, stateless people, host communities and 'others of concern'.
-  const values = [
-    population.refugees,
-    population.asylum_seekers,
-    population.oip,
-    idmc.total,
-    unrwa.total,
-  ];
-  if (
-    values.some(
-      (v) => typeof v !== "number" || !Number.isSafeInteger(v) || v < 0,
-    ) ||
-    !Number.isSafeInteger(overlap) ||
-    overlap < 0 ||
-    overlap > Number(unrwa.total)
-  )
-    throw new Error("Invalid displacement categories");
-  return (values as number[]).reduce((sum, value) => sum + value, 0) - overlap;
+function reasonable(value: number): boolean {
+  return Number.isSafeInteger(value) && value >= 1_000_000 && value <= 500_000_000;
 }
 
-export const getDisplacement = cache(async (fallback: DisplacementFallback) => {
-  const backup =
-    fallback.value && fallback.year && fallback.source
-      ? {
-          value: fallback.value,
-          year: fallback.year,
-          source: fallback.source,
-          mode: "published" as const,
-        }
-      : null;
+export function sumDisplacement(row: Row): number {
+  // This population series is not the separate global estimate (IDMC / UNRWA).
+  const total = ["refugees", "asylum_seekers", "idps", "oip"]
+    .reduce((sum, field) => sum + count(row[field]), 0);
+  if (!reasonable(total)) throw new Error("UNHCR total outside expected range");
+  return total;
+}
+
+export function parseDisplacementSeries(data: unknown, lastYear: number): DisplacementPoint[] {
+  if (!data || typeof data !== "object") throw new Error("Invalid UNHCR response");
+  const response = data as Row;
+  if (!Array.isArray(response.items) || !response.items.length || Number(response.maxPages) !== 1)
+    throw new Error("Empty or incomplete UNHCR response");
+  const points = response.items.map((item: unknown) => {
+    if (!item || typeof item !== "object") throw new Error("Invalid UNHCR row");
+    const row = item as Row;
+    const year = count(row.year);
+    if (year < FIRST_YEAR || year > lastYear) throw new Error("Unexpected UNHCR year");
+    return { year, value: sumDisplacement(row) };
+  }).sort((a, b) => a.year - b.year);
+  if (points.at(-1)!.year < 2015 || points.some((point, index) => point.year !== FIRST_YEAR + index))
+    throw new Error("Missing or duplicate UNHCR years");
+  return points;
+}
+
+export const getDisplacement = cache(async (fallback: DisplacementFallback): Promise<DisplacementData> => {
+  const lastYear = new Date().getUTCFullYear() - 1;
   try {
-    const years = (await rows("years/"))
-      .map((r) => Number(r.year))
-      .filter(
-        (y) =>
-          Number.isInteger(y) &&
-          y < new Date().getUTCFullYear() &&
-          y >= (fallback.year ?? 2020),
-      )
-      .sort((a, b) => b - a);
-    for (const year of years.slice(0, 3)) {
-      const [population, idmc, unrwa] = await Promise.all([
-        rows(`population/?year=${year}`),
-        rows(`idmc/?year=${year}`),
-        rows(`unrwa/?year=${year}`),
-      ]);
-      if (
-        population.length !== 1 ||
-        idmc.length !== 1 ||
-        unrwa.length !== 1 ||
-        [population[0], idmc[0], unrwa[0]].some(
-          (row) => Number(row.year) !== year,
-        )
-      )
-        continue;
-      // From 2024 onward, UNRWA / IDMC overlap is not exposed by these endpoints.
-      // Never invent the adjustment or reuse one from a different year.
-      if (
-        year >= 2024 &&
-        (fallback.overlapYear !== year || fallback.overlap == null)
-      )
-        return backup;
-      const total = sumDisplacement(
-        population[0],
-        idmc[0],
-        unrwa[0],
-        year >= 2024 ? fallback.overlap! : 0,
-      );
-      if (total <= 0) continue;
-      return {
-        value: total,
-        year,
-        source: "https://www.unhcr.org/refugee-statistics/",
-        mode: "api" as const,
-      };
-    }
+    const response = await fetch(`${API}?limit=100&yearFrom=${FIRST_YEAR}&yearTo=${lastYear}`, {
+      next: { revalidate: 86400 },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!response.ok) throw new Error(`UNHCR HTTP ${response.status}`);
+    return { mode: "api", points: parseDisplacementSeries(await response.json(), lastYear) };
   } catch (error) {
-    console.warn(
-      "UNHCR data unavailable; using the sourced editorial fallback.",
-      error instanceof Error ? error.message : "Invalid data",
-    );
+    console.warn("UNHCR history unavailable; using the editorial fallback.", error instanceof Error ? error.message : "Invalid data");
+    if (fallback.value !== null && reasonable(fallback.value) && fallback.year !== null &&
+        Number.isInteger(fallback.year) && fallback.year >= FIRST_YEAR && fallback.year <= lastYear &&
+        fallback.source && /^https?:\/\//.test(fallback.source)) {
+      return { mode: "saved", point: { value: fallback.value, year: fallback.year }, source: fallback.source };
+    }
+    return { mode: "pending" };
   }
-  return backup;
 });

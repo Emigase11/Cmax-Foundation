@@ -143,53 +143,10 @@ export default async function HomePage() {
           <DisplacementHistory data={displacement} />
         </Container>
       </section>
-      <section className="needs-section" aria-labelledby="needs-title">
-        <Container>
-          <div className="section-kicker">
-            <h2 id="needs-title" className="eyebrow">
-              03 / Three needs. One human purpose.
-            </h2>
-            <Link href="/approach" className="text-link">
-              The full approach <ArrowIcon />
-            </Link>
-          </div>
-        </Container>
-        <div className="visual-needs-grid">
-          {visual.needsImages.slice(0, 3).map((figure, i) => (
-            <Link
-              key={i}
-              href={`/our-work/${home.needs[i]?.program || "community-preparedness"}`}
-              className="need-photo"
-            >
-              {imgSrc(figure.image) && (
-                <Image
-                  src={imgSrc(figure.image)!}
-                  alt={figure.alt}
-                  fill
-                  quality={90}
-                  sizes="(min-width: 900px) 34vw, 100vw"
-                  className="object-cover"
-                />
-              )}
-              <div className="need-shade" />
-              <div className="need-photo-copy">
-                <span className="eyebrow">
-                  0{i + 1}
-                  {figure.illustrative
-                    ? " / Illustrative render"
-                    : " / CMAX archive"}
-                </span>
-                <h3>{figure.caption}</h3>
-                <ArrowIcon />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
       <section className="visual-section visual-light">
         <Container>
           <div className="section-kicker">
-            <p className="eyebrow">04 / Humanitarian innovation</p>
+            <p className="eyebrow">03 / Humanitarian innovation</p>
             <Link href="/our-work" className="text-link">
               All our work <ArrowIcon />
             </Link>
@@ -240,7 +197,7 @@ export default async function HomePage() {
       <section className="visual-section visual-dark">
         <Container>
           <div className="section-kicker">
-            <p className="eyebrow">05 / Built to unfold</p>
+            <p className="eyebrow">04 / Built to unfold</p>
             <span className="eyebrow">Cmax Med</span>
           </div>
           <h2 className="editorial-title section-title-space">
@@ -276,7 +233,7 @@ export default async function HomePage() {
       <section className="visual-section map-section contour-surface">
         <Container>
           <div className="section-kicker">
-            <p className="eyebrow">06 / In the field</p>
+            <p className="eyebrow">05 / In the field</p>
             <Link href="/our-actions" className="text-link">
               All actions <ArrowIcon />
             </Link>
@@ -300,7 +257,7 @@ export default async function HomePage() {
       <section className="visual-section visual-light">
         <Container>
           <div className="section-kicker">
-            <p className="eyebrow">07 / Campaigns</p>
+            <p className="eyebrow">06 / Campaigns</p>
             <Link href="/campaigns" className="text-link">
               All campaigns <ArrowIcon />
             </Link>
@@ -348,7 +305,7 @@ export default async function HomePage() {
       </section>
       <section className="visual-section funding-section contour-surface">
         <Container>
-          <p className="eyebrow">08 / Support into action</p>
+          <p className="eyebrow">07 / Support into action</p>
           {funds ? (
             <>
               <p className="funding-number">
@@ -383,7 +340,7 @@ export default async function HomePage() {
       <section className="visual-section press-section contour-surface">
         <Container>
           <div className="section-kicker">
-            <p className="eyebrow">09 / In the public conversation</p>
+            <p className="eyebrow">08 / In the public conversation</p>
             <Link href="/about/press" className="text-link">
               Press archive <ArrowIcon />
             </Link>
@@ -431,7 +388,7 @@ export default async function HomePage() {
         <Container>
           <div className="join-main">
             <div>
-              <p className="eyebrow">10 / There is a role for all of us</p>
+              <p className="eyebrow">09 / There is a role for all of us</p>
               <h2>
                 Let’s be ready.
                 <br />

@@ -401,6 +401,7 @@ export default config({
         unImage: figure("UN section image (used until a video is supplied)"),
         unVideo: videoList("United Nations video"),
         heroVideos: videoList("Deployment videos"),
+        cmaxMedSolutionImage: figure("Practical solutions: Cmax Med image"),
         comparisonBefore: figure("Comparison: folded"),
         comparisonAfter: figure("Comparison: opened"),
         approachImages: fields.array(figure("Stage photograph"), {

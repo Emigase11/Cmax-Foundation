@@ -6,6 +6,12 @@ unImage:
   illustrative: false
 unVideo: []
 heroVideos: []
+cmaxMedSolutionImage:
+  image: /images/content/solutions/cmaxmed-mountain-concept.png
+  alt: Illustrative view of an unfolded Cmax Med medical unit with an access ramp in a snowy mountain landscape.
+  caption: Cmax Med in a mountain setting. Illustrative concept.
+  credit: ''
+  illustrative: true
 comparisonBefore:
   image: /images/content/solutions/cmaxmed-comparison-folded.webp
   alt: Front studio view of a Cmax Med unit folded for transport.

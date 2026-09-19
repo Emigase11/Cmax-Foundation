@@ -209,7 +209,12 @@ export default async function HomePage() {
                     className="solution-image-link"
                     aria-label={`Explore ${program.entry.title}`}
                   >
-                    <Figure figure={program.entry.hero} sizes={fullSizes} />
+                    <Figure
+                      figure={program.slug === "cmax-med" && visual.cmaxMedSolutionImage.image
+                        ? visual.cmaxMedSolutionImage
+                        : program.entry.hero}
+                      sizes={fullSizes}
+                    />
                   </Link>
                   <div className="solution-caption">
                     <div>

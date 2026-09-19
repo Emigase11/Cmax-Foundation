@@ -7,13 +7,13 @@ unImage:
 unVideo: []
 heroVideos: []
 comparisonBefore:
-  image: /images/content/solutions/cmaxmed-folded-front-studio.png
+  image: /images/content/solutions/cmaxmed-comparison-folded.webp
   alt: Front studio view of a Cmax Med unit folded for transport.
   caption: Folded for transport
   credit: Cmax System
   illustrative: false
 comparisonAfter:
-  image: /images/content/solutions/cmaxmed-unfolded-front-studio.png
+  image: /images/content/solutions/cmaxmed-comparison-unfolded.webp
   alt: Front studio view of a fully unfolded Cmax Med unit.
   caption: Fully unfolded
   credit: Cmax System

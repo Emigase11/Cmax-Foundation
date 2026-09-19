@@ -237,40 +237,60 @@
   border: 1px solid #a6a095;
   border-radius: 50%;
 }
+/* Both frames are registered 2:1 studio plates on the same background tone, so
+   the stage matches that tone and the wipe reads as one unit opening. */
 .comparison-stage {
   position: relative;
   aspect-ratio: 2;
-  background: #e7e4db;
+  background: #f2f2f3;
   overflow: hidden;
 }
 .comparison-layer {
   position: absolute;
   inset: 0;
-  background: #e7e4db;
+  background: #f2f2f3;
 }
 .comparison-divider {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: white;
+  left: var(--pos);
+  width: 1px;
+  background: color-mix(in srgb, var(--color-ink) 22%, transparent);
   transform: translateX(-50%);
   pointer-events: none;
 }
-.comparison-divider span {
+/* Clamped so the handle never gets cut in half at either end of the track. */
+.comparison-handle {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: clamp(30px, var(--pos), calc(100% - 30px));
   transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: var(--color-orange);
   color: var(--color-ink);
-  font-size: 26px;
-  box-shadow: 0 2px 12px #0003;
+  box-shadow:
+    0 1px 2px #1c1b1926,
+    0 6px 18px #1c1b191f;
+  transition: transform 220ms var(--ease-out);
+  pointer-events: none;
+}
+.comparison-handle svg {
+  width: 19px;
+  height: 19px;
+}
+.comparison-stage:focus-within .comparison-handle {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .comparison-handle,
+  .comparison-label {
+    transition: none;
+  }
 }
 .comparison-stage input {
   position: absolute;
@@ -288,11 +308,22 @@
 .comparison-label {
   position: absolute;
   bottom: 20px;
-  padding: 6px 12px;
+  padding: 7px 13px;
   background: var(--color-ink);
   color: white;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   pointer-events: none;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+/* The label of the side currently covered steps back instead of competing. */
+.comparison-label[data-dim="true"] {
+  opacity: 0.32;
+  transform: translateY(2px);
 }
 .comparison-label.left {
   left: 20px;

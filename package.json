@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "images:prepare": "node scripts/prepare-images.mjs",
-    "check:site": "node scripts/check-site.mjs"
+    "check:site": "node scripts/check-site.mjs",
+    "comparison:prepare": "node scripts/prepare-comparison.mjs"
   },
   "dependencies": {
     "@keystatic/core": "^0.6.9",

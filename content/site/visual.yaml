@@ -7,15 +7,15 @@ unImage:
 unVideo: []
 heroVideos: []
 comparisonBefore:
-  image: /images/content/solutions/cmaxmed-folded-photo.jpg
-  alt: A Cmax Med unit folded for transport inside a warehouse.
+  image: /images/content/solutions/cmaxmed-folded-front-studio.png
+  alt: Front studio view of a Cmax Med unit folded for transport.
   caption: Folded for transport
   credit: Cmax System
   illustrative: false
 comparisonAfter:
-  image: /images/content/solutions/cmaxmed-assembly-photo.jpg
-  alt: A Cmax Med unit with its side panels opened during assembly.
-  caption: Opened during assembly
+  image: /images/content/solutions/cmaxmed-unfolded-front-studio.png
+  alt: Front studio view of a fully unfolded Cmax Med unit.
+  caption: Fully unfolded
   credit: Cmax System
   illustrative: false
 approachImages:

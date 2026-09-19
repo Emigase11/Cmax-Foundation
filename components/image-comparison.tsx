@@ -54,16 +54,16 @@ export function ImageComparison({
           max="100"
           value={position}
           onChange={(event) => setPosition(Number(event.target.value))}
-          aria-label="Compare folded and opened Cmax Med unit"
-          aria-valuetext={`${position}% folded image, ${100 - position}% opened image`}
+          aria-label="Compare folded and unfolded Cmax Med unit"
+          aria-valuetext={`${position}% folded image, ${100 - position}% unfolded image`}
         />
         <span className="comparison-label left">Folded</span>
-        <span className="comparison-label right">Opened</span>
+        <span className="comparison-label right">Unfolded</span>
       </div>
       <figcaption>
         <label htmlFor={id}>Drag to explore · or use the arrow keys</label>
         <span>
-          {before.credit} · Assembly photographs
+          {before.credit} · {before.caption} / {after.caption}
           {before.illustrative || after.illustrative
             ? " · Illustrative render"
             : ""}

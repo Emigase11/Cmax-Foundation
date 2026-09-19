@@ -24,8 +24,6 @@ import { getDisplacement } from "@/lib/displacement";
 import { getFundraising } from "@/lib/fundraising";
 
 export const revalidate = 86400;
-const fullSizes =
-  "(min-width: 1320px) 1240px, (min-width: 1024px) calc(100vw - 80px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)";
 
 export default async function HomePage() {
   const [home, site, programs, actions, campaigns, visual, press] =
@@ -143,55 +141,52 @@ export default async function HomePage() {
           <DisplacementHistory data={displacement} />
         </Container>
       </section>
-      <section className="visual-section visual-light">
+      <section className="innovation-section" aria-labelledby="innovation-title">
         <Container>
-          <div className="section-kicker">
-            <p className="eyebrow">03 / Humanitarian innovation</p>
-            <Link href="/our-work" className="text-link">
-              All our work <ArrowIcon />
-            </Link>
+          <div className="innovation-heading">
+            <div>
+              <p className="eyebrow innovation-eyebrow"><span />03 / Humanitarian innovation</p>
+              <h2 id="innovation-title">Practical solutions.<br /><em>Human possibilities.</em></h2>
+            </div>
+            <div className="innovation-intro">
+              <p>Thoughtful design.<br />For the moments that matter most.</p>
+              <Link href="/our-work" className="innovation-all">Explore our work <ArrowIcon /></Link>
+            </div>
           </div>
-          <h2 className="editorial-title section-title-space">
-            Practical solutions.
-            <br />
-            <em>Human possibilities.</em>
-          </h2>
-          <div className="wide-solutions">
+          <div className="innovation-collection">
             {programs
               .filter((p) => p.slug !== "community-preparedness")
-              .map((program, i) => (
-                <article key={program.slug}>
-                  <Link
-                    href={`/our-work/${program.slug}`}
-                    className="solution-image-link"
-                    aria-label={`Explore ${program.entry.title}`}
-                  >
-                    <Figure
-                      figure={program.slug === "cmax-med" && visual.cmaxMedSolutionImage.image
-                        ? visual.cmaxMedSolutionImage
-                        : program.entry.hero}
-                      sizes={fullSizes}
-                    />
-                  </Link>
-                  <div className="solution-caption">
-                    <div>
-                      <span className="eyebrow">
-                        0{i + 1} / {MATURITY[program.entry.maturity].label}
-                      </span>
-                      <h3>{program.entry.title}</h3>
-                    </div>
-                    <p>{program.entry.tagline}</p>
-                    <Link
-                      href={`/our-work/${program.slug}`}
-                      className="round-link"
-                      aria-label={`Explore ${program.entry.title}`}
-                    >
-                      <ArrowIcon />
+              .map((program, i) => {
+                const med = program.slug === "cmax-med";
+                const figure = med && visual.cmaxMedSolutionImage.image
+                  ? visual.cmaxMedSolutionImage : program.entry.hero;
+                const src = imgSrc(figure.image);
+                return (
+                  <article key={program.slug} className={`innovation-card ${med ? "innovation-med" : "innovation-air"}`}>
+                    <Link href={`/our-work/${program.slug}`} className="innovation-card-link" aria-labelledby={`solution-${program.slug}`} aria-describedby={`solution-status-${program.slug} solution-description-${program.slug} solution-image-${program.slug}`}>
+                      <figure className="innovation-visual">
+                        <div className="innovation-photo">
+                          {src && <Image src={src} alt={figure.alt} fill quality={90}
+                            sizes="(min-width: 1320px) 760px, (min-width: 1024px) 60vw, (min-width: 640px) calc(100vw - 80px), calc(100vw - 56px)" />}
+                          <span id={`solution-image-${program.slug}`} className="innovation-image-label">{figure.illustrative ? "Illustrative concept" : "CMAX archive"}</span>
+                        </div>
+                        {figure.credit && <figcaption>{figure.credit}</figcaption>}
+                      </figure>
+                      <div className="innovation-copy">
+                        <div className="innovation-meta"><span>0{i + 1}</span><span id={`solution-status-${program.slug}`} className="innovation-status"><span />{MATURITY[program.entry.maturity].label}</span></div>
+                        <div className="innovation-story">
+                          <p className="innovation-purpose">{med ? "Space to care" : "A way to safety"}</p>
+                          <h3 id={`solution-${program.slug}`}>{program.entry.title}</h3>
+                          <p id={`solution-description-${program.slug}`} className="innovation-description">{program.entry.tagline}</p>
+                        </div>
+                        <span className="innovation-cta">Discover {program.entry.title}<span className="innovation-arrow"><ArrowIcon /></span></span>
+                      </div>
                     </Link>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
           </div>
+          <div className="innovation-footnote"><span>Designed around people.</span><span>Technology developed by Cmax System</span></div>
         </Container>
       </section>
       <section className="visual-section visual-dark">

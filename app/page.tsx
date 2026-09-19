@@ -40,7 +40,6 @@ export default async function HomePage() {
   const funds = getFundraising(visual.fundraising);
   const heroSrc = imgSrc(home.hero.image);
   const unVideo = visual.unVideo.find((v) => v.url);
-  const heroVideo = visual.heroVideos.find((v) => v.url);
   const featured = campaigns.filter((c) => c.entry.featured).slice(0, 2);
   return (
     <div className="visual-home">
@@ -204,25 +203,6 @@ export default async function HomePage() {
             before={visual.comparisonBefore}
             after={visual.comparisonAfter}
           />
-          {(heroVideo?.url || home.heroVideo.src) && (
-            <div className="deployment-film">
-              <div>
-                <p className="eyebrow">See the transformation</p>
-                <h3>
-                  From transport
-                  <br />
-                  to usable space.
-                </h3>
-              </div>
-              <VideoOnDemand
-                url={heroVideo?.url || home.heroVideo.src}
-                title={heroVideo?.title || home.heroVideo.title}
-                context={heroVideo?.context || home.heroVideo.context}
-                captions={heroVideo?.captions || home.heroVideo.captions}
-                poster="/images/content/stories/cmax-ready-to-deploy.webp"
-              />
-            </div>
-          )}
         </Container>
       </section>
       <section className="visual-section map-section contour-surface">

@@ -25,21 +25,21 @@ comparisonAfter:
   credit: Cmax System
   illustrative: false
 approachImages:
-  - image: /images/content/stories/cmax-ready-to-deploy.webp
-    alt: Nicolás García Mayor beside folded CMAX units in a production facility.
-    caption: Prepared capacity begins before an emergency.
-    credit: Cmax System
-    illustrative: false
-  - image: /images/content/solutions/cmaxmed-assembly-photo.jpg
-    alt: A person opening the side panels of a Cmax Med unit.
-    caption: Building the capacity to respond.
-    credit: Cmax System
-    illustrative: false
-  - image: /images/content/stories/haiti-community.webp
-    alt: Nicolás García Mayor with a child during a visit in Haiti.
-    caption: People remain at the heart of recovery.
-    credit: CMAX archive
-    illustrative: false
+  - image: /images/content/stories/cmax-airlift-truck-loading.png
+    alt: Illustrative scene of folded CMAX units on a truck beside a cargo aircraft.
+    caption: Preparing deployable capacity and the logistics to move it.
+    credit: ''
+    illustrative: true
+  - image: /images/content/stories/cmax-camp-aerial-desert.png
+    alt: Illustrative aerial view of a humanitarian camp with CMAX medical units in a desert landscape.
+    caption: A concept of coordinated medical space and humanitarian response.
+    credit: ''
+    illustrative: true
+  - image: /images/content/stories/cmax-camp-medical-sunset.png
+    alt: Illustrative scene of a CMAX medical camp at sunset, with illuminated units and people outside.
+    caption: A concept of protected space as communities begin to recover.
+    credit: ''
+    illustrative: true
 needsImages:
   - image: /images/content/solutions/cmaxmed-interior-photo.jpg
     alt: Interior of a Cmax Med unit with a rigid floor and windows.

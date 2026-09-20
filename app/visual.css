@@ -1008,3 +1008,123 @@ body:has(.gallery-dialog[open]) {
 .support-transparency-link > span { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: #dce5d3; }
 .support-transparency-link:focus-visible { outline: 3px solid #6b794e; outline-offset: 4px; }
 @media (hover: hover) and (pointer: fine) { .support-transparency-link:hover { background: #e1e9d8; } }
+
+/* Approach: a continuous story, with three distinct chapters. */
+.approach-page { background: #f5f1e8; }
+.approach-opening { position: relative; overflow: hidden; padding: clamp(45px, 6vw, 85px) 0 0; }
+.approach-opening-label { display: flex; align-items: center; gap: 12px; color: #6f6556; }
+.approach-opening-label > span { width: 7px; height: 7px; border-radius: 50%; background: #c46632; }
+.approach-opening-main { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: end; padding: 36px 0 56px; }
+.approach-opening h1 { font-size: clamp(58px, 7.8vw, 108px); letter-spacing: -.065em; line-height: .98; font-weight: 550; }
+.approach-opening h1 em { font-family: Georgia, serif; font-weight: 400; color: #a0522d; }
+.approach-opening-aside { max-width: 370px; justify-self: end; }
+.approach-opening-aside > p { font-size: 16px; line-height: 1.8; color: #666053; margin-top: 38px; }
+.approach-orbit { display: grid; place-items: center; position: relative; width: 210px; height: 160px; margin: 20px auto 30px; border: 1px solid #bfb5a1; border-radius: 50%; transform: rotate(-22deg); }
+.approach-orbit::before, .approach-orbit::after { content: ""; position: absolute; inset: -17px 12px; border: 1px solid #cfc5b4; border-radius: 50%; transform: rotate(48deg); }
+.approach-orbit::after { transform: rotate(98deg); }
+.approach-orbit > span { transform: rotate(22deg); text-align: center; font-size: 15px; line-height: 1.6; color: #665c4c; }
+.approach-orbit em { font-family: Georgia, serif; font-size: 19px; }
+.approach-chapters { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid #d4cbbb; }
+.approach-chapters a { display: flex; align-items: center; gap: 22px; padding: 26px 24px; border-right: 1px solid #d4cbbb; }
+.approach-chapters a:first-child { padding-left: 0; }
+.approach-chapters a:last-child { border-right: 0; }
+.approach-chapter-index { font-size: 11px; color: #9b5a32; }
+.approach-chapters a > span:nth-child(2) { display: flex; flex-direction: column; gap: 4px; }
+.approach-chapters strong { font-size: 22px; letter-spacing: -.035em; font-weight: 550; }
+.approach-chapters a > span:nth-child(2) > span { font-size: 11px; color: #746a5b; }
+.approach-chapters svg { margin-left: auto; width: 18px; transform: rotate(90deg); }
+.approach-chapter { padding: clamp(55px, 7vw, 95px) 0; scroll-margin-top: 100px; }
+.approach-chapter-before { background: #e8e6dc; }
+.approach-chapter-during { background: #243b3d; color: #fffaf0; }
+.approach-chapter-after { background: #efe1ce; }
+.approach-chapter-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid #60564230; margin-bottom: 42px; }
+.approach-chapter-top > span:last-child { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #75634e; }
+.approach-chapter-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.6fr); gap: 50px; align-items: center; }
+.approach-large-index { display: block; font-size: 65px; font-family: Georgia, serif; font-style: italic; color: #9b8162; line-height: 1; margin-bottom: 22px; }
+.approach-chapter h2 { font-size: clamp(45px, 5.5vw, 76px); font-weight: 550; letter-spacing: -.055em; line-height: 1.05; }
+.approach-chapter h2 em { color: #ba592c; font-style: normal; }
+.approach-chapter-copy > p { font-size: 16px; line-height: 1.85; margin-top: 23px; color: #655b4c; max-width: 38ch; }
+.approach-next { display: inline-flex; align-items: center; gap: 25px; font-size: 12px; font-weight: 550; margin-top: 25px; min-height: 44px; }
+.approach-next > span { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #a399843f; border-radius: 50%; }
+.approach-next svg { width: 17px; transform: rotate(90deg); }
+.approach-chapter-image { min-width: 0; }
+.approach-chapter-image .frame { overflow: hidden; border-radius: 22px 72px 22px 22px; background: #d0c9bc; }
+.approach-chapter-image figcaption { font-size: 11px; line-height: 1.6; padding: 6px 3px 0; }
+.approach-chapter-image figcaption > span:first-child { max-width: 45ch; }
+.approach-chapter-during .approach-chapter-top { border-color: #ffffff30; }
+.approach-chapter-during .approach-chapter-top > span:last-child { color: #d3d4c7; }
+.approach-chapter-during .approach-chapter-layout { grid-template-columns: 1fr; gap: 32px; }
+.approach-chapter-during .approach-chapter-copy { display: grid; grid-template-columns: 110px 1fr 1.1fr; gap: 16px 30px; align-items: center; }
+.approach-chapter-during .approach-large-index { color: #ecb787; margin: 0; grid-row: 1 / 3; }
+.approach-chapter-during h2 { grid-column: 2; }
+.approach-chapter-during h2 em { color: #ecb787; }
+.approach-chapter-during .approach-chapter-copy > p { grid-column: 3; grid-row: 1 / 3; color: #d6dfd9; margin: 0; max-width: none; }
+.approach-chapter-during .approach-next { grid-column: 2; margin: 0; }
+.approach-chapter-during .approach-next > span { border-color: #ffffff40; }
+.approach-chapter-during .approach-chapter-image .frame { border-radius: 22px 22px 90px 22px; }
+.approach-chapter-during figcaption, .approach-chapter-during figcaption .text-ink-3 { color: #d1dcd5; }
+.approach-chapter-during figcaption .strip { color: #536052; border-color: #cbd2c4; background: #fffaf0; }
+.approach-chapter-after .approach-chapter-layout { grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr); }
+.approach-chapter-after .approach-chapter-image { grid-column: 1; grid-row: 1; }
+.approach-chapter-after .approach-chapter-copy { grid-column: 2; grid-row: 1; }
+.approach-chapter-after .frame { border-radius: 72px 22px 22px 22px; }
+.approach-real-needs { padding: clamp(60px, 7vw, 100px) 0; scroll-margin-top: 100px; }
+.approach-needs-intro h2, .approach-partnership h2 { font-size: clamp(34px, 4vw, 56px); line-height: 1.08; letter-spacing: -.05em; font-weight: 550; margin-top: 22px; }
+.approach-needs-intro h2 em, .approach-partnership h2 em { font-family: Georgia, serif; font-weight: 400; }
+.approach-need-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; margin: 36px 0 65px; }
+.approach-need-cards article { display: flex; flex-direction: column; align-items: start; padding: 30px; border: 1px solid #ded7c8; border-radius: 24px; background: #fffdf6; }
+.approach-need-index { font-size: 11px; color: #9b5a32; padding-bottom: 25px; }
+.approach-need-cards h3 { font-size: 23px; line-height: 1.25; letter-spacing: -.035em; }
+.approach-need-cards p { font-size: 14px; line-height: 1.75; color: #6c6254; margin: 20px 0 28px; }
+.approach-need-cards a { display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%; min-height: 44px; padding-top: 16px; border-top: 1px solid #ded7c8; margin-top: auto; font-size: 12px; font-weight: 550; }
+.approach-partnership { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding: 52px; border-radius: 24px 70px 24px 24px; background: #2e4436; color: #fffaf0; }
+.approach-partnership h2 em { color: #d9dfbd; }
+.approach-partnership > div > p:not(.eyebrow) { font-size: 15px; line-height: 1.8; color: #d5ddcc; margin-bottom: 24px; }
+.approach-page a:focus-visible { outline: 3px solid #b86029; outline-offset: 5px; }
+.approach-chapter-during a:focus-visible, .approach-partnership a:focus-visible { outline-color: #f0c195; }
+@media (hover: hover) and (pointer: fine) {
+ .approach-chapters a:hover { background: #e8e1d350; }
+ .approach-next:hover, .approach-need-cards a:hover { text-decoration: underline; text-underline-offset: 4px; }
+}
+@media (max-width: 1023px) {
+ .approach-opening-main { gap: 35px; }
+ .approach-opening h1 { font-size: 76px; }
+ .approach-orbit { width: 150px; height: 125px; }
+ .approach-opening-aside > p { font-size: 14px; }
+ .approach-chapter-layout, .approach-chapter-after .approach-chapter-layout { grid-template-columns: 1fr; gap: 30px; }
+ .approach-chapter-after .approach-chapter-image, .approach-chapter-after .approach-chapter-copy { grid-column: auto; grid-row: auto; }
+ .approach-chapter-copy > p { max-width: 65ch; }
+ .approach-chapter-during .approach-chapter-copy { grid-template-columns: 80px 1fr; }
+ .approach-chapter-during .approach-chapter-copy > p { grid-column: 1 / -1; grid-row: auto; }
+ .approach-need-cards { gap: 12px; }
+ .approach-need-cards article { padding: 22px; }
+ .approach-need-cards h3 { font-size: 20px; }
+ .approach-partnership { padding: 34px; gap: 30px; }
+}
+@media (max-width: 639px) {
+ .approach-opening-label { font-size: 8px; gap: 8px; }
+ .approach-opening-main { grid-template-columns: 1fr; gap: 25px; padding: 30px 0; }
+ .approach-opening h1 { font-size: clamp(50px, 14vw, 80px); }
+ .approach-opening-aside { max-width: none; }
+ .approach-orbit { display: none; }
+ .approach-opening-aside > p { margin: 0; font-size: 14px; }
+ .approach-chapters a { flex-wrap: wrap; gap: 8px; padding: 18px 10px; }
+ .approach-chapters a:first-child { padding-left: 4px; }
+ .approach-chapters a > span:nth-child(2) { width: 100%; }
+ .approach-chapters strong { font-size: 18px; }
+ .approach-chapters a > span:nth-child(2) > span { font-size: 9px; }
+ .approach-chapters svg { display: none; }
+ .approach-chapter-top { align-items: start; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+ .approach-chapter-top > span:last-child { font-size: 14px; }
+ .approach-large-index { font-size: 42px; margin-bottom: 16px; }
+ .approach-chapter h2 { font-size: 53px; }
+ .approach-chapter-copy > p { font-size: 14px; margin-top: 18px; }
+ .approach-chapter-during .approach-chapter-copy { grid-template-columns: 48px 1fr; gap: 14px 18px; }
+ .approach-chapter-image .frame, .approach-chapter-during .approach-chapter-image .frame, .approach-chapter-after .frame { border-radius: 16px 42px 16px 16px; }
+ .approach-chapter-image figcaption { font-size: 10px; }
+ .approach-need-cards { grid-template-columns: 1fr; gap: 15px; margin-bottom: 35px; }
+ .approach-need-cards article { padding: 25px; }
+ .approach-need-index { padding-bottom: 16px; }
+ .approach-need-cards h3 { font-size: 24px; }
+ .approach-partnership { grid-template-columns: 1fr; padding: 30px 24px; gap: 25px; border-radius: 22px 48px 22px 22px; }
+}

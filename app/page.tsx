@@ -5,7 +5,6 @@ import { ButtonLink, Container, ExternalLink, Tag } from "@/components/ui";
 import { Figure } from "@/components/figure";
 import { VideoOnDemand } from "@/components/video-on-demand";
 import { DisplacementHistory } from "@/components/displacement-history";
-import { AnimatedNumber } from "@/components/animated-number";
 import { ImageComparison } from "@/components/image-comparison";
 import { FieldMap } from "@/components/field-map";
 import {
@@ -21,7 +20,6 @@ import {
   CAMPAIGN_STATUS,
 } from "@/lib/content";
 import { getDisplacement } from "@/lib/displacement";
-import { getFundraising } from "@/lib/fundraising";
 
 export const revalidate = 86400;
 
@@ -37,7 +35,6 @@ export default async function HomePage() {
       getPress(),
     ]);
   const displacement = await getDisplacement(visual.displacement);
-  const funds = getFundraising(visual.fundraising);
   const heroSrc = imgSrc(home.hero.image);
   const unVideo = visual.unVideo.find((v) => v.url);
   const featured = campaigns.filter((c) => c.entry.featured).slice(0, 2);
@@ -278,43 +275,10 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
-      <section className="support-impact" aria-labelledby="support-impact-title">
-        <Container>
-          <div className="support-impact-layout">
-            <div className="support-impact-copy">
-              <p className="eyebrow">07 / Support into action</p>
-              <h2 id="support-impact-title">Every contribution.<br /><em>A practical purpose.</em></h2>
-              <p>Behind every response is a community of people who choose to help.</p>
-              <div className="impact-actions">
-                <Link href="/support" className="editorial-button editorial-button-cream">Support a mission<span><ArrowIcon /></span></Link>
-                <Link href="/about/transparency" className="impact-transparency">Our commitment to transparency <ArrowIcon /></Link>
-              </div>
-            </div>
-            <aside className="impact-report" aria-labelledby="impact-report-title">
-              <div className="impact-report-top"><span className="impact-report-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M7 3h8l4 4v14H5V3h2Z M14 3v5h5 M9 12h6 M9 16h6" /></svg></span><span>CMAX Foundation<br /><strong>Accountability matters.</strong></span></div>
-              <div className="impact-report-body">
-                <p className="eyebrow" id="impact-report-title">Fundraising overview</p>
-                {funds ? <>
-                  <p className="impact-report-total"><span>{funds.currency}</span><AnimatedNumber value={funds.amount!} /></p>
-                  <p className="impact-report-purpose">{funds.financed}</p>
-                  <p className="impact-report-date">Reporting date · <time dateTime={funds.date!}>{funds.date}</time></p>
-                </> : <>
-                  <span className="impact-report-status"><span />Report forthcoming</span>
-                  <h3>A clear view of<br /><em>your support.</em></h3>
-                  <p>Our next report will share the amount raised and the work it made possible.</p>
-                </>}
-              </div>
-              {funds ? <a href={funds.source!} target="_blank" rel="noopener noreferrer" className="impact-report-link">Read the fundraising report <ArrowIcon /><span className="sr-only"> (opens in a new tab)</span></a>
-                : <Link href="/about/transparency" className="impact-report-link">Explore our transparency commitments <ArrowIcon /></Link>}
-            </aside>
-          </div>
-          <div className="support-impact-footer"><span>Humanitarian innovation. Shared responsibility.</span><span>CMAX Foundation</span></div>
-        </Container>
-      </section>
       <section className="conversation-section" aria-labelledby="conversation-title">
         <Container>
           <div className="conversation-heading">
-            <div><p className="eyebrow">08 / In the public conversation</p><h2 id="conversation-title">Stories worth<br /><em>bringing to light.</em></h2></div>
+            <div><p className="eyebrow">07 / In the public conversation</p><h2 id="conversation-title">Stories worth<br /><em>bringing to light.</em></h2></div>
             <p>A closer look at humanitarian innovation<br />and the people moving it forward.</p>
           </div>
           {press.length > 0 && <div className="conversation-articles">
@@ -339,7 +303,7 @@ export default async function HomePage() {
         <Container>
           <div className="join-main">
             <div>
-              <p className="eyebrow">09 / There is a role for all of us</p>
+              <p className="eyebrow">08 / There is a role for all of us</p>
               <h2>
                 Let’s be ready.
                 <br />

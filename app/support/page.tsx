@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SupportForm } from "@/components/support-form";
+import { ArrowIcon } from "@/components/icons";
 import { Container } from "@/components/ui";
 import { getAction, getCampaign, getProgram, getSite } from "@/lib/content";
 
@@ -81,6 +82,13 @@ export default async function SupportPage({ searchParams }: Props) {
               . The reference travels with your message.
             </p>
           )}
+          <Link
+            href="/about/transparency"
+            className="support-transparency-link"
+          >
+            Our commitment to transparency
+            <span><ArrowIcon /></span>
+          </Link>
         </div>
         <div className="support-contact">
           <p className="eyebrow mb-5">Prefer a conversation?</p>

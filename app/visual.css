@@ -1003,3 +1003,8 @@ body:has(.gallery-dialog[open]) {
   .conversation-articles { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .editorial-button { transition: none; } .editorial-button:active { transform: none; } }
+
+.support-transparency-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 100%; margin-top: 28px; padding: 10px 10px 10px 20px; min-height: 56px; border: 1px solid #cfd8c8; border-radius: 30px; background: #eef2e8; color: #294231; font-size: 13px; font-weight: 550; transition: background-color 180ms ease; }
+.support-transparency-link > span { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; background: #dce5d3; }
+.support-transparency-link:focus-visible { outline: 3px solid #6b794e; outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) { .support-transparency-link:hover { background: #e1e9d8; } }

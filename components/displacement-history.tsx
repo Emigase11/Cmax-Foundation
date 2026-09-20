@@ -112,7 +112,7 @@ function History({ points }: { points: DisplacementPoint[] }) {
     <div className="scale-bottom"><p>Annual figures, not a live count. This series differs from UNHCR’s global estimate.</p><a href="https://www.unhcr.org/refugee-statistics/">Source: UNHCR ↗</a></div>
     <details className="scale-details">
       <summary>Methodology &amp; data table</summary>
-      <p>Sum of refugees, asylum-seekers, internally displaced people and other people in need of international protection in UNHCR’s population API. Stateless people and “others of concern” are excluded. Internal displacement covers UNHCR operations; UNRWA refugees are excluded. Historical figures may be revised. Data is fetched on the server and refreshed daily.</p>
+      <p>The six categories behind UNHCR’s published headline: refugees under UNHCR’s mandate, asylum-seekers, internally displaced people, other people in need of international protection, other groups of concern, and Palestine refugees under UNRWA’s mandate, which UNHCR reports as a separate series. Stateless people are excluded, because statelessness is a legal status rather than displacement and those who have been displaced are already counted. Internal displacement covers UNHCR operations. Historical figures may be revised. Data is fetched on the server and refreshed daily.</p>
       <div className="scale-table-wrap"><table>
         <caption>UNHCR population series · Year-end figures</caption>
         <thead><tr><th scope="col">Year</th><th scope="col">People</th><th scope="col">Source</th></tr></thead>

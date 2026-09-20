@@ -24,7 +24,7 @@ La recaudación exige publicación, monto, moneda, fecha de corte, finalidad y e
 
 ## ACNUR: precisión del dato
 
-La serie histórica se consulta en una sola petición de servidor a `population/`, desde 1990 hasta el último año completo, con revalidación de 24 horas. Se suman `refugees + asylum_seekers + idps + oip`; se aceptan números, strings numéricos y el marcador `-` como categoría sin población reportada. Campos vacíos, años duplicados o faltantes, respuestas paginadas y totales fuera de 1–500 millones rechazan la serie completa.
+La serie histórica se consulta en una sola petición de servidor a `population/`, desde 2015 hasta el último año completo, con revalidación de 24 horas. Se suman `refugees + asylum_seekers + idps + oip`; se aceptan números, strings numéricos y el marcador `-` como categoría sin población reportada. Campos vacíos, años duplicados o faltantes, respuestas paginadas y totales fuera de 1–500 millones rechazan la serie completa.
 
 Esta serie no equivale al total global publicado: el campo IDP tiene la cobertura operativa de ACNUR y no se incluyen refugiados de UNRWA. La diferencia está explicada en pantalla. El selector incluye todos los años disponibles y el gráfico comienza en 2015. Cada cifra tiene año y fuente; una tabla ofrece la alternativa sin JavaScript. No se muestran proyecciones.
 

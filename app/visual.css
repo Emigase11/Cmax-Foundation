@@ -783,34 +783,8 @@ body:has(.gallery-dialog[open]) {
   }
 }
 
-/* Historical displacement panel: native controls and an SSR text alternative. */
-.history-toolbar { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
-.history-toolbar h2 { max-width: 650px; }
-.history-select { display: grid; gap: 8px; flex-shrink: 0; }
-.history-select label { font-size: 12px; }
-.history-select select { min-width: 125px; padding: 12px 36px 12px 14px; border: 1px solid currentColor; border-radius: 4px; background: #f4dbc3; color: inherit; font: inherit; cursor: pointer; }
-.history-number { font-size: clamp(42px, 10.5vw, 145px); font-weight: 550; letter-spacing: -.055em; line-height: 1.15; margin: 28px 0 12px; font-variant-numeric: tabular-nums; }
-.history-chart { margin: 36px 0 20px; }
-.history-chart figcaption { font-size: 13px; margin-bottom: 12px; }
-.history-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
-.history-chart text { fill: currentColor; font-size: 14px; }
-.history-grid { stroke: currentColor; opacity: .18; }
-.history-line { stroke: #60300e; stroke-width: 3; stroke-linejoin: round; }
-.history-point { fill: #60300e; }
-.history-point.selected { fill: #fff6e9; stroke: #60300e; stroke-width: 3; }
-.history-method { max-width: 870px; font-size: 13px; line-height: 1.7; margin-top: 20px; }
-.history-table { margin-top: 24px; border-top: 1px solid #60300e44; }
-.history-table summary { cursor: pointer; padding: 18px 0; }
-.history-table table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
-.history-table caption { text-align: left; padding: 12px 0; }
-.history-table th, .history-table td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #60300e33; }
-.history-select select:focus-visible, .history-table summary:focus-visible { outline: 3px solid #60300e; outline-offset: 4px; }
-@media (max-width: 767px) {
-  .history-toolbar { flex-direction: column; }
-  .history-select { grid-template-columns: auto auto; align-items: center; gap: 16px; }
-  .history-chart svg { min-height: 155px; }
-  .history-chart text { font-size: 19px; }
-}
+.history-number { font-size: clamp(40px, 9vw, 120px); line-height: 1.15; letter-spacing: -.05em; margin: 24px 0; font-variant-numeric: tabular-nums; }
+.history-method { max-width: 75ch; font-size: 13px; line-height: 1.7; margin-top: 20px; }
 
 /* Humanitarian innovation: generous image panels and soft architectural curves. */
 .innovation-section { position: relative; isolation: isolate; padding: clamp(64px, 8vw, 120px) 0 56px; background: #f5f2eb; overflow: clip; }
@@ -891,4 +865,91 @@ body:has(.gallery-dialog[open]) {
 @media (prefers-reduced-motion: reduce) {
   .innovation-arrow { transition: none; }
   .innovation-card-link:hover .innovation-arrow { transform: none; }
+}
+
+/* Displacement explorer: a quiet editorial frame around an interactive annual series. */
+.displacement-section { background: #eae8df; background-image: none; }
+.scale-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin: 0 0 36px; }
+.displacement-section .scale-heading h2 { font-size: clamp(38px, 4.5vw, 64px); font-weight: 550; line-height: 1.04; letter-spacing: -.05em; }
+.scale-heading h2 em { font-family: Georgia, serif; font-weight: 400; color: #626d5c; }
+.scale-heading > p { font-size: 15px; line-height: 1.65; color: #5f635a; padding-bottom: 4px; }
+.scale-panel { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.65fr); background: #fffefa; border: 1px solid #dcded3; border-radius: 28px 64px 28px 28px; box-shadow: 0 18px 50px -34px #26312540; overflow: hidden; }
+.scale-metric { display: flex; flex-direction: column; align-items: start; padding: 38px 32px 30px; border-right: 1px solid #e6e8df; background: #f8f9f2; }
+.scale-year-control { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; }
+.scale-year-control label { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: #606958; }
+.scale-year-control select { border: 1px solid #d5dace; padding: 10px 12px; min-height: 44px; border-radius: 100px; background: #fffefa; color: #293326; font-size: 14px; font-weight: 600; cursor: pointer; }
+.scale-number { display: flex; flex-direction: column; margin: 42px 0 12px; font-size: clamp(60px, 6.6vw, 94px); letter-spacing: -.065em; line-height: .98; font-weight: 550; font-variant-numeric: tabular-nums; color: #273b30; }
+.scale-number > span:last-child { margin-top: 14px; font-family: Georgia, serif; font-size: 26px; letter-spacing: -.02em; font-style: italic; font-weight: 400; }
+.scale-series-label { font-size: 11px; color: #63685e; line-height: 1.6; }
+.scale-change { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #64675e; margin: 25px 0 32px; }
+.scale-change > span:first-child { padding: 6px 10px; border-radius: 100px; background: #e5eade; color: #34492f; font-variant-numeric: tabular-nums; }
+.scale-change > span.scale-increase { background: #f4e6dc; color: #974921; }
+.scale-source { display: flex; flex-direction: column; gap: 5px; margin-top: auto; padding-top: 22px; border-top: 1px solid #dfe3d7; width: 100%; color: #54604d; font-size: 11px; }
+.scale-source > span { color: #293326; font-size: 13px; font-variant-numeric: tabular-nums; }
+.scale-chart-panel { min-width: 0; padding: 32px 34px 24px; }
+.scale-chart-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; font-size: 13px; }
+.scale-chart-heading p { font-weight: 600; }
+.scale-chart-heading p span { font-weight: 400; color: #6b6c63; margin-left: 12px; font-size: 11px; }
+.scale-chart-heading > span { font-size: 10px; color: #6b6c63; }
+.scale-chart { margin: 20px 0 0; }
+.scale-readout { display: flex; align-items: center; justify-content: end; gap: 12px; min-height: 32px; font-size: 11px; color: #62685c; }
+.scale-readout strong { font-size: 14px; font-variant-numeric: tabular-nums; color: #2e382a; }
+.scale-chart svg { width: 100%; height: auto; display: block; overflow: visible; cursor: crosshair; touch-action: pan-y; }
+.scale-chart text { fill: #62685c; font-family: inherit; font-size: 12px; }
+.scale-grid { stroke: #e7e8df; stroke-dasharray: 3 5; }
+.scale-line { stroke: #c86431; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.scale-dot { fill: #fffefa; stroke: #c86431; stroke-width: 1.5; }
+.scale-crosshair { stroke: #68745f; stroke-width: 1; stroke-dasharray: 3 4; }
+.scale-point-halo { fill: #d7784130; }
+.scale-point { fill: #c86431; stroke: #fffefa; stroke-width: 2.5; }
+.scale-timeline { margin: 15px 0 0; padding: 17px 0 0; border-top: 1px solid #e8e9e2; }
+.scale-timeline label { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; font-weight: 600; }
+.scale-timeline label span { color: #72776a; font-weight: 400; font-size: 10px; }
+.scale-timeline input { display: block; width: 100%; height: 32px; margin: 5px 0 0; accent-color: #546b43; cursor: ew-resize; }
+.scale-timeline > div { display: flex; justify-content: space-between; font-size: 10px; color: #6b7063; font-variant-numeric: tabular-nums; }
+.scale-timeline > div span:nth-child(2) { color: #33452c; font-weight: 650; }
+.scale-bottom { display: flex; justify-content: space-between; align-items: start; gap: 20px; margin: 21px 4px 0; font-size: 11px; line-height: 1.6; color: #5e6257; }
+.scale-bottom a { flex-shrink: 0; text-decoration: underline; text-underline-offset: 3px; }
+.scale-details { margin-top: 18px; border-top: 1px solid #cdd2c3; }
+.scale-details summary { cursor: pointer; padding: 17px 4px; font-size: 12px; font-weight: 550; }
+.scale-details > p { max-width: 85ch; font-size: 13px; line-height: 1.7; margin: 6px 0 24px; color: #565d4f; }
+.scale-table-wrap { overflow-x: auto; }
+.scale-details table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.scale-details caption { text-align: left; padding-bottom: 16px; font-weight: 600; }
+.scale-details th, .scale-details td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #cdd2c3; }
+.scale-details td a { text-decoration: underline; text-underline-offset: 3px; }
+.scale-year-control select:focus-visible, .scale-timeline input:focus-visible, .scale-details summary:focus-visible, .scale-source:focus-visible { outline: 3px solid #6b794e; outline-offset: 4px; }
+@media (max-width: 1023px) {
+  .scale-panel { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .scale-metric { padding: 26px 22px; }
+  .scale-chart-panel { padding: 26px 22px; }
+  .scale-year-control { align-items: start; flex-direction: column; gap: 8px; }
+  .scale-number { font-size: 70px; margin-top: 26px; }
+  .scale-chart-heading { flex-wrap: wrap; gap: 8px; }
+  .scale-chart { margin-top: 25px; }
+  .scale-chart text { font-size: 18px; }
+  .scale-timeline label { flex-direction: column; gap: 5px; }
+}
+@media (max-width: 639px) {
+  .scale-heading { flex-direction: column; align-items: start; gap: 20px; margin-bottom: 26px; }
+  .scale-heading > p { font-size: 14px; }
+  .displacement-section .section-kicker > span { display: none; }
+  .scale-panel { grid-template-columns: 1fr; border-radius: 24px 50px 24px 24px; }
+  .scale-metric { border-right: 0; border-bottom: 1px solid #e1e5d7; padding: 25px 24px; }
+  .scale-year-control { flex-direction: row; align-items: center; }
+  .scale-number { font-size: 82px; margin: 25px 0 10px; }
+  .scale-number > span:last-child { font-size: 25px; margin-top: 10px; }
+  .scale-change { margin: 18px 0 20px; }
+  .scale-source { padding-top: 15px; }
+  .scale-chart-panel { padding: 24px 16px 22px; }
+  .scale-chart { margin-top: 15px; }
+  .scale-chart text { font-size: 22px; }
+  .scale-chart-heading { padding: 0 5px; }
+  .scale-chart-heading p span { margin-left: 7px; }
+  .scale-chart-heading > span { font-size: 9px; }
+  .scale-readout { padding: 0 5px; font-size: 10px; }
+  .scale-readout strong { font-size: 12px; }
+  .scale-timeline { margin: 15px 5px 0; }
+  .scale-timeline label { flex-direction: row; }
+  .scale-bottom { flex-direction: column; gap: 8px; }
 }

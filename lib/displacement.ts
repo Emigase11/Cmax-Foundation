@@ -1,10 +1,10 @@
-﻿import { cache } from "react";
+import { cache } from "react";
 import type { DisplacementData, DisplacementPoint } from "./labels";
 
 type DisplacementFallback = { value: number | null; year: number | null; source: string | null };
 type Row = Record<string, unknown>;
 const API = "https://api.unhcr.org/population/v1/population/";
-const FIRST_YEAR = 1990;
+const FIRST_YEAR = 2015;
 
 function count(value: unknown): number {
   if (value === "-") return 0;

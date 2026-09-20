@@ -1,4 +1,4 @@
-﻿import assert from "node:assert/strict";
+import assert from "node:assert/strict";
 import { sumDisplacement, parseDisplacementSeries, getDisplacement } from "../lib/displacement.ts";
 import { getFundraising } from "../lib/fundraising.ts";
 
@@ -9,14 +9,14 @@ for (const invalid of [null, undefined, "", " ", "NaN", "1,000", -1, 1.5, Infini
   assert.throws(() => sumDisplacement({ ...population, refugees: invalid }));
 assert.throws(() => sumDisplacement({ ...population, idps: 900_000_000 }));
 assert.throws(() => sumDisplacement({ refugees: 1, asylum_seekers: 1, idps: 1, oip: "-" }));
-const items = Array.from({ length: 36 }, (_, i) => ({ year: String(1990 + i), ...population }));
+const items = Array.from({ length: 11 }, (_, i) => ({ year: String(2015 + i), ...population }));
 const payload = { maxPages: 1, items };
-assert.equal(parseDisplacementSeries(payload, 2025).length, 36);
-assert.equal(parseDisplacementSeries({ ...payload, items: [...items].reverse() }, 2025)[0].year, 1990);
+assert.equal(parseDisplacementSeries(payload, 2025).length, 11);
+assert.equal(parseDisplacementSeries({ ...payload, items: [...items].reverse() }, 2025)[0].year, 2015);
 for (const invalid of [null, {}, { ...payload, maxPages: 2 }, { ...payload, items: [] },
   { ...payload, items: items.slice(1) }, { ...payload, items: [...items, items[0]] },
   { ...payload, items: [...items, { ...population, year: 2026 }] },
-  { ...payload, items: items.filter(item => item.year !== "2001") }])
+  { ...payload, items: items.filter(item => item.year !== "2020") }])
   assert.throws(() => parseDisplacementSeries(invalid, 2025));
 
 const fallback = { value: 117800000, year: 2025, source: "https://www.unhcr.org/about-unhcr/overview/figures-glance" };
@@ -28,7 +28,7 @@ try {
   assert.equal(result.mode, "api");
   assert.equal(result.points.at(-1).value, 30_801_119);
   assert.equal(calls.length, 1);
-  assert.ok(calls[0].url.includes(`yearFrom=1990&yearTo=${new Date().getUTCFullYear() - 1}`));
+  assert.ok(calls[0].url.includes(`yearFrom=2015&yearTo=${new Date().getUTCFullYear() - 1}`));
   assert.equal(calls[0].options.next.revalidate, 86400);
   for (const fail of [async () => { throw new Error("Simulated outage"); },
     async () => new Response("", { status: 503 }),

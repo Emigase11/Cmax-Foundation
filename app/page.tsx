@@ -131,7 +131,7 @@ export default async function HomePage() {
           )}
         </Container>
       </section>
-      <section className="visual-section displacement-section contour-surface">
+      <section className="visual-section displacement-section">
         <Container>
           <div className="section-kicker">
             <p className="eyebrow">02 / The scale of the need</p>

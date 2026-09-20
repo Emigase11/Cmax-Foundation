@@ -278,85 +278,61 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
-      <section className="visual-section funding-section contour-surface">
+      <section className="support-impact" aria-labelledby="support-impact-title">
         <Container>
-          <p className="eyebrow">07 / Support into action</p>
-          {funds ? (
-            <>
-              <p className="funding-number">
-                <span className="eyebrow">{funds.currency}</span>
-                <AnimatedNumber value={funds.amount!} />
-              </p>
-              <h2>{funds.financed}</h2>
-              <p className="source-line">
-                <ExternalLink href={funds.source}>
-                  Funds raised · As of {funds.date}
-                </ExternalLink>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className="editorial-title">
-                Every contribution.
-                <br />
-                <em>A practical purpose.</em>
-              </h2>
-              <p>
-                Our next fundraising report will share the amount raised and the
-                work it made possible.
-              </p>
-            </>
-          )}
-          <Link href="/about/transparency" className="text-link">
-            Our commitment to transparency <ArrowIcon />
-          </Link>
+          <div className="support-impact-layout">
+            <div className="support-impact-copy">
+              <p className="eyebrow">07 / Support into action</p>
+              <h2 id="support-impact-title">Every contribution.<br /><em>A practical purpose.</em></h2>
+              <p>Behind every response is a community of people who choose to help.</p>
+              <div className="impact-actions">
+                <Link href="/support" className="editorial-button editorial-button-cream">Support a mission<span><ArrowIcon /></span></Link>
+                <Link href="/about/transparency" className="impact-transparency">Our commitment to transparency <ArrowIcon /></Link>
+              </div>
+            </div>
+            <aside className="impact-report" aria-labelledby="impact-report-title">
+              <div className="impact-report-top"><span className="impact-report-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M7 3h8l4 4v14H5V3h2Z M14 3v5h5 M9 12h6 M9 16h6" /></svg></span><span>CMAX Foundation<br /><strong>Accountability matters.</strong></span></div>
+              <div className="impact-report-body">
+                <p className="eyebrow" id="impact-report-title">Fundraising overview</p>
+                {funds ? <>
+                  <p className="impact-report-total"><span>{funds.currency}</span><AnimatedNumber value={funds.amount!} /></p>
+                  <p className="impact-report-purpose">{funds.financed}</p>
+                  <p className="impact-report-date">Reporting date · <time dateTime={funds.date!}>{funds.date}</time></p>
+                </> : <>
+                  <span className="impact-report-status"><span />Report forthcoming</span>
+                  <h3>A clear view of<br /><em>your support.</em></h3>
+                  <p>Our next report will share the amount raised and the work it made possible.</p>
+                </>}
+              </div>
+              {funds ? <a href={funds.source!} target="_blank" rel="noopener noreferrer" className="impact-report-link">Read the fundraising report <ArrowIcon /><span className="sr-only"> (opens in a new tab)</span></a>
+                : <Link href="/about/transparency" className="impact-report-link">Explore our transparency commitments <ArrowIcon /></Link>}
+            </aside>
+          </div>
+          <div className="support-impact-footer"><span>Humanitarian innovation. Shared responsibility.</span><span>CMAX Foundation</span></div>
         </Container>
       </section>
-      <section className="visual-section press-section contour-surface">
+      <section className="conversation-section" aria-labelledby="conversation-title">
         <Container>
-          <div className="section-kicker">
-            <p className="eyebrow">08 / In the public conversation</p>
-            <Link href="/about/press" className="text-link">
-              Press archive <ArrowIcon />
-            </Link>
+          <div className="conversation-heading">
+            <div><p className="eyebrow">08 / In the public conversation</p><h2 id="conversation-title">Stories worth<br /><em>bringing to light.</em></h2></div>
+            <p>A closer look at humanitarian innovation<br />and the people moving it forward.</p>
           </div>
-          {press.length ? (
-            <div className="press-logos">
-              {press.map((p) => (
-                <a
-                  key={p.slug}
-                  href={p.entry.url!}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${p.entry.outlet}: ${p.entry.title}`}
-                >
-                  {imgSrc(p.entry.logo) ? (
-                    <Image
-                      src={imgSrc(p.entry.logo)!}
-                      alt={p.entry.outlet}
-                      width={270}
-                      height={100}
-                      sizes="150px"
-                      unoptimized
-                    />
-                  ) : (
-                    <span>{p.entry.outlet}</span>
-                  )}
-                </a>
-              ))}
+          {press.length > 0 && <div className="conversation-articles">
+            {press.map(p => <a key={p.slug} href={p.entry.url!} target="_blank" rel="noopener noreferrer" className="conversation-article">
+              <div className="conversation-outlet">{imgSrc(p.entry.logo) ? <Image src={imgSrc(p.entry.logo)!} alt={p.entry.outlet} width={270} height={100} sizes="140px" unoptimized /> : <span>{p.entry.outlet}</span>}<ArrowIcon /></div>
+              <h3>{p.entry.title}</h3><p>{p.entry.outlet} · <time dateTime={p.entry.date!}>{p.entry.date}</time></p><span className="sr-only">Read article (opens in a new tab)</span>
+            </a>)}
+          </div>}
+          <div className="conversation-desk">
+            <div className="conversation-mark" aria-hidden="true"><span>CMAX</span><span>THE<br /><em>press</em><br />DESK.</span><span>INNOVATION FOR HUMANITY</span></div>
+            <div className="conversation-desk-copy">
+              <p className="eyebrow">For journalists &amp; storytellers</p>
+              <h3>A good story starts<br />with a conversation.</h3>
+              <p>Get in touch for interviews, information and questions about the Foundation.</p>
+              <Link href="/support?reason=press" className="editorial-button editorial-button-ink">Contact the Foundation<span><ArrowIcon /></span></Link>
             </div>
-          ) : (
-            <div className="press-empty">
-              <h2 className="editorial-title">
-                Stories worth
-                <br />
-                <em>bringing to light.</em>
-              </h2>
-              <Link href="/support?reason=press" className="text-link">
-                Press and media inquiries <ArrowIcon />
-              </Link>
-            </div>
-          )}
+          </div>
+          <Link href="/about/press" className="conversation-archive"><span><strong>Explore the press archive</strong><span>{press.length ? "Original reporting, sources and publication dates." : "Verified coverage will appear here as it is published."}</span></span><span className="conversation-archive-arrow"><ArrowIcon /></span></Link>
         </Container>
       </section>
       <section className="join-section visual-join">

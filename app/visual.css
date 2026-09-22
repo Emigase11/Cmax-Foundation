@@ -1139,12 +1139,15 @@ body:has(.gallery-dialog[open]) {
   color: var(--color-paper);
   overflow: hidden;
 }
-.un-hero-video {
+.un-hero-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* The band is far wider than the crop on a large monitor and taller than it
+     on a phone, so the frame is held to the chamber rather than the ceiling. */
+  object-position: 50% 60%;
   z-index: -2;
 }
 .un-hero-scrim {

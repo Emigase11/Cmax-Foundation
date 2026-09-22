@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ActivityRow } from "@/components/records";
 import { ButtonLink, Container, ExternalLink } from "@/components/ui";
-import { BackgroundVideo } from "@/components/background-video";
+import Image from "next/image";
 import { getActivities, getSite } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -18,10 +18,15 @@ export default async function UnitedNationsPage() {
   return (
     <>
       <section className="un-hero">
-        <BackgroundVideo
-          src="/video/un-background.mp4"
-          poster="/images/content/stories/un-background-poster.webp"
-          className="un-hero-video"
+        <Image
+          src="/images/content/stories/un-ecosoc-chamber.webp"
+          alt=""
+          fill
+          priority
+          quality={90}
+          // The band runs the full width at every size.
+          sizes="100vw"
+          className="un-hero-photo"
         />
         {/* Carries the contrast for the white heading over moving footage. */}
         <div className="un-hero-scrim" aria-hidden="true" />

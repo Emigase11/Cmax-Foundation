@@ -18,6 +18,9 @@ const images = [
     "humanitarian-innovation",
     1600,
   ],
+  // Backdrop for the United Nations page, cropped by CMAX to the band's 2.8
+  // proportion so the visible slice is a deliberate choice, not a machine crop.
+  ["un-ecosoc-chamber.jpg", "un-ecosoc-chamber", 2800],
   ["Captura de pantalla 2026-09-16 143914.png", "meeting-pope-francis", 800],
   ["Captura de pantalla 2026-09-16 144613.png", "community-gathering", 800],
   ["Cmax-air-x2-family-rescue (1).png", "aerocabin-rescue-concept", 2400],

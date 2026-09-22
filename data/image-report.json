@@ -73,6 +73,22 @@
     "warning": "Original 1100px is below 1600px target; derivative 1600px. Resampling does not recover detail."
   },
   {
+    "source": "un-ecosoc-chamber.jpg",
+    "name": "un-ecosoc-chamber",
+    "originalWidth": 2000,
+    "targetWidth": 2800,
+    "outputWidth": 2800,
+    "widths": [
+      600,
+      1200,
+      1600,
+      2400,
+      2800
+    ],
+    "method": "classical-lanczos-max-2x",
+    "warning": "Original 2000px is below 2800px target; derivative 2800px. Resampling does not recover detail."
+  },
+  {
     "source": "Captura de pantalla 2026-09-16 143914.png",
     "name": "meeting-pope-francis",
     "originalWidth": 805,

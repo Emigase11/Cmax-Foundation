@@ -23,7 +23,7 @@
   color: #fffefa;
   background: #242725;
 }
-.un-story-film,
+.un-story-hero-photo,
 .un-story-shade {
   position: absolute;
   inset: 0;
@@ -88,24 +88,6 @@
   font-size: 11px;
   letter-spacing: 0.04em;
   color: #ffffffc7;
-}
-.un-film-toggle {
-  position: absolute;
-  right: max(24px, calc((100vw - 1240px) / 2));
-  bottom: 22px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #141917a6;
-  color: white;
-  border: 1px solid #ffffff6b;
-  padding: 10px 16px;
-  min-height: 44px;
-  font-size: 12px;
-  cursor: pointer;
-}
-.un-film-toggle span {
-  font-size: 17px;
 }
 .un-status-band {
   background: #e9e6dc;
@@ -283,6 +265,26 @@
 .un-records {
   border-top: 2px solid #292b25;
 }
+.un-archive-film {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid #ffffff30;
+}
+.un-archive-film h2 {
+  font-size: clamp(32px, 4vw, 54px);
+}
+.un-archive-film video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #111;
+}
+.un-archive-film-credit {
+  margin-top: 14px;
+  color: #c0c3b9;
+  font-size: 12px;
+}
 .un-record {
   border-bottom: 1px solid #d5d0c6;
 }
@@ -380,7 +382,6 @@
   font-size: 13px;
   margin-top: 22px;
 }
-.un-film-toggle:active,
 .un-explore:active {
   transform: scale(0.97);
 }
@@ -449,9 +450,6 @@
   .un-film-credit {
     max-width: 150px;
     font-size: 10px;
-  }
-  .un-film-toggle {
-    right: 16px;
   }
   .un-status-inner {
     gap: 20px;

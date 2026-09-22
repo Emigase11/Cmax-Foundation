@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Gallery } from "@/components/gallery";
-import { UNHeroVideo } from "@/components/un-hero-video";
 import { ArrowIcon } from "@/components/icons";
 import { ButtonLink, Container, ExternalLink } from "@/components/ui";
 import {
@@ -54,6 +53,14 @@ export default async function UnitedNationsPage() {
   return (
     <div className="un-story">
       <section className="un-story-hero" aria-labelledby="un-title">
+        <Image
+          src="/images/content/stories/un-ecosoc-chamber.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="un-story-hero-photo"
+        />
         <div className="un-story-shade" aria-hidden="true" />
         <Container className="un-story-hero-content">
           <Link href="/global-advocacy" className="un-back">
@@ -76,7 +83,6 @@ export default async function UnitedNationsPage() {
           </div>
           <span className="un-film-credit">United Nations · CMAX archive</span>
         </Container>
-        <UNHeroVideo />
       </section>
       <div className="un-status-band">
         <Container className="un-status-inner">
@@ -187,6 +193,26 @@ export default async function UnitedNationsPage() {
             figures={photographs}
             sizes="(min-width: 1320px) 610px, (min-width: 640px) calc((100vw - 72px) / 2), calc(100vw - 32px)"
           />
+          <section className="un-archive-film" aria-labelledby="un-film-title">
+            <div className="un-section-heading">
+              <div>
+                <p className="eyebrow un-kicker">From the archive / Film</p>
+                <h2 id="un-film-title">Inside <em>the conversation.</em></h2>
+              </div>
+              <p>A closer look at CMAX Foundation’s global advocacy.</p>
+            </div>
+            <video
+              controls
+              playsInline
+              preload="none"
+              poster="/images/content/stories/un-background-poster.webp"
+              aria-label="CMAX Foundation global advocacy archive film"
+            >
+              <source src="/video/un-background.mp4" type="video/mp4" />
+              <a href="/video/un-background.mp4">Watch the archive film</a>
+            </video>
+            <p className="un-archive-film-credit">CMAX Foundation · Film archive</p>
+          </section>
         </Container>
       </section>
       <section id="un-record" className="un-story-section">

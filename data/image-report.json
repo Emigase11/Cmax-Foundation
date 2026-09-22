@@ -14,19 +14,20 @@
     "warning": "Original 1100px is below 1600px target; derivative 1600px. Resampling does not recover detail."
   },
   {
-    "source": "Cmax-system-flat-pack-nico-garcia-mayor-1100x564.jpeg",
+    "source": "cmax-facility-units-lined-up.jpg",
     "name": "cmax-ready-to-deploy",
-    "originalWidth": 1100,
+    "originalWidth": 2000,
     "targetWidth": 2800,
-    "outputWidth": 2200,
+    "outputWidth": 2800,
     "widths": [
       600,
       1200,
       1600,
-      2200
+      2400,
+      2800
     ],
     "method": "classical-lanczos-max-2x",
-    "warning": "Original 1100px is below 2800px target; derivative 2200px. Resampling does not recover detail."
+    "warning": "Original 2000px is below 2800px target; derivative 2800px. Resampling does not recover detail."
   },
   {
     "source": "Nicolas-Garcia-Mayor-vulnerable-neighborhood-1100x564.jpg",

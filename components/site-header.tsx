@@ -8,6 +8,7 @@ import { ArrowIcon, CloseIcon, MenuIcon } from "./icons";
 import { ButtonLink, Container } from "./ui";
 
 const NAV = [
+  { href: "/", label: "Home" },
   { href: "/our-work", label: "Our Work" },
   { href: "/our-actions", label: "Our Actions" },
   { href: "/campaigns", label: "Campaigns" },

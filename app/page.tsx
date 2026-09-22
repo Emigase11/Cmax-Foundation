@@ -95,6 +95,20 @@ export default async function HomePage() {
         className="visual-section visual-dark un-section"
       >
         <Container className="un-grid">
+          {unVideo?.url ? (
+            <VideoOnDemand
+              url={unVideo.url}
+              title={unVideo.title}
+              context={unVideo.context}
+              captions={unVideo.captions}
+              poster={imgSrc(visual.unImage.image)}
+            />
+          ) : (
+            <Figure
+              figure={visual.unImage}
+              sizes="(min-width: 1320px) 570px, (min-width: 1024px) calc((100vw - 160px) / 2), calc(100vw - 48px)"
+            />
+          )}
           <div>
             <p className="eyebrow">01 / A global voice</p>
             <h2 className="editorial-title">
@@ -112,20 +126,6 @@ export default async function HomePage() {
               </ExternalLink>
             </div>
           </div>
-          {unVideo?.url ? (
-            <VideoOnDemand
-              url={unVideo.url}
-              title={unVideo.title}
-              context={unVideo.context}
-              captions={unVideo.captions}
-              poster={imgSrc(visual.unImage.image)}
-            />
-          ) : (
-            <Figure
-              figure={visual.unImage}
-              sizes="(min-width: 1320px) 570px, (min-width: 1024px) calc((100vw - 160px) / 2), calc(100vw - 48px)"
-            />
-          )}
         </Container>
       </section>
       <section className="visual-section displacement-section">

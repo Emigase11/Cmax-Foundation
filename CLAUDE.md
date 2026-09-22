@@ -6,7 +6,13 @@ Next.js 16 App Router + Tailwind v4 + Keystatic. Read `README.md` for routes and
 
 - Public solution names are **Cmax Med** and **AeroCabin™** only. Never add "HD", "X2", "SD" or other variants to public copy.
 - Never publish figures, deliveries, capacities or results without a source in the content record. Empty fields render as "pending" notes on purpose.
-- Every image in content carries an `illustrative` flag; renders must be flagged. Videos play on demand only.
+- Every image in content carries an `illustrative` flag; renders must be flagged.
+- Videos play on demand only. The one exception is a silent decorative backdrop
+  behind a heading (`components/background-video.tsx`): it carries no information,
+  so it is muted, looped, `aria-hidden`, paused off-screen, and never loads or
+  plays for a visitor who asked for reduced motion, who sees the poster instead.
+  Backdrops are built with `npm run video:prepare`, which strips the audio and
+  compresses to a few MB; never ship a source file straight to `public/video`.
 - People appear on the site only when `verified: true` in `content/people/*.yaml`.
 - `lib/labels.ts` is client-safe; `lib/content.ts` reads files and must stay server-only (never import it from a `"use client"` component).
 - `@markdoc/markdoc` is pinned to the version nested under `@keystatic/core`; keep them equal or the body types break.

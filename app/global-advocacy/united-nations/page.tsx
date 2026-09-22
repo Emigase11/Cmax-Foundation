@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ActivityRow } from "@/components/records";
 import { ButtonLink, Container, ExternalLink } from "@/components/ui";
+import { BackgroundVideo } from "@/components/background-video";
 import { getActivities, getSite } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -16,8 +17,15 @@ export default async function UnitedNationsPage() {
 
   return (
     <>
-      <section className="bg-ink text-paper">
-        <Container className="py-14 sm:py-20">
+      <section className="un-hero">
+        <BackgroundVideo
+          src="/video/un-background.mp4"
+          poster="/images/content/stories/un-background-poster.webp"
+          className="un-hero-video"
+        />
+        {/* Carries the contrast for the white heading over moving footage. */}
+        <div className="un-hero-scrim" aria-hidden="true" />
+        <Container className="un-hero-content py-14 sm:py-20">
           <h1 className="display max-w-[14ch] text-[clamp(2.6rem,1.6rem+5vw,5.6rem)]">Our Work at the United Nations</h1>
           <p className="display-md mt-10 max-w-[30ch] text-[clamp(1.4rem,1.1rem+1.4vw,2.3rem)] text-paper">
             {site.unStatement}

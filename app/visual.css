@@ -1128,3 +1128,33 @@ body:has(.gallery-dialog[open]) {
  .approach-need-cards h3 { font-size: 24px; }
  .approach-partnership { grid-template-columns: 1fr; padding: 30px 24px; gap: 25px; border-radius: 22px 48px 22px 22px; }
 }
+
+/* United Nations page: a silent backdrop under the statement.
+   The scrim is heavier than the homepage hero because the footage moves and
+   the heading over it is white. */
+.un-hero {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  overflow: hidden;
+}
+.un-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.un-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(100deg, #12110fef 0%, #12110fd9 46%, #12110f8c 100%),
+    linear-gradient(#12110f4d, #12110f4d);
+}
+.un-hero-content {
+  position: relative;
+}

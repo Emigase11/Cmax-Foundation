@@ -183,10 +183,11 @@ const scenarios = [
 export function MedScenarios() {
   const [selected, setSelected] = useState(0);
   const id = useId();
+  const gallery = useRef<HTMLDivElement>(null);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const current = scenarios[selected];
   return (
-    <div className="med-scenarios">
+    <div className="med-scenarios" ref={gallery}>
       <div
         role="tablist"
         aria-label="Explore Cmax Med settings"
@@ -204,7 +205,10 @@ export function MedScenarios() {
             aria-selected={selected === index}
             aria-controls={`${id}-panel`}
             tabIndex={selected === index ? 0 : -1}
-            onClick={() => setSelected(index)}
+            onClick={() => {
+              setSelected(index);
+              gallery.current?.scrollIntoView({ block: "start", behavior: "instant" });
+            }}
             onKeyDown={(event) => {
               let next = index;
               if (event.key === "ArrowRight")
@@ -229,7 +233,7 @@ export function MedScenarios() {
         id={`${id}-panel`}
         aria-labelledby={`${id}-tab-${selected}`}
         tabIndex={0}
-        className={`med-scenario-panel ${selected === 2 ? "med-scenario-portrait" : ""}`}
+        className="med-scenario-panel"
       >
         <div className="med-scenario-copy">
           <h3>{current.title}</h3>
@@ -239,11 +243,7 @@ export function MedScenarios() {
         <MedPhoto
           key={current.photo.src}
           photo={current.photo}
-          sizes={
-            selected === 2
-              ? "(min-width: 900px) 55vw, calc(100vw - 32px)"
-              : undefined
-          }
+          sizes="(min-width: 1320px) 880px, (min-width: 768px) 65vw, calc(100vw - 32px)"
         />
       </div>
     </div>

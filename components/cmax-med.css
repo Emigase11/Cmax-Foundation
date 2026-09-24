@@ -841,3 +841,76 @@ body:has(.med-lightbox[open]) {
     transition: none !important;
   }
 }
+
+/* A stable, viewport-sized gallery keeps every format fully visible. */
+.med-scenario-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.8fr);
+  gap: 32px;
+  align-items: center;
+}
+.med-scenario-panel .med-scenario-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+}
+.med-scenario-panel .med-photo {
+  min-width: 0;
+  margin: 0;
+}
+.med-scenario-panel .med-photo-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: min(54svh, 520px);
+  background: radial-gradient(ellipse at center, #37564f, #182f2a);
+  border: 1px solid #ffffff20;
+  border-radius: 12px;
+}
+.med-scenario-panel .med-photo-open > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.med-scenario-panel .med-photo > figcaption {
+  min-height: 42px;
+  font-size: 11px;
+}
+@media (max-width: 767px) {
+  .med-scenario-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .med-scenarios .med-tabs {
+    margin-bottom: 18px;
+  }
+  .med-scenario-panel .med-scenario-copy {
+    gap: 8px;
+    min-height: 118px;
+  }
+  .med-scenario-panel .med-scenario-copy h3 {
+    font-size: 25px;
+  }
+  .med-scenario-panel .med-scenario-copy > p {
+    margin: 0;
+    font-size: 13px;
+  }
+  .med-scenario-panel .med-scenario-copy > .med-eyebrow {
+    display: none;
+  }
+  .med-scenario-panel .med-photo-open {
+    height: min(38svh, 340px);
+  }
+}
+.med-scenarios {
+  scroll-margin-top: 108px;
+}
+@media (max-width: 767px) {
+  .med-scenarios {
+    scroll-margin-top: 84px;
+  }
+}

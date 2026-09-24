@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Figure } from "@/components/figure";
 import { CmaxMedPage } from "@/components/cmax-med-page";
+import { AerocabinPage } from "@/components/aerocabin-page";
 import { Gallery } from "@/components/gallery";
 import { MarkdocContent } from "@/components/markdoc-content";
 import { ActionRow, CampaignCard } from "@/components/records";
@@ -34,6 +35,9 @@ export default async function ProgramPage({ params }: Props) {
   const relatedCampaigns = campaigns.filter((c) => c.entry.response === slug);
   if (slug === "cmax-med") {
     return <CmaxMedPage program={program} actions={relatedActions} campaigns={relatedCampaigns} />;
+  }
+  if (slug === "aerocabin") {
+    return <AerocabinPage program={program} actions={relatedActions} campaigns={relatedCampaigns} />;
   }
   const maturity = MATURITY[program.maturity] ?? MATURITY.proposed;
 

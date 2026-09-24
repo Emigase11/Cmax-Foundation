@@ -1,0 +1,42 @@
+{
+  "rescue": {
+    "src": "/images/content/aerocabin/rescue.webp",
+    "width": 2000,
+    "height": 1317
+  },
+  "daylight": {
+    "src": "/images/content/aerocabin/daylight.webp",
+    "width": 768,
+    "height": 1024
+  },
+  "dusk": {
+    "src": "/images/content/aerocabin/dusk.webp",
+    "width": 768,
+    "height": 1024
+  },
+  "studio": {
+    "src": "/images/content/aerocabin/studio.webp",
+    "width": 1292,
+    "height": 1218
+  },
+  "unfold": {
+    "src": "/images/content/aerocabin/unfold.webp",
+    "width": 360,
+    "height": 235
+  },
+  "inflate": {
+    "src": "/images/content/aerocabin/inflate.webp",
+    "width": 360,
+    "height": 235
+  },
+  "check": {
+    "src": "/images/content/aerocabin/check.webp",
+    "width": 360,
+    "height": 235
+  },
+  "flood": {
+    "src": "/images/content/aerocabin/flood.webp",
+    "width": 1376,
+    "height": 768
+  }
+}

@@ -9,7 +9,6 @@ import { ButtonLink, Container } from "./ui";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/our-work", label: "Our Work" },
   { href: "/our-actions", label: "Our Actions" },
   { href: "/campaigns", label: "Campaigns" },
   { href: "/about", label: "About us" },

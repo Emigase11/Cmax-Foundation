@@ -8,7 +8,6 @@ const COLUMNS = [
     title: "Explore",
     links: [
       { href: "/approach", label: "Our approach" },
-      { href: "/our-work", label: "Our Work" },
       { href: "/our-actions", label: "Our Actions" },
       { href: "/campaigns", label: "Campaigns" },
       { href: "/global-advocacy", label: "Global Advocacy" },

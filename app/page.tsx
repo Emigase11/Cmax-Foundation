@@ -146,7 +146,6 @@ export default async function HomePage() {
             </div>
             <div className="innovation-intro">
               <p>Thoughtful design.<br />For the moments that matter most.</p>
-              <Link href="/our-work" className="innovation-all">Explore our work <ArrowIcon /></Link>
             </div>
           </div>
           <div className="innovation-collection">

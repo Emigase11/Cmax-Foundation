@@ -747,8 +747,6 @@ body:has(.gallery-dialog[open]) {
 .innovation-heading h2 em { font-family: Georgia, serif; font-weight: 400; color: #a54821; }
 .innovation-intro { padding-bottom: 4px; max-width: 265px; flex-shrink: 0; }
 .innovation-intro > p { font-size: 15px; line-height: 1.6; color: #5b5a53; }
-.innovation-all { display: inline-flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 600; margin-top: 20px; min-height: 44px; border-bottom: 1px solid #9b9385; }
-.innovation-all svg { width: 18px; height: 18px; }
 .innovation-collection { display: grid; gap: 26px; }
 .innovation-card { border-radius: 28px 80px 28px 28px; background: #fffefa; padding: 12px; border: 1px solid #e6e1d8; box-shadow: 0 12px 36px -25px #46352240; }
 .innovation-card-link { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 0; border-radius: 18px 68px 18px 18px; }
@@ -781,11 +779,10 @@ body:has(.gallery-dialog[open]) {
 .innovation-air .innovation-arrow { background: #fff0df; }
 .innovation-footnote { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 27px; padding: 0 12px; color: #666158; font-size: 11px; }
 .innovation-footnote > span:first-child { font-family: Georgia, serif; font-style: italic; font-size: 17px; }
-.innovation-card-link:focus-visible, .innovation-all:focus-visible { outline: 3px solid #b84e0b; outline-offset: 5px; }
+.innovation-card-link:focus-visible { outline: 3px solid #b84e0b; outline-offset: 5px; }
 .innovation-air .innovation-card-link:focus-visible { outline-color: #f5be95; }
 @media (hover: hover) and (pointer: fine) {
   .innovation-card-link:hover .innovation-arrow { transform: rotate(-35deg); background: #f7bc8c; }
-  .innovation-all:hover { color: #a54821; }
 }
 @media (max-width: 1023px) {
   .innovation-heading { align-items: start; }
@@ -802,7 +799,6 @@ body:has(.gallery-dialog[open]) {
   .innovation-eyebrow { font-size: 9px; margin-bottom: 20px; }
   .innovation-intro { max-width: none; }
   .innovation-intro > p { font-size: 14px; }
-  .innovation-all { margin-top: 8px; }
   .innovation-card { padding: 8px; border-radius: 22px 52px 22px 22px; }
   .innovation-air { border-radius: 22px 22px 22px 52px; }
   .innovation-photo, .innovation-air .innovation-photo { border-radius: 16px 44px 16px 16px; }

@@ -149,8 +149,8 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         <p className="mt-16 text-[0.95rem] text-ink-3">
-          <Link href="/our-work" className="u-link">
-            Back to Our Work
+          <Link href="/" className="u-link">
+            Back to Home
           </Link>
         </p>
       </Container>

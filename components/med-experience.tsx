@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState, type CSSProperties } from "react";
+import { useId, useRef, useState } from "react";
 import { medImages, type MedImage } from "@/lib/cmax-med";
 
 export function MedPhoto({
@@ -16,10 +16,7 @@ export function MedPhoto({
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
   return (
-    <figure
-      className="med-photo"
-      style={{ "--med-image-ratio": photo.width / photo.height } as CSSProperties}
-    >
+    <figure className="med-photo">
       <button
         ref={opener}
         type="button"
@@ -184,72 +181,23 @@ const scenarios = [
 ];
 
 export function MedScenarios() {
-  const [selected, setSelected] = useState(0);
-  const id = useId();
-  const gallery = useRef<HTMLDivElement>(null);
-  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
-  const current = scenarios[selected];
   return (
-    <div className="med-scenarios" ref={gallery}>
-      <div
-        role="tablist"
-        aria-label="Explore Cmax Med settings"
-        className="med-tabs"
-      >
-        {scenarios.map((scenario, index) => (
-          <button
-            type="button"
-            role="tab"
-            key={scenario.label}
-            ref={(node) => {
-              buttons.current[index] = node;
-            }}
-            id={`${id}-tab-${index}`}
-            aria-selected={selected === index}
-            aria-controls={`${id}-panel`}
-            tabIndex={selected === index ? 0 : -1}
-            onClick={() => {
-              setSelected(index);
-              gallery.current?.scrollIntoView({ block: "start", behavior: "instant" });
-            }}
-            onKeyDown={(event) => {
-              let next = index;
-              if (event.key === "ArrowRight")
-                next = (index + 1) % scenarios.length;
-              else if (event.key === "ArrowLeft")
-                next = (index - 1 + scenarios.length) % scenarios.length;
-              else if (event.key === "Home") next = 0;
-              else if (event.key === "End") next = scenarios.length - 1;
-              else return;
-              event.preventDefault();
-              setSelected(next);
-              buttons.current[next]?.focus();
-            }}
-          >
-            <span>0{index + 1}</span>
-            {scenario.label}
-          </button>
-        ))}
-      </div>
-      <div
-        role="tabpanel"
-        id={`${id}-panel`}
-        aria-labelledby={`${id}-tab-${selected}`}
-        tabIndex={0}
-        className="med-scenario-panel"
-        style={{ "--med-image-ratio": current.photo.width / current.photo.height } as CSSProperties}
-      >
-        <div className="med-scenario-copy">
-          <h3>{current.title}</h3>
-          <p>{current.text}</p>
-          <span className="med-eyebrow">{current.photo.kind}</span>
-        </div>
-        <MedPhoto
-          key={current.photo.src}
-          photo={current.photo}
-          sizes="(min-width: 1320px) 880px, (min-width: 768px) 65vw, calc(100vw - 32px)"
-        />
-      </div>
+    <div className="med-editorial">
+      {scenarios.map((scenario, index) => (
+        <article className="med-editorial-row" key={scenario.label}>
+          <MedPhoto
+            photo={scenario.photo}
+            sizes="(min-width: 1320px) 584px, (min-width: 768px) 45vw, calc(100vw - 32px)"
+          />
+          <div className="med-editorial-copy">
+            <span className="med-editorial-number">{String(index + 1).padStart(2, "0")}</span>
+            <p className="med-eyebrow">{scenario.label}</p>
+            <h3>{scenario.title}</h3>
+            <p>{scenario.text}</p>
+            <span className="med-editorial-kind">{scenario.photo.kind}</span>
+          </div>
+        </article>
+      ))}
     </div>
   );
 }

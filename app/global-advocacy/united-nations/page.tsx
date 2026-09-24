@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { UNArchiveFilm } from "@/components/un-archive-film";
 import { Gallery } from "@/components/gallery";
 import { ArrowIcon } from "@/components/icons";
 import { ButtonLink, Container, ExternalLink } from "@/components/ui";
@@ -193,26 +194,7 @@ export default async function UnitedNationsPage() {
             figures={photographs}
             sizes="(min-width: 1320px) 610px, (min-width: 640px) calc((100vw - 72px) / 2), calc(100vw - 32px)"
           />
-          <section className="un-archive-film" aria-labelledby="un-film-title">
-            <div className="un-section-heading">
-              <div>
-                <p className="eyebrow un-kicker">From the archive / Film</p>
-                <h2 id="un-film-title">Inside <em>the conversation.</em></h2>
-              </div>
-              <p>A closer look at CMAX Foundation’s global advocacy.</p>
-            </div>
-            <video
-              controls
-              playsInline
-              preload="none"
-              poster="/images/content/stories/un-background-poster.webp"
-              aria-label="CMAX Foundation global advocacy archive film"
-            >
-              <source src="/video/un-background.mp4" type="video/mp4" />
-              <a href="/video/un-background.mp4">Watch the archive film</a>
-            </video>
-            <p className="un-archive-film-credit">CMAX Foundation · Film archive</p>
-          </section>
+          <UNArchiveFilm />
         </Container>
       </section>
       <section id="un-record" className="un-story-section">

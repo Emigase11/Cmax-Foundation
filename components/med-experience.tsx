@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState } from "react";
+import { useId, useRef, useState, type CSSProperties } from "react";
 import { medImages, type MedImage } from "@/lib/cmax-med";
 
 export function MedPhoto({
@@ -16,7 +16,10 @@ export function MedPhoto({
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
   return (
-    <figure className="med-photo">
+    <figure
+      className="med-photo"
+      style={{ "--med-image-ratio": photo.width / photo.height } as CSSProperties}
+    >
       <button
         ref={opener}
         type="button"
@@ -234,6 +237,7 @@ export function MedScenarios() {
         aria-labelledby={`${id}-tab-${selected}`}
         tabIndex={0}
         className="med-scenario-panel"
+        style={{ "--med-image-ratio": current.photo.width / current.photo.height } as CSSProperties}
       >
         <div className="med-scenario-copy">
           <h3>{current.title}</h3>

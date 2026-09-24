@@ -1,0 +1,32 @@
+{
+  "field": {
+    "src": "/images/content/cmax-med/field.webp",
+    "width": 1800,
+    "height": 2496
+  },
+  "cutaway": {
+    "src": "/images/content/cmax-med/cutaway.webp",
+    "width": 1272,
+    "height": 862
+  },
+  "hospital": {
+    "src": "/images/content/cmax-med/hospital.webp",
+    "width": 1200,
+    "height": 800
+  },
+  "camp": {
+    "src": "/images/content/cmax-med/camp.webp",
+    "width": 1672,
+    "height": 941
+  },
+  "modular": {
+    "src": "/images/content/cmax-med/modular.webp",
+    "width": 1800,
+    "height": 2592
+  },
+  "interior": {
+    "src": "/images/content/cmax-med/interior.webp",
+    "width": 1800,
+    "height": 640
+  }
+}

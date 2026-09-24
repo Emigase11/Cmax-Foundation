@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Figure } from "@/components/figure";
+import { CmaxMedPage } from "@/components/cmax-med-page";
 import { Gallery } from "@/components/gallery";
 import { MarkdocContent } from "@/components/markdoc-content";
 import { ActionRow, CampaignCard } from "@/components/records";
@@ -31,6 +32,9 @@ export default async function ProgramPage({ params }: Props) {
   const [actions, campaigns] = await Promise.all([getActions(), getCampaigns()]);
   const relatedActions = actions.filter((a) => a.entry.solutions.includes(slug));
   const relatedCampaigns = campaigns.filter((c) => c.entry.response === slug);
+  if (slug === "cmax-med") {
+    return <CmaxMedPage program={program} actions={relatedActions} campaigns={relatedCampaigns} />;
+  }
   const maturity = MATURITY[program.maturity] ?? MATURITY.proposed;
 
   return (

@@ -74,6 +74,42 @@ export function MedPhoto({
   );
 }
 
+const heroExterior = {
+  src: "/images/content/cmax-med/exterior-cutout.png",
+  width: 1559,
+  height: 1009,
+  alt: "Cmax Med unit with white walls, an orange entrance and triangular windows, isolated from its background.",
+  caption: "Care, closer to where it is needed.",
+  kind: "Exterior view",
+};
+
+export function MedHeroStage() {
+  const [inside, setInside] = useState(false);
+  return (
+    <div className="med-hero-stage" data-view={inside ? "interior" : "exterior"}>
+      <div className="med-stage-orbit" aria-hidden="true" />
+      <div className="med-stage-topline">
+        <span>ONE UNIT. HUMAN POSSIBILITIES.</span>
+        <div className="med-view-switch" role="group" aria-label="Choose a unit view">
+          <button type="button" aria-pressed={!inside} onClick={() => setInside(false)}>Exterior</button>
+          <button type="button" aria-pressed={inside} onClick={() => setInside(true)}>Interior</button>
+        </div>
+      </div>
+      <div className="med-stage-product">
+        <MedPhoto photo={inside ? medImages.cutaway : heroExterior} priority sizes="(min-width: 1024px) 840px, 90vw" />
+      </div>
+      <div className="med-stage-caption" aria-live="polite">
+        <span>{inside ? "02 / Inside the unit · Illustrative concept" : "01 / Meet the unit"}</span>
+        <p>{inside ? "A closer look at the space for care." : "A place for care. A possibility for communities."}</p>
+        <span className="med-stage-instruction">Select the image to explore in full ↗</span>
+      </div>
+      <div className="med-stage-principles">
+        <span><b>01</b> Foldable</span><span><b>02</b> Adaptable</span><span><b>03</b> Relocatable</span>
+      </div>
+    </div>
+  );
+}
+
 const features = [
   {
     title: "A considered entrance",

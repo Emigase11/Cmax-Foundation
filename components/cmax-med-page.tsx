@@ -9,11 +9,10 @@ import {
 import { ButtonLink, Container } from "./ui";
 import {
   MedInterior,
-  MedPhoto,
+  MedHeroStage,
   MedReadiness,
   MedScenarios,
 } from "./med-experience";
-import { medImages } from "@/lib/cmax-med";
 import { MATURITY, type getProgram } from "@/lib/content";
 import "./cmax-med.css";
 
@@ -36,48 +35,25 @@ export function CmaxMedPage({ program, actions, campaigns }: Props) {
             <span>/</span>
             <span>Cmax Med</span>
           </div>
-          <div className="med-hero-grid">
-            <div className="med-hero-copy">
-              <p className="med-eyebrow">
-                <span className="med-cross" aria-hidden="true" /> Deployable
-                medical spaces
-              </p>
-              <h1>
-                Cmax <em>Med.</em>
-              </h1>
-              <h2>
-                Room to care.
-                <br />
-                <em>Where it matters.</em>
-              </h2>
-              <p>
-                A foldable medical unit for health teams working beyond the
-                walls of a hospital.
-              </p>
+          <div className="med-hero-masthead">
+            <div>
+              <p className="med-eyebrow"><span className="med-cross" aria-hidden="true" /> Deployable medical spaces</p>
+              <h1>Cmax <em>Med.</em></h1>
+            </div>
+            <div className="med-hero-intro">
+              <h2>Room to care.<br /><em>Where it matters.</em></h2>
+              <p>A foldable medical unit for health teams working beyond the walls of a hospital.</p>
               <div className="med-hero-actions">
-                <a className="med-primary" href="#med-inside">
-                  Explore the unit <ArrowIcon />
-                </a>
-                <Link href="/support?ref=program:cmax-med">
-                  Support a mission <span aria-hidden="true">↗</span>
-                </Link>
-              </div>
-              <div className="med-hero-note">
-                <span>{maturity.label}</span>
-                <p>
-                  Developed by Cmax System.
-                  <br />
-                  Humanitarian access through CMAX Foundation.
-                </p>
+                <a className="med-primary" href="#med-inside">Explore the unit <ArrowIcon /></a>
+                <Link href="/support?ref=program:cmax-med">Support a mission <span aria-hidden="true">↗</span></Link>
               </div>
             </div>
-            <div className="med-hero-image">
-              <MedPhoto
-                photo={medImages.exterior}
-                priority
-                sizes="(min-width: 1320px) 520px, (min-width: 900px) 44vw, calc(100vw - 32px)"
-              />
-            </div>
+          </div>
+          <MedHeroStage />
+          <div className="med-hero-footer">
+            <span className="med-hero-status"><span aria-hidden="true" />{maturity.label}</span>
+            <p>Developed by Cmax System.<br />Humanitarian access through CMAX Foundation.</p>
+            <a href="#med-inside">Discover the details <span aria-hidden="true">↓</span></a>
           </div>
         </Container>
       </section>

@@ -2,6 +2,7 @@ import sharp from "sharp";
 import { mkdir, writeFile } from "node:fs/promises";
 
 const sources = {
+  exterior: "assets/imagenes/WhatsApp Image 2026-09-21 at 3.39.48 PM.jpeg",
   field: "public/images/content/solutions/cmaxmed-field-render.jpg",
   cutaway: "assets/imagenes/cmaxmed-interior-cutaway.jpg",
   hospital: "assets/imagenes/cmaxmed-hospital-isolation-ward.jpg",
@@ -28,4 +29,4 @@ await writeFile(
   "data/cmax-med-images.json",
   JSON.stringify(manifest, null, 2) + "\n",
 );
-console.log("Prepared six Cmax Med images at their original aspect ratios.");
+console.log("Prepared Cmax Med images at their original aspect ratios.");

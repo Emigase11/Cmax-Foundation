@@ -163,8 +163,8 @@ const scenarios = [
   {
     label: "Inside the unit",
     title: "See the space teams work in.",
-    text: "A look at the actual interior: rigid flooring, natural light and windows on each side.",
-    photo: medImages.interior,
+    text: "An illustrative view of a medical layout, with beds and space for the care team.",
+    photo: medImages.field,
   },
   {
     label: "Field hospital",

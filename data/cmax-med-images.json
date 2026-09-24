@@ -1,4 +1,9 @@
 {
+  "exterior": {
+    "src": "/images/content/cmax-med/exterior.webp",
+    "width": 1285,
+    "height": 832
+  },
   "field": {
     "src": "/images/content/cmax-med/field.webp",
     "width": 1800,

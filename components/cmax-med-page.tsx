@@ -73,7 +73,7 @@ export function CmaxMedPage({ program, actions, campaigns }: Props) {
             </div>
             <div className="med-hero-image">
               <MedPhoto
-                photo={medImages.field}
+                photo={medImages.exterior}
                 priority
                 sizes="(min-width: 1320px) 520px, (min-width: 900px) 44vw, calc(100vw - 32px)"
               />

@@ -1,6 +1,12 @@
 import images from "@/data/cmax-med-images.json";
 
 export const medImages = {
+  exterior: {
+    ...images.exterior,
+    alt: "Exterior photograph of a white Cmax Med unit with an orange entrance and triangular windows.",
+    caption: "Care, closer to where it is needed.",
+    kind: "Unit photograph · Cmax System",
+  },
   field: {
     ...images.field,
     alt: "Illustrative field clinic with Cmax Med, beds and medical staff.",

@@ -167,8 +167,8 @@ export default async function CampaignPage({ params }: Props) {
         </div>
 
         <p className="mt-16 text-[0.95rem] text-ink-3">
-          <Link href="/campaigns" className="u-link">
-            Back to Campaigns
+          <Link href="/our-actions#proposals" className="u-link">
+            Back to Our Actions
           </Link>
         </p>
       </Container>

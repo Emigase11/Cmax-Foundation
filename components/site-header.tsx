@@ -10,7 +10,6 @@ import { ButtonLink, Container } from "./ui";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/our-actions", label: "Our Actions" },
-  { href: "/campaigns", label: "Campaigns" },
   { href: "/about", label: "About us" },
 ];
 
@@ -70,7 +69,8 @@ export function SiteHeader() {
     return () => breakpoint.removeEventListener("change", closeOnDesktop);
   }, []);
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + "/");
+    pathname === href || pathname.startsWith(href + "/") ||
+    (href === "/our-actions" && pathname.startsWith("/campaigns/"));
 
   return (
     <>

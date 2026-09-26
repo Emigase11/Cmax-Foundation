@@ -9,7 +9,6 @@ const COLUMNS = [
     links: [
       { href: "/approach", label: "Our approach" },
       { href: "/our-actions", label: "Our Actions" },
-      { href: "/campaigns", label: "Campaigns" },
       { href: "/global-advocacy", label: "Global Advocacy" },
       {
         href: "/global-advocacy/united-nations",

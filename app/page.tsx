@@ -229,8 +229,8 @@ export default async function HomePage() {
         <Container>
           <div className="section-kicker">
             <p className="eyebrow">06 / Campaigns</p>
-            <Link href="/campaigns" className="text-link">
-              All campaigns <ArrowIcon />
+            <Link href="/our-actions#proposals" className="text-link">
+              All proposals <ArrowIcon />
             </Link>
           </div>
           <h2 className="editorial-title section-title-space">

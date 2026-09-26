@@ -1,201 +1,82 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ACTION_STATUS,
   ACTIVITY_TYPE,
   ATTRIBUTION,
-  CAMPAIGN_STATUS,
   MATURITY,
   formatDate,
   hasImage,
   imgSrc,
   stripCountry,
   type Figure,
-} from "@/lib/content";
+} from "@/lib/labels";
 import { Strip, Tag } from "./ui";
 import { ArrowIcon } from "./icons";
-
-/* ---------- Actions ---------- */
+import "./records.css";
 
 export type ActionEntry = {
   slug: string;
   entry: {
-    title: string;
-    country: string;
-    place: string;
-    date: string | null;
-    dateLabel: string;
-    status: string;
-    attribution: string;
-    summary: string;
-    hero: Figure;
+    title: string; country: string; place: string; date: string | null;
+    dateLabel: string; status: string; attribution: string; summary: string;
+    hero: Figure; outcomes: readonly string[];
+  };
+};
+export type CampaignEntry = {
+  slug: string;
+  entry: {
+    title: string; status: string; country: string; place: string; summary: string;
+    recipients: string; recipientConfirmed: boolean; hero: Figure;
   };
 };
 
-export function ActionRow({ action }: { action: ActionEntry }) {
-  const { slug, entry } = action;
-  const status = ACTION_STATUS[entry.status] ?? ACTION_STATUS.pending;
+function RecordCard({ title, location, country, summary, hero, href, context, support }: {
+  title: string; location: string; country: string; summary: string; hero: Figure; href: string;
+  context: React.ReactNode; support?: string;
+}) {
+  const src = hasImage(hero) ? imgSrc(hero.image) : null;
   return (
-    <li className="group border-t border-warm-2">
-      <Link
-        href={`/our-actions/${slug}`}
-        className="grid gap-x-8 gap-y-3 py-6 md:grid-cols-12 md:items-baseline"
-      >
-        <p className="display-md text-[1.5rem] leading-none md:col-span-2">
-          {entry.country}
-        </p>
-        <div className="md:col-span-7">
-          <h3 className="title text-[1.25rem] transition-colors group-hover:text-orange-deep">
-            {stripCountry(entry.title, entry.country)}
-          </h3>
-          <p className="mt-2 max-w-[62ch] text-[0.98rem] text-ink-2">
-            {entry.summary}
-          </p>
+    <article className="unified-record">
+      <div className="unified-record-image">
+        {src ? <Image src={src} alt={hero.alt} fill quality={90}
+          sizes="(min-width: 1320px) 580px, (min-width: 768px) 45vw, calc(100vw - 32px)"
+          className="object-contain" /> : <div className="record-poster h-full"><span className="eyebrow">CMAX Foundation</span><p className="record-poster-title">{country}</p></div>}
+        {hero.illustrative && <span className="unified-record-image-note">Illustrative render</span>}
+      </div>
+      <div className="unified-record-copy">
+        <p className="strip text-ink-3">{location}</p>
+        <h3 className="title"><Link href={href}>{title}</Link></h3>
+        <p className="unified-record-summary">{summary}</p>
+        <div className="unified-record-context">{context}</div>
+        <div className="unified-record-links">
+          <Link href={href} className="u-link">Read more <span aria-hidden="true">&#8599;</span><span className="sr-only">: {title}</span></Link>
+          {support && <Link href={support} className="u-link">Support this Mission<span className="sr-only">: {title}</span></Link>}
         </div>
-        <div className="flex flex-wrap items-center gap-3 md:col-span-3 md:justify-end">
-          <span className="strip text-ink-3">
-            {formatDate(entry.date, entry.dateLabel)}
-          </span>
-          <Tag tone={status.tone}>{status.label}</Tag>
-        </div>
-      </Link>
-    </li>
+      </div>
+    </article>
   );
 }
 
 export function ActionFeature({ action }: { action: ActionEntry }) {
   const { slug, entry } = action;
-  const status = ACTION_STATUS[entry.status] ?? ACTION_STATUS.pending;
-  const src = hasImage(entry.hero) ? imgSrc(entry.hero.image) : null;
-  return (
-    <Link
-      href={`/our-actions/${slug}`}
-      className="group grid gap-8 border-t-[3px] border-ink pt-6 lg:grid-cols-12"
-    >
-      <div className="lg:col-span-7">
-        <p className="display text-[clamp(2.6rem,2rem+3vw,4.5rem)] leading-none">
-          {entry.country}
-        </p>
-        <h3 className="title mt-5 max-w-[24ch] text-[clamp(1.4rem,1.2rem+1vw,2rem)] transition-colors group-hover:text-orange-deep">
-          {stripCountry(entry.title, entry.country)}
-        </h3>
-        <p className="mt-4 max-w-[58ch] text-ink-2">{entry.summary}</p>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Tag tone={status.tone}>{status.label}</Tag>
-          <Strip
-            items={[
-              formatDate(entry.date, entry.dateLabel),
-              ATTRIBUTION[entry.attribution],
-            ]}
-          />
-        </div>
-        <span className="u-link mt-6 inline-block font-medium">
-          Read the record
-        </span>
-      </div>
-      <div className="lg:col-span-5">
-        {src ? (
-          <div className="frame relative aspect-[1.95]">
-            <Image
-              src={src}
-              alt={entry.hero.alt}
-              fill
-              quality={90}
-              sizes="(min-width: 1320px) 490px, (min-width: 1024px) calc((100vw - 128px) * .417), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
-              className="object-contain"
-            />
-          </div>
-        ) : (
-          <div className="record-poster aspect-[4/3]">
-            <span className="eyebrow">CMAX Foundation / Field record</span>
-            <p className="record-poster-title">{entry.country}</p>
-            <span className="eyebrow">{status.label}</span>
-          </div>
-        )}
-      </div>
-    </Link>
-  );
+  return <RecordCard title={stripCountry(entry.title, entry.country)}
+    location={[...new Set([entry.place, entry.country].filter(Boolean))].join(", ")} country={entry.country}
+    summary={entry.summary} hero={entry.hero} href={`/our-actions/${slug}`}
+    context={<>
+      <p>{formatDate(entry.date, entry.dateLabel)}{ATTRIBUTION[entry.attribution] ? ` · ${ATTRIBUTION[entry.attribution]}` : ""}</p>
+      {entry.outcomes.length === 0 && <p>Documentation is being compiled. Confirmed results are not yet published for this record.</p>}
+    </>} />;
 }
-
-/* ---------- Campaigns ---------- */
-
-export type CampaignEntry = {
-  slug: string;
-  entry: {
-    title: string;
-    status: string;
-    country: string;
-    place: string;
-    summary: string;
-    recipients: string;
-    recipientConfirmed: boolean;
-    hero: Figure;
-  };
-};
-
+export function ActionRow({ action }: { action: ActionEntry }) {
+  return <li><ActionFeature action={action} /></li>;
+}
 export function CampaignCard({ campaign }: { campaign: CampaignEntry }) {
   const { slug, entry } = campaign;
-  const status = CAMPAIGN_STATUS[entry.status] ?? CAMPAIGN_STATUS.proposed;
-  const src = hasImage(entry.hero) ? imgSrc(entry.hero.image) : null;
-  return (
-    <article className="campaign-card flex flex-col border-t-[3px] border-ink pt-5">
-      <div className="frame relative aspect-[1.95]">
-        {src ? (
-          <Image
-            src={src}
-            alt={entry.hero.alt}
-            fill
-            quality={90}
-            sizes="(min-width: 1320px) 600px, (min-width: 768px) calc((100vw - 112px) / 2), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
-            className="object-contain"
-          />
-        ) : (
-          <div className="record-poster h-full">
-            <span className="eyebrow">CMAX Foundation / Initiative</span>
-            <p className="record-poster-title">{entry.country}</p>
-            <span className="eyebrow">{status.label}</span>
-          </div>
-        )}
-        {src && entry.hero.illustrative && (
-          <span className="absolute left-3 top-3">
-            <Tag tone="muted">Illustrative render</Tag>
-          </span>
-        )}
-      </div>
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        <Tag tone={status.tone}>{status.label}</Tag>
-        <Strip
-          items={[[entry.place, entry.country].filter(Boolean).join(", ")]}
-        />
-      </div>
-      <h3 className="title mt-4 text-[1.5rem]">
-        <Link href={`/campaigns/${slug}`} className="hover:text-orange-deep">
-          {entry.title}
-        </Link>
-      </h3>
-      <p className="mt-3 max-w-[56ch] text-ink-2">{entry.summary}</p>
-      {entry.recipients && (
-        <p className="mt-3 text-[0.95rem] text-ink-3">
-          Recipient: {entry.recipients}
-          {!entry.recipientConfirmed && " Confirmation pending."}
-        </p>
-      )}
-      <div className="mt-6 flex flex-wrap gap-4">
-        <Link
-          href={`/support?ref=campaign:${slug}`}
-          className="inline-flex items-center justify-center rounded-[4px] bg-orange px-5 py-3 font-semibold text-ink transition-colors hover:bg-orange-deep"
-        >
-          Support this Mission
-        </Link>
-        <Link
-          href={`/campaigns/${slug}`}
-          className="u-link self-center font-medium"
-        >
-          Details
-        </Link>
-      </div>
-    </article>
-  );
+  return <RecordCard title={entry.title}
+    location={[...new Set([entry.place, entry.country].filter(Boolean))].join(", ")} country={entry.country}
+    summary={entry.summary} hero={entry.hero} href={`/campaigns/${slug}`}
+    support={`/support?ref=campaign:${slug}`}
+    context={entry.recipients && <p>Recipient: {entry.recipients}{!entry.recipientConfirmed && " Confirmation pending."}</p>} />;
 }
 
 /* ---------- Programs ---------- */

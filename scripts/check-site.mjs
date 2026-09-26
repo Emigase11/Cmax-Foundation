@@ -4,6 +4,18 @@ import { readdir } from "node:fs/promises";
 // Integration smoke check against a running local dev or production server.
 // Only invalid form payloads are submitted: no inquiry or email is created.
 const origin = process.env.CHECK_SITE_URL ?? "http://localhost:3000";
+for (const [source, target] of [
+  ["/campaigns", "/our-actions"],
+  ["/impact", "/our-actions"],
+  ["/cmax-for-covid-19", "/our-actions/covid-19-response"],
+  ["/cmax-foundation-launches-in-mexico-a-public-private-network-for-drr", "/our-actions/mexico-public-private-network-for-disaster-risk-reduction"],
+  ["/el-primer-laboratorio-de-innovacion-social-para-la-emergencia-lise", "/our-actions/mexico-social-innovation-lab-for-emergencies"],
+]) {
+  const response = await fetch(new URL(source, origin), { redirect: "manual" });
+  assert.equal(response.status, 308, `Expected permanent redirect: ${source}`);
+  assert.equal(new URL(response.headers.get("location"), origin).pathname, target);
+  assert.equal((await fetch(new URL(target, origin))).status, 200, `Redirect target failed: ${target}`);
+}
 const routes = new Set([
   "/", "/approach", "/about/press", "/about", "/about/team", "/about/transparency",
   "/our-actions", "/campaigns", "/global-advocacy",

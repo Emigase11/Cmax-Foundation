@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     // Paths from the previous WordPress site.
     return [
+      { source: "/campaigns", destination: "/our-actions", permanent: true },
       { source: "/allstaff", destination: "/about/team", permanent: true },
       { source: "/misionandvision", destination: "/about", permanent: true },
       { source: "/impact", destination: "/our-actions", permanent: true },

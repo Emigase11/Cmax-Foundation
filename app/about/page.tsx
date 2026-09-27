@@ -105,12 +105,12 @@ export default async function AboutPage() {
           <p className="mt-4 max-w-[50ch] text-[0.98rem] text-ink-2">
             {about.teamNote}
           </p>
-          <Link
+          <ButtonLink
             href="/about/team"
-            className="u-link mt-4 inline-block font-medium"
+            className="mt-6"
           >
             Leadership, team and advisors
-          </Link>
+          </ButtonLink>
         </div>
         <div className="lg:col-span-5 lg:col-start-8">
           <h2 className="display-md text-[1.7rem]">Transparency</h2>

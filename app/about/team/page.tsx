@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { LinkedInIcon } from "@/components/icons";
-import { Container, EmptyNote, PageIntro } from "@/components/ui";
+import { Container, PageIntro } from "@/components/ui";
 import { getAbout, getPeople, imgSrc } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -24,15 +24,15 @@ export default async function TeamPage() {
       <PageIntro title="The people who make preparedness practical." lede={about.teamNote} />
       {GROUPS.map((g) => {
         const members = people.filter((p) => p.entry.group === g.key);
+        if (members.length === 0) return null;
         return (
           <section key={g.key} className="border-t-[3px] border-ink py-8 first-of-type:border-t-[3px]">
             <h2 className="display-md text-[1.7rem]">{g.label}</h2>
-            {members.length ? (
               <ul className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {members.map((p) => {
                   const src = imgSrc(p.entry.photo);
                   return (
-                    <li key={p.slug} className="grid grid-cols-[6rem_1fr] gap-5">
+                    <li key={p.slug} className="grid grid-cols-[5rem_minmax(0,1fr)] items-start gap-4">
                       <div className="frame relative aspect-square rounded-[4px]">
                         {src ? (
                           <Image src={src} alt={p.entry.name} fill quality={90} sizes="96px" className="object-cover" />
@@ -67,11 +67,6 @@ export default async function TeamPage() {
                   );
                 })}
               </ul>
-            ) : (
-              <div className="mt-4">
-                <EmptyNote>Profiles in this group are being confirmed by CMAX Foundation.</EmptyNote>
-              </div>
-            )}
           </section>
         );
       })}

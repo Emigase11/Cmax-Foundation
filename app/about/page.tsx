@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ButtonLink, Container, PageIntro } from "@/components/ui";
-import { getAbout, getPeople, getSite } from "@/lib/content";
+import { ButtonLink, Container } from "@/components/ui";
+import { getAbout, getPeople, getSite, imgSrc } from "@/lib/content";
+
+import { AboutHistory } from "@/components/about-history";
+import "./about.css";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,15 +19,14 @@ export default async function AboutPage() {
     getSite(),
     getPeople(),
   ]);
-  const leadership = people.filter((p) => p.entry.group === "leadership");
+
 
   return (
-    <Container>
-      <PageIntro
-        title="A humanitarian organization built to prepare, not only to react."
-        lede={about.intro}
-      />
-
+    <article className="about-experience"><Container>
+      <header className="about-opening">
+        <p className="about-kicker">CMAX Foundation / About us</p>
+        <div className="about-opening-grid"><h1>Preparedness starts<br /><em>with people.</em></h1><div><p>A humanitarian organization built to prepare, not only to react.</p><ButtonLink href="/about/team">Meet our team <span aria-hidden="true">&#8599;</span></ButtonLink><a href="#about-purpose">Discover our purpose &#8595;</a></div></div>
+      </header>
       <figure
         className="about-photo frame relative mb-14 aspect-[16/7]"
         data-reveal
@@ -43,107 +45,27 @@ export default async function AboutPage() {
         </figcaption>
       </figure>
 
-      <section className="grid gap-10 border-t-[3px] border-ink pt-8 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <h2 className="display-md text-[1.7rem]">Mission</h2>
-          <p className="mt-3 max-w-[52ch] text-[1.08rem] text-ink-2">
-            {about.mission}
-          </p>
-        </div>
-        <div className="lg:col-span-5 lg:col-start-8">
-          <h2 className="display-md text-[1.7rem]">Vision</h2>
-          <p className="mt-3 max-w-[44ch] text-[1.08rem] text-ink-2">
-            {about.vision}
-          </p>
-        </div>
+      <nav className="about-nav" aria-label="Explore About us"><a href="#about-purpose">01 / Purpose</a><a href="#about-values">02 / Values</a><a href="#about-history">03 / History</a><a href="#about-people">04 / People</a></nav>
+      <section id="about-purpose" className="about-purpose">
+        <div className="about-heading" data-reveal><p className="about-kicker">01 / Our purpose</p><h2>Before the emergency.<br /><em>Alongside the community.</em></h2><p>{about.intro}</p></div>
+        <div className="about-purpose-grid"><div><span>01</span><h3>Our mission</h3><p>{about.mission}</p></div><div><span>02</span><h3>Our vision</h3><p>{about.vision}</p></div></div>
       </section>
-
-      <section className="mt-16 border-t border-warm-2 pt-8 lg:mt-20">
-        <h2 className="display-md text-[1.7rem]">Values</h2>
-        <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-          {about.values.map((v) => (
-            <div key={v.name} className="border-t border-warm-2 pt-4">
-              <dt className="title text-[1.15rem]">{v.name}</dt>
-              <dd className="mt-1.5 text-[0.98rem] text-ink-2">{v.text}</dd>
-            </div>
-          ))}
-        </dl>
+      <section id="about-values" className="about-values">
+        <div className="about-heading" data-reveal><p className="about-kicker">02 / What guides us</p><h2>Values that shape<br /><em>the work.</em></h2><p>Explore the principles behind our decisions.</p></div>
+        <div className="about-values-grid">{about.values.map((v,i)=><details key={v.name} open={i===0}><summary><span>{String(i+1).padStart(2,"0")}</span><h3>{v.name}</h3><b aria-hidden="true">+</b></summary><p>{v.text}</p></details>)}</div>
       </section>
-
-      <section className="mt-16 grid gap-10 border-t-[3px] border-ink pt-8 lg:mt-20 lg:grid-cols-12">
-        <h2 className="display-md text-[1.7rem] lg:col-span-4">
-          History and milestones
-        </h2>
-        <ol className="lg:col-span-8">
-          {about.history.map((h) => (
-            <li
-              key={h.year}
-              className="grid grid-cols-[5.5rem_1fr] gap-4 border-t border-warm-2 py-4 first:border-t-0 first:pt-0"
-            >
-              <span className="display-md text-[1.5rem] leading-none text-orange">
-                {h.year}
-              </span>
-              <p className="max-w-[58ch] text-ink-2">{h.text}</p>
-            </li>
-          ))}
-        </ol>
+      <section id="about-history" className="about-history">
+        <div className="about-heading" data-reveal><p className="about-kicker">03 / History and milestones</p><h2>An idea takes shape.<br /><em>A mission moves forward.</em></h2><p>Select a year to explore our history.</p></div>
+        <AboutHistory milestones={about.history} />
       </section>
-
-      <section className="mt-16 grid gap-10 border-t border-warm-2 pt-8 lg:mt-20 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <h2 className="display-md text-[1.7rem]">Leadership and team</h2>
-          {leadership.length > 0 && (
-            <ul className="mt-4 space-y-2">
-              {leadership.map((p) => (
-                <li key={p.slug}>
-                  <span className="font-semibold">{p.entry.name}</span>
-                  <span className="text-ink-3"> · {p.entry.role}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-          <p className="mt-4 max-w-[50ch] text-[0.98rem] text-ink-2">
-            {about.teamNote}
-          </p>
-          <ButtonLink
-            href="/about/team"
-            className="mt-6"
-          >
-            Leadership, team and advisors
-          </ButtonLink>
-        </div>
-        <div className="lg:col-span-5 lg:col-start-8">
-          <h2 className="display-md text-[1.7rem]">Transparency</h2>
-          <p className="mt-3 max-w-[46ch] text-[0.98rem] text-ink-2">
-            {about.model}
-          </p>
-          <p className="mt-3 max-w-[46ch] text-[0.95rem] text-ink-3">
-            {site.legalLine}
-          </p>
-          <Link
-            href="/about/transparency"
-            className="u-link mt-4 inline-block font-medium"
-          >
-            How donations, missions and campaigns are reviewed
-          </Link>
-        </div>
+      <section id="about-people" className="about-people">
+        <div className="about-heading"><p className="about-kicker">04 / The people behind CMAX</p><h2>Different perspectives.<br /><em>A shared purpose.</em></h2><p>{about.teamNote}</p><ButtonLink href="/about/team" size="lg">Meet the people behind CMAX <span aria-hidden="true">&#8599;</span></ButtonLink><Link href="/about/team" className="about-team-link">Leadership and advisors &#8594;</Link></div>
+        <div className="about-portraits">{people.map(p=>{const src=imgSrc(p.entry.photo);return <figure key={p.slug}>{src ? <Image src={src} alt={p.entry.name} fill sizes="(min-width:1024px) 150px, 23vw" /> : <span>{p.entry.name.split(" ").slice(0,2).map(n=>n[0]).join("")}</span>}<figcaption>{p.entry.name}</figcaption></figure>;})}</div>
       </section>
-
-      <section className="mt-16 border-t-[3px] border-ink pt-8 lg:mt-20">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <p className="display-md max-w-[24ch] text-[clamp(1.5rem,1.2rem+1.4vw,2.4rem)]">
-            Work with us on the next emergency, before it happens.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <ButtonLink href="/support?reason=partner">
-              Partner with us
-            </ButtonLink>
-            <ButtonLink href="/support" variant="secondary">
-              Contact us
-            </ButtonLink>
-          </div>
-        </div>
+      <section className="about-trust">
+        <div className="about-heading"><p className="about-kicker">Trust is part of the work</p><h2>Clear purpose.<br /><em>Open records.</em></h2></div><div><p>{about.model}</p><p className="about-legal">{site.legalLine}</p><ButtonLink href="/about/transparency" variant="secondary">Explore our transparency</ButtonLink></div>
       </section>
-    </Container>
+      <section className="about-closing"><h2>Work with us on the next emergency,<br /><em>before it happens.</em></h2><div><ButtonLink href="/support?reason=partner">Partner with us</ButtonLink><ButtonLink href="/support" variant="secondary">Contact us</ButtonLink></div></section>
+    </Container></article>
   );
 }

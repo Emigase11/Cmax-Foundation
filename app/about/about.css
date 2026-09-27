@@ -1,0 +1,81 @@
+.about-experience { background:#f7f5ef; color:#203c35; }
+.about-experience h1,.about-experience h2,.about-experience h3 { letter-spacing:-.045em; font-weight:500; text-wrap:balance; }
+.about-experience h1 { font-size:clamp(54px,7.5vw,108px); line-height:1; }
+.about-experience h2 { font-size:clamp(36px,4.2vw,60px); line-height:1.08; }
+.about-experience em { font-family:Georgia,serif; font-weight:400; }
+.about-kicker { text-transform:uppercase; font-size:10px; letter-spacing:.15em; color:#a84926; font-weight:600; }
+.about-opening { padding-top:56px; }
+.about-opening-grid { display:grid; grid-template-columns:1.65fr 1fr; gap:64px; align-items:end; padding:30px 0 48px; }
+.about-opening-grid > div > p { font-size:20px; line-height:1.55; max-width:30ch; margin-bottom:24px; }
+.about-opening-grid > div > a:last-child { display:block; width:fit-content; margin-top:20px; font-size:13px; }
+.about-experience .about-photo { border-radius:10px; margin-bottom:0; }
+.about-nav { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid #bfc9bc; }
+.about-nav a { padding:24px 0; font-size:12px; }
+.about-nav a:hover { color:#a84926; }
+.about-experience section { padding:88px 0; scroll-margin-top:90px; }
+.about-heading { margin-bottom:36px; }
+.about-heading h2 { margin:18px 0 24px; }
+.about-heading > p:not(.about-kicker) { font-size:17px; line-height:1.8; color:#54665d; max-width:70ch; }
+.about-purpose-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.about-purpose-grid > div { padding:36px; border:1px solid #cbd3c4; border-radius:8px; }
+.about-purpose-grid > div:last-child { background:#dde6d6; }
+.about-purpose-grid > div > span { display:block; color:#7f9985; font-size:54px; line-height:1; margin-bottom:28px; }
+.about-purpose-grid h3 { font-size:30px; margin-bottom:16px; }
+.about-purpose-grid p { line-height:1.8; max-width:52ch; }
+.about-experience .about-values { background:#203c35; color:#f7f5ef; box-shadow:0 0 0 100vmax #203c35; clip-path:inset(0 -100vmax); }
+.about-values .about-kicker { color:#ffc59d; }
+.about-values .about-heading > p:not(.about-kicker) { color:#c0d0c2; }
+.about-values-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 56px; }
+.about-values-grid details { border-top:1px solid #ffffff35; padding:22px 0; }
+.about-values-grid summary { display:flex; gap:20px; align-items:center; cursor:pointer; list-style:none; }
+.about-values-grid summary::-webkit-details-marker { display:none; }
+.about-values-grid summary > span { color:#a3b8a7; font-size:11px; }
+.about-values-grid h3 { font-size:26px; }
+.about-values-grid summary b { margin-left:auto; font-weight:400; font-size:24px; transition:transform 180ms ease-out; }
+.about-values-grid details[open] summary b { transform:rotate(45deg); }
+.about-values-grid details > p { margin:18px 30px 0; line-height:1.7; color:#d0dccf; }
+.about-years { display:grid; grid-template-columns:repeat(8,1fr); border-block:1px solid #b8c4b1; }
+.about-years button { padding:20px 8px; cursor:pointer; font-size:15px; border-bottom:3px solid transparent; }
+.about-years button[aria-pressed="true"] { color:#a84926; border-color:#a84926; background:#e8ebdf; }
+.about-history-story { display:grid; grid-template-columns:1fr 1.4fr; gap:64px; padding:48px 0 0; min-height:310px; }
+.about-history-year { font-size:clamp(80px,14vw,190px); line-height:1; letter-spacing:-.08em; color:#879b7e; }
+.about-history-story h3 { font-size:clamp(24px,2.5vw,34px); line-height:1.4; margin-top:16px; }
+.about-history-controls { display:flex; align-items:center; gap:12px; margin-top:28px; }
+.about-history-controls > span { margin-right:auto; font-size:12px; }
+.about-history-controls button { width:44px; height:44px; border:1px solid #a5b59b; border-radius:50%; cursor:pointer; }
+.about-history-controls button:disabled { opacity:.35; cursor:default; }
+.about-experience .about-people { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center; border-block:1px solid #cbd3c4; }
+.about-people .button-link { margin-top:28px; }
+.about-team-link { display:block; font-size:12px; margin-top:20px; width:fit-content; }
+.about-portraits { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.about-portraits figure { position:relative; aspect-ratio:1; overflow:hidden; border-radius:6px; background:#dde6d6; display:grid; place-items:center; }
+.about-portraits img { object-fit:cover; transition:transform 220ms ease-out; }
+.about-portraits figcaption { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.about-trust { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.about-trust > div > p { line-height:1.8; }
+.about-trust .about-legal { font-size:12px; margin:18px 0 24px; color:#54665d; }
+.about-closing { display:flex; justify-content:space-between; gap:40px; align-items:center; border-top:1px solid #bdbda9; }
+.about-closing h2 { font-size:clamp(28px,3vw,40px); line-height:1.2; }
+.about-closing > div { display:flex; flex-wrap:wrap; gap:12px; }
+.about-experience a:focus-visible,.about-experience button:focus-visible,.about-experience summary:focus-visible { outline:2px solid #d67e38; outline-offset:5px; }
+@media (hover:hover) { .about-portraits figure:hover img { transform:scale(1.04); } .about-history-controls button:not(:disabled):hover { background:#d3dec9; } }
+@media (max-width:1023px) { .about-opening-grid { gap:32px; } .about-experience .about-people { grid-template-columns:1fr; gap:28px; } .about-portraits { max-width:640px; width:100%; } }
+@media (max-width:767px) {
+ .about-opening { padding-top:32px; }
+ .about-opening-grid,.about-purpose-grid,.about-history-story,.about-trust { grid-template-columns:1fr; gap:28px; }
+ .about-opening-grid { padding:24px 0 32px; }
+ .about-opening-grid > div > p { font-size:17px; }
+ .about-experience .about-photo { aspect-ratio:1.15; }
+ .about-nav { grid-template-columns:1fr 1fr; }
+ .about-nav a { padding:16px 0; }
+ .about-experience section { padding:56px 0; }
+ .about-purpose-grid > div { padding:26px; }
+ .about-values-grid { grid-template-columns:1fr; }
+ .about-years { grid-template-columns:repeat(4,1fr); }
+ .about-years button { padding:16px 8px; }
+ .about-history-story { min-height:430px; padding-top:28px; align-content:start; }
+ .about-history-year { font-size:88px; }
+ .about-closing { flex-direction:column; align-items:flex-start; }
+ .about-portraits { gap:6px; }
+}
+@media (prefers-reduced-motion:reduce) { .about-experience * { transition:none!important; animation:none!important; } }

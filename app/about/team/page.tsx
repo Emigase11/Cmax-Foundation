@@ -57,6 +57,7 @@ export default async function TeamPage() {
                             href={p.entry.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`${p.entry.name} on LinkedIn`}
                             className="mt-2 inline-flex items-center gap-1.5 text-[0.9rem] text-ink-2 hover:text-orange-deep"
                           >
                             <LinkedInIcon width={16} height={16} /> LinkedIn

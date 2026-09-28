@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
 import { medImages, type MedImage } from "@/lib/cmax-med";
+import { trapDialogFocus } from "@/lib/dialog-focus";
 
 export function MedPhoto({
   photo,
@@ -42,6 +43,7 @@ export function MedPhoto({
         <span>{photo.kind}</span>
       </figcaption>
       <dialog
+        onKeyDown={trapDialogFocus}
         ref={dialog}
         className="med-lightbox"
         aria-label={photo.caption}

@@ -35,6 +35,18 @@ export const getAbout = cache(async () => {
   return about;
 });
 
+export const getPrivacy = cache(async () => {
+  const page = await reader.singletons.privacy.read();
+  if (!page) throw new Error("content/site/privacy.yaml is missing");
+  return page;
+});
+
+export const getTerms = cache(async () => {
+  const page = await reader.singletons.terms.read();
+  if (!page) throw new Error("content/site/terms.yaml is missing");
+  return page;
+});
+
 export const getPrograms = cache(async () => {
   const all = await reader.collections.programs.all();
   return all.sort((a, b) => (a.entry.order ?? 0) - (b.entry.order ?? 0));

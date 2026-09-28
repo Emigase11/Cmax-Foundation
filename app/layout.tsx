@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={`${archivo.variable} h-full`}>
       <body className="flex min-h-full flex-col">
         <SiteHeader />
-        <main id="main" className="flex-1">
+        <main id="main" tabIndex={-1} className="flex-1">
           {children}
         </main>
         <SiteFooter />

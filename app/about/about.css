@@ -19,7 +19,7 @@
 .about-purpose-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .about-purpose-grid > div { padding:36px; border:1px solid #cbd3c4; border-radius:8px; }
 .about-purpose-grid > div:last-child { background:#dde6d6; }
-.about-purpose-grid > div > span { display:block; color:#7f9985; font-size:54px; line-height:1; margin-bottom:28px; }
+.about-purpose-grid > div > span { display:block; color:#50634f; font-size:54px; line-height:1; margin-bottom:28px; }
 .about-purpose-grid h3 { font-size:30px; margin-bottom:16px; }
 .about-purpose-grid p { line-height:1.8; max-width:52ch; }
 .about-experience .about-values { background:#203c35; color:#f7f5ef; box-shadow:0 0 0 100vmax #203c35; clip-path:inset(0 -100vmax); }
@@ -38,7 +38,7 @@
 .about-years button { padding:20px 8px; cursor:pointer; font-size:15px; border-bottom:3px solid transparent; }
 .about-years button[aria-pressed="true"] { color:#a84926; border-color:#a84926; background:#e8ebdf; }
 .about-history-story { display:grid; grid-template-columns:1fr 1.4fr; gap:64px; padding:48px 0 0; min-height:310px; }
-.about-history-year { font-size:clamp(80px,14vw,190px); line-height:1; letter-spacing:-.08em; color:#879b7e; }
+.about-history-year { font-size:clamp(80px,14vw,190px); line-height:1; letter-spacing:-.08em; color:#596f50; }
 .about-history-story h3 { font-size:clamp(24px,2.5vw,34px); line-height:1.4; margin-top:16px; }
 .about-history-controls { display:flex; align-items:center; gap:12px; margin-top:28px; }
 .about-history-controls > span { margin-right:auto; font-size:12px; }

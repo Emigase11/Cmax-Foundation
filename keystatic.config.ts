@@ -13,6 +13,17 @@ import { config, fields, collection, singleton } from "@keystatic/core";
 
 const githubRepo = process.env.KEYSTATIC_GITHUB_REPO;
 
+const legalSchema = {
+  title: fields.text({ label: "Page title" }),
+  intro: fields.text({ label: "Introduction", multiline: true }),
+  updated: fields.text({ label: "Last updated (YYYY-MM-DD)" }),
+  reviewNote: fields.text({ label: "Pending decisions / review note", multiline: true }),
+  sections: fields.array(fields.object({
+    title: fields.text({ label: "Section title" }),
+    text: fields.text({ label: "Text (separate paragraphs with a blank line)", multiline: true }),
+  }), { label: "Sections", itemLabel: (p) => p.fields.title.value }),
+};
+
 const image = (label: string, description?: string) =>
   fields.image({
     label,
@@ -94,6 +105,7 @@ export default config({
       Programs: ["programs"],
       People: ["people"],
       Pages: ["home", "visual", "about", "site"],
+      Legal: ["privacy", "terms"],
     },
   },
   collections: {
@@ -540,6 +552,22 @@ export default config({
           multiline: true,
         }),
       },
+    }),
+    privacy: singleton({
+      label: "Privacy notice",
+      path: "content/site/privacy",
+      format: { data: "yaml" },
+      schema: {
+        ...legalSchema,
+        formNotice: fields.text({ label: "Short form notice", multiline: true }),
+        formLinkLabel: fields.text({ label: "Form privacy link label" }),
+      },
+    }),
+    terms: singleton({
+      label: "Terms of use",
+      path: "content/site/terms",
+      format: { data: "yaml" },
+      schema: legalSchema,
     }),
     about: singleton({
       label: "About page",

@@ -126,7 +126,7 @@ export function FieldMap({ records }: { records: MapRecord[] }) {
                   : record.status}
               </p>
               <Link href={`/our-actions/${record.slug}`} className="text-link">
-                Read the record ↗
+                Read the record<span className="sr-only">: {record.title}</span> <span aria-hidden="true">↗</span>
               </Link>
             </article>
           ))

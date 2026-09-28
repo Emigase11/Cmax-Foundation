@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { ArrowIcon, CloseIcon, MenuIcon } from "./icons";
 import { ButtonLink, Container } from "./ui";
+import { trapDialogFocus } from "@/lib/dialog-focus";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -118,6 +119,7 @@ export function SiteHeader() {
         </Container>
       </header>
       <dialog
+        onKeyDown={trapDialogFocus}
         ref={dialog}
         id="mobile-menu"
         className="mobile-menu"

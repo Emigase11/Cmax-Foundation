@@ -87,7 +87,7 @@ function History({ points }: { points: DisplacementPoint[] }) {
             onPointerMove={event => { if (event.pointerType !== "touch") setPreviewYear(pointerYear(event)); }}
             onPointerLeave={() => setPreviewYear(null)}
             onPointerDown={event => choose(pointerYear(event))}>
-            <title id={`${id}-title`}>UNHCR population series, {first} to {last}</title>
+            <title id={`${id}-title`}>{`UNHCR population series, ${first} to ${last}`}</title>
             <desc id={`${id}-desc`}>Explore years with the selector or timeline slider. Exact values and sources are in the table below.</desc>
             <defs><linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#d66a32" stopOpacity=".23" /><stop offset="100%" stopColor="#d66a32" stopOpacity=".015" /></linearGradient></defs>
             {[0, ceiling / 3, ceiling * 2 / 3, ceiling].map(value => <g key={value}><line x1="48" x2="568" y1={y(value)} y2={y(value)} className="scale-grid" /><text x="36" y={y(value) + 4} textAnchor="end">{Math.round(value / 1_000_000)}</text></g>)}

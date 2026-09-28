@@ -17,6 +17,7 @@
   --color-ink-3: #66625b;
   --color-orange: #e87722;
   --color-orange-deep: #d66a1b;
+  --color-orange-ink: #a3440b;
   --color-orange-soft: #fbe9dc;
 
   --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
@@ -58,8 +59,9 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-orange);
+  outline: 3px solid #1c1b19;
   outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fffefa;
   border-radius: 2px;
 }
 
@@ -80,6 +82,33 @@ body {
   scrollbar-width: thin;
   accent-color: var(--color-orange);
 }
+
+/* Brand orange remains a surface accent; text needs a darker variant. */
+.text-orange { color: var(--color-orange-ink); }
+.hover\:text-orange-deep:hover { color: var(--color-orange-ink); }
+
+/* Standalone links need a usable target; inline prose links keep their flow. */
+.site-footer a, a.u-link, .about-team-link,
+.about-opening-grid > div > a:last-child, .visual-hero a.eyebrow,
+.scale-bottom a, .scale-table-wrap a {
+  min-height: 24px;
+  min-width: 24px;
+}
+.site-footer a, .scale-bottom a, .scale-table-wrap a { display: inline-flex; align-items: center; }
+a.u-link:not(.prose a) { display: inline-flex; align-items: center; }
+.site-footer .strip { justify-content: center; }
+main :is(a, button, input, select, textarea, summary) { scroll-margin-block: 110px 28px; }
+#main:focus { outline: none; box-shadow: none; }
+:where(.med-page, .aero-page) a,
+.un-back, .un-all-records, .action-group-nav a,
+.support-contact a, main li > a.u-link,
+.visual-hero a.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  min-width: 24px;
+}
+.frame:has(> button:focus-visible) { outline: 3px solid #1c1b19; outline-offset: 3px; box-shadow: 0 0 0 3px #fffefa; }
 
 /* Type roles */
 .display {
@@ -173,7 +202,7 @@ body {
   text-decoration-thickness: 2px;
 }
 .prose a:hover {
-  color: var(--color-orange-deep);
+  color: var(--color-orange-ink);
 }
 .prose blockquote {
   border-top: 2px solid var(--color-ink);
@@ -200,7 +229,7 @@ body {
     color 160ms ease-out;
 }
 .u-link:hover {
-  color: var(--color-orange-deep);
+  color: var(--color-orange-ink);
   text-decoration-color: currentColor;
 }
 
@@ -243,9 +272,10 @@ body {
   border-color: var(--color-ink);
 }
 .field:focus {
-  outline: none;
-  border-color: var(--color-orange);
-  box-shadow: 0 0 0 3px var(--color-orange-soft);
+  outline: 2px solid #1c1b19;
+  outline-offset: 3px;
+  border-color: #1c1b19;
+  box-shadow: 0 0 0 3px #fffefa;
 }
 .field[aria-invalid="true"] {
   border-color: #b3261e;
@@ -1142,7 +1172,7 @@ button:disabled {
   border-top: 3px solid var(--color-orange);
 }
 .support-form-panel .field {
-  border-color: #c7c1b6;
+  border-color: #817b70;
   border-radius: 2px;
 }
 .support-form-panel .field:focus {

@@ -1,5 +1,5 @@
 .med-page {
-  --med-accent: #b9422d;
+  --med-accent: #a53725;
   --med-ink: #273c38;
   --med-muted: #56655e;
   background: #f5f5ee;
@@ -314,7 +314,7 @@
   font-family: Georgia, serif;
   font-size: 52px;
   line-height: 1;
-  color: #617468;
+  color: #4c6052;
 }
 .med-feature-copy h3 {
   font-size: 23px;
@@ -413,7 +413,7 @@
   font-family: Georgia, serif;
   font-size: 48px;
   line-height: 1;
-  color: #879e8b;
+  color: #4c6052;
   margin-bottom: 20px;
 }
 .med-evidence-grid {

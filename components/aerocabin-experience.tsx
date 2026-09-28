@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
+import { trapDialogFocus } from "@/lib/dialog-focus";
 import { aeroImages, type AeroImage } from "@/lib/aerocabin";
 
 export function AeroPhoto({
@@ -42,6 +43,7 @@ export function AeroPhoto({
         <span>{photo.kind}</span>
       </figcaption>
       <dialog
+        onKeyDown={trapDialogFocus}
         ref={dialog}
         className="aero-lightbox"
         aria-label={photo.caption}

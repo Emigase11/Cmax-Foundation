@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
 import { CheckIcon } from "./icons";
 
 export const REASONS = [
@@ -13,6 +14,8 @@ export const REASONS = [
 ] as const;
 
 type Props = {
+  privacyNotice: string;
+  privacyLinkLabel: string;
   reference?: { key: string; label: string } | null;
   defaultReason?: string;
 };
@@ -22,9 +25,19 @@ type State = {
   message?: string;
 };
 
-export function SupportForm({ reference, defaultReason }: Props) {
+export function SupportForm({ reference, defaultReason, privacyNotice, privacyLinkLabel }: Props) {
   const [state, setState] = useState<State>({ status: "idle" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const confirmation = useRef<HTMLDivElement>(null);
+  const nameInput = useRef<HTMLInputElement>(null);
+  const returning = useRef(false);
+  useEffect(() => {
+    if (state.status === "sent") confirmation.current?.focus();
+    if (state.status === "idle" && returning.current) {
+      nameInput.current?.focus();
+      returning.current = false;
+    }
+  }, [state.status]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -77,6 +90,8 @@ export function SupportForm({ reference, defaultReason }: Props) {
   if (state.status === "sent") {
     return (
       <div
+        ref={confirmation}
+        tabIndex={-1}
         role="status"
         className="rounded-[4px] border-[1.5px] border-ink p-6"
       >
@@ -89,11 +104,11 @@ export function SupportForm({ reference, defaultReason }: Props) {
         <p className="mt-3 max-w-[50ch] text-ink-2">
           Thank you. CMAX Foundation will reply by email
           {reference ? ` with the details of ${reference.label}` : ""}. If your
-          message is urgent, call the number in the footer.
+          question needs follow-up, use the contact details in the footer. This is not an emergency service.
         </p>
         <button
           type="button"
-          onClick={() => setState({ status: "idle" })}
+          onClick={() => { returning.current = true; setState({ status: "idle" }); }}
           className="u-link mt-5 font-medium"
         >
           Send another message
@@ -131,6 +146,7 @@ export function SupportForm({ reference, defaultReason }: Props) {
             Name
           </label>
           <input
+            ref={nameInput}
             id="name"
             name="name"
             autoComplete="name"
@@ -262,6 +278,9 @@ export function SupportForm({ reference, defaultReason }: Props) {
         </p>
       )}
 
+      <p className="text-base leading-relaxed text-ink">
+        {privacyNotice}<br /><Link href="/privacy" className="u-link font-medium">{privacyLinkLabel}</Link>
+      </p>
       <div className="flex flex-wrap items-center gap-4 pt-2">
         <button
           type="submit"

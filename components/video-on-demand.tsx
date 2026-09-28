@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PlayIcon } from "./icons";
 
 type Props = {
@@ -33,8 +33,12 @@ function embedFor(url: string): { kind: "youtube" | "vimeo" | "file"; src: strin
  */
 export function VideoOnDemand({ url, title, context, captions, poster }: Props) {
   const [playing, setPlaying] = useState(false);
+  const player = useRef<HTMLVideoElement | HTMLIFrameElement | null>(null);
+  useEffect(() => {
+    if (playing) player.current?.focus();
+  }, [playing]);
   const embed = embedFor(url);
-  const hasCaptions = embed.kind !== "file" || Boolean(captions);
+  const hasCaptions = embed.kind === "file" && Boolean(captions);
 
   return (
     <figure>
@@ -54,16 +58,17 @@ export function VideoOnDemand({ url, title, context, captions, poster }: Props) 
             <span className="relative title text-[1.25rem] text-paper">{title}</span>
             {context && <span className="relative mt-1 max-w-[55ch] text-[0.95rem] text-paper/85">{context}</span>}
             <span className="relative strip mt-3 text-paper/70">
-              Play video · {hasCaptions ? "Subtitles available" : "Subtitles not yet available"}
+              Play video · {hasCaptions ? "Subtitles available" : embed.kind === "file" ? "Subtitles not yet available" : "Check subtitles in the player"}
             </span>
           </button>
         ) : embed.kind === "file" ? (
-          <video controls autoPlay playsInline preload="metadata" className="h-full w-full" crossOrigin="anonymous">
+          <video ref={(node) => { player.current = node; }} tabIndex={0} aria-label={title} controls autoPlay playsInline preload="metadata" className="h-full w-full" crossOrigin="anonymous">
             <source src={embed.src} />
             {captions && <track kind="captions" src={captions} srcLang="en" label="English" default />}
           </video>
         ) : (
           <iframe
+            ref={(node) => { player.current = node; }}
             src={embed.src}
             title={title}
             allow="autoplay; encrypted-media; picture-in-picture"

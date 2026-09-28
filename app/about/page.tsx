@@ -40,7 +40,7 @@ export default async function AboutPage() {
           preload
           className="object-cover"
         />
-        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-6 pb-5 pt-12 text-xs text-white">
+        <figcaption className="absolute inset-x-0 bottom-0 bg-black/75 px-6 py-5 text-xs text-white">
           Together with communities · From the CMAX archive
         </figcaption>
       </figure>

@@ -109,6 +109,10 @@ export async function SiteFooter() {
             <ExternalLink href={site.guidestarUrl}>
               GuideStar profile
             </ExternalLink>
+            <span className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <Link href="/privacy" className="u-link inline-flex min-h-6 items-center">Privacy notice</Link>
+              <Link href="/terms" className="u-link inline-flex min-h-6 items-center">Terms of use</Link>
+            </span>
           </p>
           <p>
             Cmax Med and AeroCabin™ are developed by Cmax System. ©{" "}

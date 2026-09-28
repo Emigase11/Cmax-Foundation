@@ -244,6 +244,7 @@ export default async function HomePage() {
                 <Link
                   href={`/campaigns/${c.slug}`}
                   className="campaign-visual-link"
+                  aria-label={`Explore ${c.entry.title}`}
                 >
                   {imgSrc(c.entry.hero.image) ? (
                     <Figure
@@ -266,7 +267,7 @@ export default async function HomePage() {
                     <Link href={`/campaigns/${c.slug}`}>{c.entry.title}</Link>
                   </h3>
                   <Link href={`/campaigns/${c.slug}`} className="text-link">
-                    Explore this mission <ArrowIcon />
+                    Explore this mission<span className="sr-only">: {c.entry.title}</span> <ArrowIcon />
                   </Link>
                 </div>
               </article>

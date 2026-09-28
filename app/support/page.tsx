@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SupportForm } from "@/components/support-form";
 import { ArrowIcon } from "@/components/icons";
 import { Container } from "@/components/ui";
-import { getAction, getCampaign, getProgram, getSite } from "@/lib/content";
+import { getAction, getCampaign, getProgram, getSite, getPrivacy } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Support a Mission",
@@ -55,9 +55,10 @@ export async function resolveReference(ref: string | undefined) {
 
 export default async function SupportPage({ searchParams }: Props) {
   const { ref, reason } = await searchParams;
-  const [reference, site] = await Promise.all([
+  const [reference, site, privacy] = await Promise.all([
     resolveReference(ref),
     getSite(),
+    getPrivacy(),
   ]);
   const defaultReason = reason ?? reference?.reason ?? "";
 
@@ -90,6 +91,16 @@ export default async function SupportPage({ searchParams }: Props) {
             <span><ArrowIcon /></span>
           </Link>
         </div>
+        <div className="support-form-panel">
+          <SupportForm
+            privacyNotice={privacy.formNotice}
+            privacyLinkLabel={privacy.formLinkLabel}
+            reference={
+              reference ? { key: reference.key, label: reference.label } : null
+            }
+            defaultReason={defaultReason}
+          />
+        </div>
         <div className="support-contact">
           <p className="eyebrow mb-5">Prefer a conversation?</p>
           <dl className="border-t border-warm-2">
@@ -121,14 +132,6 @@ export default async function SupportPage({ searchParams }: Props) {
             Every mission starts with a conversation. We’ll confirm the need,
             the recipient and the next step with you.
           </p>
-        </div>
-        <div className="support-form-panel">
-          <SupportForm
-            reference={
-              reference ? { key: reference.key, label: reference.label } : null
-            }
-            defaultReason={defaultReason}
-          />
         </div>
       </div>
     </Container>

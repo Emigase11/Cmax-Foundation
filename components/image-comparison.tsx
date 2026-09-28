@@ -37,6 +37,7 @@ export function ImageComparison({
   const [position, setPosition] = useState(REST);
   const stage = useRef<HTMLDivElement>(null);
   const hinted = useRef(false);
+  const stopHint = useRef(() => {});
   const id = useId();
   const first = imgSrc(before.image);
   const second = imgSrc(after.image);
@@ -50,7 +51,8 @@ export function ImageComparison({
     const node = stage.current;
     if (!node || hinted.current) return;
     if (!("IntersectionObserver" in window)) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motion.matches) return;
 
     let frame = 0;
     let timer: ReturnType<typeof setTimeout>;
@@ -77,10 +79,18 @@ export function ImageComparison({
       { threshold: 0.45 },
     );
     observer.observe(node);
-    return () => {
+    const cancel = () => {
       observer.disconnect();
       cancelAnimationFrame(frame);
       clearTimeout(timer);
+    };
+    const stop = () => { hinted.current = true; cancel(); };
+    stopHint.current = stop;
+    const changed = () => { if (motion.matches) stop(); };
+    motion.addEventListener("change", changed);
+    return () => {
+      cancel();
+      motion.removeEventListener("change", changed);
     };
   }, []);
 
@@ -129,8 +139,10 @@ export function ImageComparison({
           type="range"
           min="0"
           max="100"
-          step="0.1"
+          step="1"
           value={position}
+          onFocus={() => stopHint.current()}
+          onPointerDown={() => stopHint.current()}
           onChange={(event) => {
             hinted.current = true;
             setPosition(Number(event.target.value));

@@ -19,7 +19,7 @@ for (const [source, target] of [
 const routes = new Set([
   "/", "/approach", "/about/press", "/about", "/about/team", "/about/transparency",
   "/our-actions", "/campaigns", "/global-advocacy",
-  "/global-advocacy/united-nations", "/support",
+  "/global-advocacy/united-nations", "/support", "/privacy", "/terms",
 ]);
 for (const [collection, route] of [["programs", "our-work"], ["actions", "our-actions"], ["campaigns", "campaigns"]]) {
   const files = await readdir(`content/${collection}`);
@@ -32,6 +32,16 @@ for (const route of routes) {
   assert.equal(response.status, 200, `Page failed: ${route}`);
   const html = await response.text();
   assert.equal((html.match(/<h1(?:\s|>)/g) ?? []).length, 1, `Expected one h1: ${route}`);
+  assert.match(html, /<html[^>]*lang="en"/, `Missing document language: ${route}`);
+  assert.match(html, /href="#main"/, `Missing skip link: ${route}`);
+  for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) {
+    assert.match(tag, /\balt="[^"]*"/, `Missing image alternative: ${route}`);
+  }
+  // Multiple React children inside SVG title can produce an SSR hydration mismatch.
+  for (const [, title] of html.matchAll(/<svg\b[\s\S]*?<title[^>]*>([\s\S]*?)<\/title>/g)) {
+    assert.ok(!title.includes("<!--"), `Fragmented SVG title: ${route}`);
+  }
+  for (const legal of ["/privacy", "/terms"]) assert.ok(html.includes(`href="${legal}"`), `Missing legal link: ${route}`);
   for (const [, href] of html.matchAll(/href="(\/[^"#]*)"/g)) {
     if (!href.startsWith("/_next/") && !href.startsWith("/favicon")) links.add(href.replaceAll("&amp;", "&"));
   }

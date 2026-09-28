@@ -1,7 +1,7 @@
 .aero-page {
   --aero-ink: #173b40;
-  --aero-muted: #567075;
-  --aero-accent: #a94f23;
+  --aero-muted: #425c61;
+  --aero-accent: #93421b;
   color: var(--aero-ink);
   background: #f1f5ef;
 }
@@ -361,7 +361,7 @@
   font-size: 58px;
   line-height: 1;
   font-family: Georgia, serif;
-  color: #7a9e90;
+  color: #4a6b5d;
 }
 .aero-detail-description h3 {
   font-size: 29px;

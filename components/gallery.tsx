@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { trapDialogFocus } from "@/lib/dialog-focus";
 import { imgSrc, type Figure } from "@/lib/labels";
 
 export function Gallery({
@@ -62,6 +63,7 @@ export function Gallery({
           if (event.target === event.currentTarget) dialog.current?.close();
         }}
         onKeyDown={(event) => {
+          trapDialogFocus(event);
           if (event.key === "ArrowLeft") {
             event.preventDefault();
             step(-1);

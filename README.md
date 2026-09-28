@@ -69,7 +69,17 @@ SUPPORT_TO_EMAIL=info@cmaxfoundation.org
 SUPPORT_FROM_EMAIL="CMAX Foundation website <web@cmaxfoundation.org>"
 ```
 
-Without them, inquiries are appended to `data/inquiries/<date>.jsonl` (git-ignored). On serverless hosts the filesystem is read-only, so configure email before launch.
+To also land each inquiry as a spreadsheet row, create a Google service account, enable the Sheets API, share the sheet with the service account's address, and set:
+
+```
+GOOGLE_SERVICE_ACCOUNT_JSON={…the whole key file…}
+GOOGLE_SHEETS_ID=…              # the block between /d/ and /edit
+GOOGLE_SHEETS_RANGE=A:H         # optional
+```
+
+Columns, in order: received at, name, email, organization, reason, reference, page, message.
+
+The three routes are independent and the request succeeds if any one lands. Only the JSONL log needs a writable filesystem, which rules it out on Vercel: **a production deployment must configure Resend or Sheets, or inquiries are lost and the visitor sees an error.**
 
 ## Media
 

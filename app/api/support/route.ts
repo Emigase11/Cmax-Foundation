@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
+import { appendInquiryRow } from "@/lib/sheets";
 
 /**
  * Receives Support a Mission inquiries.
  *
- * Delivery: when RESEND_API_KEY and SUPPORT_TO_EMAIL are set, the message is
- * emailed through Resend's REST API. In every case the inquiry is appended to
- * data/inquiries/<date>.jsonl when the filesystem is writable (local and
- * self-hosted deployments), so nothing is lost while email is not configured.
+ * Delivery runs three independent routes and succeeds if any of them lands:
+ * email through Resend, a row in a Google Sheet, and a line in
+ * data/inquiries/<date>.jsonl. Only the last one needs a writable filesystem,
+ * which rules it out on Vercel, so a deployment there must configure at least
+ * one of the other two or inquiries are lost.
  */
 
 const REASONS = new Set([
@@ -122,7 +124,24 @@ export async function POST(req: Request) {
     }
   }
 
-  // 2. Local log (best effort).
+  // 2. Spreadsheet row when a sheet is configured.
+  try {
+    const appended = await appendInquiryRow([
+      inquiry.receivedAt,
+      inquiry.name,
+      inquiry.email,
+      inquiry.organization,
+      inquiry.reason,
+      inquiry.referenceLabel || inquiry.reference,
+      inquiry.page,
+      inquiry.message,
+    ]);
+    if (appended) results.push("sheet");
+  } catch (err) {
+    console.error("[support] spreadsheet append failed:", err);
+  }
+
+  // 3. Local log (best effort).
   try {
     const dir = path.join(process.cwd(), "data", "inquiries");
     await mkdir(dir, { recursive: true });

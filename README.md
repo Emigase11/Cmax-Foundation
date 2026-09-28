@@ -75,6 +75,7 @@ To also land each inquiry as a spreadsheet row, create a Google service account,
 GOOGLE_SERVICE_ACCOUNT_JSON={…the whole key file…}
 GOOGLE_SHEETS_ID=…              # the block between /d/ and /edit
 GOOGLE_SHEETS_RANGE=A:H         # optional
+SUPPORT_TIMEZONE=America/New_York   # optional, for the date column
 ```
 
 Columns, in order: received at, name, email, organization, reason, reference, page, message.

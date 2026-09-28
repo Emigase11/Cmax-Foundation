@@ -37,6 +37,25 @@ type Payload = {
 const clean = (v: unknown, max = 2000) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
 
+/**
+ * "2026-09-28 10:02:36" in the foundation's own timezone, for the spreadsheet.
+ *
+ * Swedish formatting is the ISO-ordered one built into Intl, so the column
+ * reads plainly and still sorts chronologically as text — which matters
+ * because rows are written with RAW input, where every cell stays a string.
+ */
+function sheetTimestamp(iso: string): string {
+  try {
+    return new Intl.DateTimeFormat("sv-SE", {
+      timeZone: process.env.SUPPORT_TIMEZONE ?? "America/New_York",
+      dateStyle: "short",
+      timeStyle: "medium",
+    }).format(new Date(iso));
+  } catch {
+    return iso; // An unknown zone must not cost us the row.
+  }
+}
+
 export async function POST(req: Request) {
   let body: Payload;
   try {
@@ -127,7 +146,7 @@ export async function POST(req: Request) {
   // 2. Spreadsheet row when a sheet is configured.
   try {
     const appended = await appendInquiryRow([
-      inquiry.receivedAt,
+      sheetTimestamp(inquiry.receivedAt),
       inquiry.name,
       inquiry.email,
       inquiry.organization,

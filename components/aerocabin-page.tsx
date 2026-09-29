@@ -27,7 +27,6 @@ const cabinFacts = [
   { label: "Approx. weight", value: "40 kg" },
   { label: "Adults + kids", value: "2 + 2" },
   { label: "Max inflation pressure", value: "10 bar" },
-  { label: "Cabin warranty", value: "2 years" },
 ];
 
 const cabinSpecifications = [

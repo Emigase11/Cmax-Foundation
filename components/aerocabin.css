@@ -294,7 +294,7 @@
 }
 .aero-spec-facts {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   padding: 32px;
   margin-bottom: 40px;
@@ -319,11 +319,11 @@
 .aero-spec-card ul { list-style: none; padding: 0; color: var(--aero-muted); font-size: 15px; line-height: 1.65; }
 .aero-spec-card li + li { margin-top: 8px; }
 @media (max-width: 1023px) {
-  .aero-spec-grid, .aero-spec-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aero-spec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767px) {
   .aero-specs { margin-top: 48px; padding-top: 40px; }
-  .aero-spec-facts { padding: 24px 16px; gap: 28px 16px; }
+  .aero-spec-facts { grid-template-columns: 1fr; padding: 24px 16px; gap: 28px 16px; }
   .aero-spec-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 .aero-details-grid {

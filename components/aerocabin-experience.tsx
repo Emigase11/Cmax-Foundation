@@ -83,8 +83,8 @@ const details = [
     y: 52,
   },
   {
-    title: "Inflatable construction",
-    text: "A compact form that takes shape through inflation. The cutaway illustrates the panel construction.",
+    title: "Drop-stitch construction",
+    text: "The same principle behind rigid inflatable paddleboards — scaled up to a cabin.\n\nThousands of internal threads connect the inner and outer walls of each panel. Under pressure — up to 10 bar — the chambers become rigid structural walls, not soft tubes.\n\nThe result is a cabin that packs down small, inflates fast, and holds its shape in real conditions.",
     x: 57,
     y: 33,
   },
@@ -145,7 +145,9 @@ export function AeroDetails() {
         <div id={id} aria-live="polite" className="aero-detail-description">
           <span aria-hidden="true">0{selected + 1}</span>
           <h3>{details[selected].title}</h3>
-          <p>{details[selected].text}</p>
+          {details[selected].text.split("\n\n").map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </div>
     </div>

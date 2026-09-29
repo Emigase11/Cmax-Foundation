@@ -370,7 +370,10 @@
 .aero-detail-description > p {
   font-size: 14px;
   color: var(--aero-muted);
-  min-height: 6.3em;
+  line-height: 1.65;
+}
+.aero-detail-description > p + p {
+  margin-top: 16px;
 }
 .aero-build {
   background: #f8f6ed;

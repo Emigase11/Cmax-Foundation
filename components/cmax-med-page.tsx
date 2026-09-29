@@ -22,6 +22,22 @@ type Props = {
   campaigns: CampaignEntry[];
 };
 
+const unitFacts = [
+  { label: "Folded, for transport", value: '37"' },
+  { label: "Living space, deployed", value: "14 ft" },
+  { label: "People it sleeps", value: "8" },
+  { label: "Assembly, two people", value: "11 min" },
+];
+
+const unitFeatures = [
+  { title: "Raised from the ground", text: "Telescopic legs lift the rigid floor off mud, water and uneven terrain." },
+  { title: "No tools needed", text: "Legs, sides and crossbar lock by hand. Nothing to lose, nothing to bring." },
+  { title: "Resistant to strong winds", text: "A rigid frame and raised floor that will not collapse the way a tent does." },
+  { title: "Ships and stores flat", text: "Folded, it fits in a pickup bed. Dozens stack in a single container." },
+  { title: "Biosecurity with nanotechnology", text: "Surfaces treated for clinical and isolation use." },
+  { title: "Lockable, powered, cooled", text: "Fit an A/C unit for hot climates, charge your devices, lock the door." },
+];
+
 export function CmaxMedPage({ program, actions, campaigns }: Props) {
   const maturity = MATURITY[program.maturity] ?? MATURITY.proposed;
   return (
@@ -90,17 +106,25 @@ export function CmaxMedPage({ program, actions, campaigns }: Props) {
             </p>
           </div>
           <MedInterior />
-          <div className="med-principles">
-            <p>
-              <span>Foldable</span>Stored and transported closed.
-            </p>
-            <p>
-              <span>Adaptable</span>Configured around the team’s needs.
-            </p>
-            <p>
-              <span>Relocatable</span>Planned for changing conditions.
-            </p>
-          </div>
+          <section className="med-built" aria-labelledby="med-built-title">
+            <div className="med-built-heading" data-reveal>
+              <h2 id="med-built-title">Built to move,<br /><em>built to stay.</em></h2>
+              <p>A rigid, raised unit that travels on any pickup and stores in a garage — then opens into a room you can stand up in.</p>
+            </div>
+            <dl className="med-built-facts">
+              {unitFacts.map((fact) => <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>)}
+            </dl>
+            <div className="med-built-features">
+              {unitFeatures.map((feature, index) => <div key={feature.title} className="med-built-feature" data-reveal>
+                <span className="med-built-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </div>)}
+            </div>
+          </section>
         </Container>
       </section>
 

@@ -23,6 +23,24 @@ type Props = {
   campaigns: CampaignEntry[];
 };
 
+const cabinFacts = [
+  { label: "Approx. weight", value: "40 kg" },
+  { label: "Adults + kids", value: "2 + 2" },
+  { label: "Max inflation pressure", value: "10 bar" },
+  { label: "Cabin warranty", value: "2 years" },
+];
+
+const cabinSpecifications = [
+  { title: "Dimensions", lines: ['98″ × 49″ × 53″', "248 cm × 125 cm × 135 cm"] },
+  { title: "Structure", lines: ["High-pressure drop-stitch inflatable walls", "8 cm reinforced structural thickness", "Thermal welded seams"] },
+  { title: "Capacity", lines: ["Designed for up to 2 adults and 2 kids", "Spacious panoramic interior"] },
+  { title: "Weight", lines: ["Approx. 40 kg / 88 lbs", "Portable and compact when packed"] },
+  { title: "Inflation", lines: ["Rapid inflation system", "Single front inflation valve", "Compatible with electric and manual pumps", "Max inflation 10 bar"] },
+  { title: "Floating capability", lines: ["Buoyant inflatable structure", "Designed to float during flood situations"] },
+  { title: "Materials", lines: ["Reinforced PVC drop-stitch fabric", "UV and weather resistant components", "High-durability outdoor construction"] },
+  { title: "Portability", lines: ["Deflates into a compact transport bag", "Easy to carry, store and deploy", "Packed: 130 × 52 × 32 cm / 51.18 × 20.47 × 12.60 in"] },
+];
+
 export function AerocabinPage({ program, actions, campaigns }: Props) {
   return (
     <article className="aero-page">
@@ -131,6 +149,28 @@ export function AerocabinPage({ program, actions, campaigns }: Props) {
             </p>
           </div>
           <AeroDetails />
+          <section className="aero-specs" aria-labelledby="aero-specs-title">
+            <div className="aero-section-heading" data-reveal>
+              <div>
+                <p className="aero-kicker">The cabin in detail</p>
+                <h2 id="aero-specs-title">Compact to carry.<br /><em>Room to unfold.</em></h2>
+              </div>
+              <p>Dimensions, construction and everyday portability.<br />Explore the specifications.</p>
+            </div>
+            <dl className="aero-spec-facts">
+              {cabinFacts.map((fact) => <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>)}
+            </dl>
+            <div className="aero-spec-grid">
+              {cabinSpecifications.map((spec, index) => <div className="aero-spec-card" key={spec.title} data-reveal>
+                <span className="aero-kicker" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{spec.title}</h3>
+                <ul>{spec.lines.map((line) => <li key={line}>{line}</li>)}</ul>
+              </div>)}
+            </div>
+          </section>
         </Container>
       </section>
 

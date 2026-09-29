@@ -287,6 +287,45 @@
 .aero-design {
   background: #e7eee8;
 }
+.aero-specs {
+  margin-top: 80px;
+  padding-top: 56px;
+  border-top: 1px solid #b3c9bd;
+}
+.aero-spec-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  padding: 32px;
+  margin-bottom: 40px;
+  background: #173b40;
+  color: #edf5ed;
+  border-radius: 12px;
+}
+.aero-spec-facts dt { font-size: 14px; line-height: 1.5; }
+.aero-spec-facts dd {
+  margin: 14px 0 0;
+  font-size: clamp(32px, 3.5vw, 52px);
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+}
+.aero-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+}
+.aero-spec-card { border-top: 1px solid #b3c9bd; padding-top: 20px; }
+.aero-spec-card h3 { font-size: 24px; margin: 16px 0; line-height: 1.2; }
+.aero-spec-card ul { list-style: none; padding: 0; color: var(--aero-muted); font-size: 15px; line-height: 1.65; }
+.aero-spec-card li + li { margin-top: 8px; }
+@media (max-width: 1023px) {
+  .aero-spec-grid, .aero-spec-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .aero-specs { margin-top: 48px; padding-top: 40px; }
+  .aero-spec-facts { padding: 24px 16px; gap: 28px 16px; }
+  .aero-spec-grid { grid-template-columns: 1fr; gap: 24px; }
+}
 .aero-details-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
